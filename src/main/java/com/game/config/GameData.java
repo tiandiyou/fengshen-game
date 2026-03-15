@@ -55,4 +55,27 @@ public class GameData {
             Map.of("name", "余元", "hp", 1200, "atk", 130, "icon", "🧙")
         ), "reward", Map.of("lingqi", 400, "gold", 200))
     );
+    
+    // 战法数据
+    public static final List<Map<String, Object>> SKILLS = Arrays.asList(
+        // 主动战法
+        Map.of("id", 1, "name", "火尖枪", "icon", "🔱", "type", "主动", "effectType", "伤害", "effectValue", 150, "cooldown", 2, "cost", 30, "targetType", "单体", "description", "火尖枪攻击单个目标，造成150%武力伤害"),
+        Map.of("id", 2, "name", "八九玄功", "icon", "🌀", "type", "主动", "effectType", "伤害", "effectValue", 140, "cooldown", 2, "cost", 25, "targetType", "单体", "description", "杨戬绝技，造成140%武力伤害"),
+        Map.of("id", 3, "name", "风雷棍", "icon", "⚡", "type", "主动", "effectType", "伤害", "effectValue", 130, "cooldown", 2, "cost", 20, "targetType", "单体", "description", "雷震子绝技，造成130%武力伤害"),
+        Map.of("id", 4, "name", "打神鞭", "icon", "📿", "type", "主动", "effectType", "伤害", "effectValue", 145, "cooldown", 2, "cost", 28, "targetType", "单体", "description", "姜子牙法宝，造成145%智力伤害"),
+        Map.of("id", 5, "name", "天子剑", "icon", "👑", "type", "主动", "effectType", "伤害", "effectValue", 160, "cooldown", 3, "cost", 35, "targetType", "单体", "description", "纣王佩剑，造成160%武力伤害"),
+        Map.of("id", 6, "name", "魅惑", "icon", "🦊", "type", "主动", "effectType", "控制", "effectValue", 50, "cooldown", 3, "cost", 25, "targetType", "单体", "description", "妲己魅惑，有50%概率使目标混乱"),
+        
+        // 被动战法
+        Map.of("id", 101, "name", "莲花护体", "icon", "🪷", "type", "被动", "effectType", "增益", "effectValue", 10, "cooldown", 0, "cost", 0, "targetType", "自身", "description", "永久提升10%防御"),
+        Map.of("id", 102, "name", "天眼通", "icon", "👁️", "type", "被动", "effectType", "增益", "effectValue", 15, "cooldown", 0, "cost", 0, "targetType", "自身", "description", "永久提升15%暴击率"),
+        Map.of("id", 103, "name", "天命所归", "icon", "⭐", "type", "被动", "effectType", "增益", "effectValue", 20, "cooldown", 0, "cost", 0, "targetType", "自身", "description", "永久提升20%经验获取"),
+        
+        // 指挥战法
+        Map.of("id", 201, "name", "鼓舞全军", "icon", "🎺", "type", "指挥", "effectType", "增益", "effectValue", 15, "cooldown", 0, "cost", 0, "targetType", "全体友军", "description", "战斗开始时，全队提升15%攻击力"),
+        Map.of("id", 202, "name", "冲锋号角", "icon", "📯", "type", "指挥", "effectType", "增益", "effectValue", 10, "cooldown", 0, "cost", 0, "targetType", "全体友军", "description", "战斗开始时，全队提升10%速度"),
+        
+        // 联动战法
+        Map.of("id", 301, "name", "父子同心", "icon", "👨‍👦", "type", "联动", "effectType", "增益", "effectValue", 25, "cooldown", 0, "cost", 0, "targetType", "特定武将", "description", "哪吒+李靖同时上阵，攻击力提升25%")
+    );
 }
