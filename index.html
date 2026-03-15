@@ -10,22 +10,26 @@ body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16
 #game-container{max-width:480px;margin:0 auto;min-height:100vh}
 .screen{display:none;min-height:100vh;flex-direction:column;padding:12px}
 .screen.active{display:flex}
-.title{font-size:22px;color:#ffd700;text-align:center;margin:10px 0}
+.title{font-size:20px;color:#ffd700;text-align:center;margin:10px 0}
 .btn{background:linear-gradient(180deg,#ff6b00,#c41e3a);border:2px solid #ffd700;color:#fff;padding:8px 14px;font-size:12px;border-radius:12px;margin:4px;cursor:pointer}
-.btn-small{padding:5px 10px;font-size:10px}
+.btn-small{padding:4px 8px;font-size:10px}
 .btn-green{background:linear-gradient(180deg,#27ae60,#1e8449)}
+.btn-purple{background:linear-gradient(180deg,#9b59b6,#8e44ad)}
+.btn-blue{background:linear-gradient(180deg,#3498db,#2980b9)}
 .input-group{margin-bottom:10px}
 .input-group input{width:100%;padding:8px;border:2px solid #4a9eff;border-radius:6px;background:rgba(0,0,0,0.3);color:#fff;font-size:13px;text-align:center}
 .top-bar{display:flex;justify-content:space-between;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:6px;margin-bottom:8px;font-size:10px}
 .partner-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding-bottom:55px}
 .partner-card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;border:1px solid #333;position:relative}
-.partner-card.selected{border-color:#ffd700}
+.partner-card.selected{border-color:#ffd700;background:rgba(255,215,0,0.15)}
+.partner-card.maxed{border-color:#e74c3c}
 .star{color:#ffd700;font-size:9px}
 .partner-header{display:flex;align-items:center;gap:6px}
-.partner-avatar{width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:13px}
-.upgrade-btn{position:absolute;top:3px;right:3px;font-size:8px;padding:2px 5px;background:#27ae60;border-radius:5px}
-.chapter-list,.quest-list,.rank-list{display:flex;flex-direction:column;gap:6px;padding-bottom:55px}
-.chapter-card,.quest-card,.rank-card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;display:flex;justify-content:space-between;align-items:center}
+.partner-avatar{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:18px}
+.skill-tag{display:inline-block;font-size:8px;padding:2px 5px;background:rgba(255,215,0,0.2);border-radius:3px;margin:2px;color:#ffd700}
+.chapter-list,.quest-list,.rank-list,.build-list,.skill-list{display:flex;flex-direction:column;gap:6px;padding-bottom:55px}
+.card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;display:flex;justify-content:space-between;align-items:center}
+.card-full{flex-direction:column;align-items:stretch}
 .bottom-nav{display:flex;justify-content:space-around;padding:6px;background:rgba(0,0,0,0.5);position:fixed;bottom:0;width:100%;max-width:480px}
 .nav-item{display:flex;flex-direction:column;align-items:center;font-size:8px;color:#888;cursor:pointer;padding:3px 6px}
 .nav-item.active{color:#ffd700}
@@ -33,72 +37,155 @@ body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16
 .tab-content.active{display:block}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000}
 .modal.active{display:flex}
-.modal-content{background:#1a1a2e;border:2px solid #ffd700;border-radius:12px;padding:20px;max-width:280px;text-align:center}
+.modal-content{background:#1a1a2e;border:2px solid #ffd700;border-radius:12px;padding:15px;max-width:300px;text-align:center;max-height:80vh;overflow-y:auto}
 .toast{position:fixed;top:12%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);color:#ffd700;padding:10px 20px;border-radius:10px;z-index:2000}
-.quest-reward{font-size:9px;color:#ffd700}
-.gacha-card{background:linear-gradient(180deg,#1a1a2e,#0d1b2a);border:3px solid #ffd700;border-radius:12px;padding:12px;margin:10px 0}
+.resource-bar{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.resource-item{font-size:9px;padding:4px 8px;background:rgba(0,0,0,0.3);border-radius:4px}
+.build-item{padding:10px;background:rgba(255,255,255,0.05);border-radius:6px;margin-bottom:6px}
+.skill-card{background:rgba(255,255,255,0.1);border-radius:8px;padding:10px;margin-bottom:8px;text-align:left}
+.skill-name{font-weight:bold;color:#ffd700;font-size:12px}
+.skill-desc{font-size:9px;color:#aaa;margin:4px 0}
+.skill-level{font-size:9px;color:#3498db}
+.practice-btn{font-size:9px;padding:3px 6px;background:#27ae60;border-radius:4px;margin:2px}
+.attr-row{display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
 </style>
 </head>
 <body>
 <div id="game-container">
 <div id="title-screen" class="screen active" style="justify-content:center;align-items:center;text-align:center">
-<div style="font-size:34px;margin-top:40px">⚔封神榜⚔</div>
-<div class="title" style="margin-top:6px">伐商演义</div>
-<div style="color:#888;margin-bottom:18px">商朝末年，封神之战</div>
+<div style="font-size:36px;margin-top:40px">⚔封神榜⚔</div>
+<div class="title">伐商演义</div>
+<div style="color:#888;margin-bottom:20px">商朝末年，封神之战</div>
 <button class="btn" onclick="showLogin()">开始游戏</button>
 </div>
 <div id="login-screen" class="screen">
 <div class="title">登录 / 注册</div>
 <div class="input-group" style="max-width:220px;margin:0 auto"><input type="text" id="username" placeholder="输入用户名"></div>
 <button class="btn" onclick="doLogin()">登录</button>
-<button class="btn" style="background:#9b59b6" onclick="doRegister()">注册</button>
+<button class="btn btn-purple" onclick="doRegister()">注册</button>
 <button class="btn btn-small" onclick="showScreen('title-screen')">返回</button>
 </div>
 <div id="main-screen" class="screen">
-<div class="top-bar"><span>💎 <span id="lingqi">0</span></span><span>💰 <span id="gold">0</span></span><span>⚔ <span id="zhanli">0</span></span></div>
-<div id="tab-partners" class="tab-content active"><div style="margin-bottom:6px;font-size:10px;color:#888">点击选择 | ↑升级 | 抽卡</div><div id="partners-list" class="partner-list"></div></div>
+<div class="resource-bar">
+<span class="resource-item">💎<span id="lingqi">0</span></span>
+<span class="resource-item">💰<span id="gold">0</span></span>
+<span class="resource-item">🌾<span id="food">0</span></span>
+<span class="resource-item">🪵<span id="wood">0</span></span>
+<span class="resource-item">⚔<span id="zhanli">0</span></span>
+</div>
+<div id="tab-partners" class="tab-content active">
+<div style="margin-bottom:6px;font-size:10px;color:#888">点击选择 | 进阶 | 技能</div>
+<div id="partners-list" class="partner-list"></div>
+</div>
 <div id="tab-battle" class="tab-content"><div id="chapter-list" class="chapter-list"></div></div>
+<div id="tab-skills" class="tab-content">
+<div style="margin-bottom:6px;font-size:10px;color:#888">技能学习 | 升级 | 兑换</div>
+<div id="skill-list" class="skill-list"></div>
+</div>
+<div id="tab-build" class="tab-content"><div id="build-list" class="build-list"></div></div>
 <div id="tab-quests" class="tab-content"><div id="quest-list" class="quest-list"></div></div>
-<div id="tab-rank" class="tab-content"><div id="rank-list" class="rank-list"></div></div>
 <div class="bottom-nav">
-<div class="nav-item active" onclick="showTab('partners')"><span style="font-size:14px">👥</span><span>伙伴</span></div>
+<div class="nav-item active" onclick="showTab('partners')"><span style="font-size:14px">👥</span><span>武将</span></div>
 <div class="nav-item" onclick="showTab('battle')"><span style="font-size:14px">⚔</span><span>战斗</span></div>
+<div class="nav-item" onclick="showTab('skills')"><span style="font-size:14px">✨</span><span>技能</span></div>
+<div class="nav-item" onclick="showTab('build')"><span style="font-size:14px">🏰</span><span>内政</span></div>
 <div class="nav-item" onclick="showTab('quests')"><span style="font-size:14px">📋</span><span>任务</span></div>
-<div class="nav-item" onclick="showTab('rank')"><span style="font-size:14px">🏆</span><span>排行</span></div>
 </div>
 </div>
 </div>
 <div id="modal" class="modal" onclick="closeModal()">
 <div class="modal-content" onclick="event.stopPropagation()">
 <h3 id="modal-title" style="color:#ffd700;margin-bottom:10px">提示</h3>
-<p id="modal-text" style="margin-bottom:15px"></p>
+<div id="modal-text" style="margin-bottom:15px"></div>
 <button class="btn" onclick="closeModal()">确定</button>
 </div>
 </div>
 <script>
-var GAME_DATA={partners:[{id:1,name:"哪吒",icon:"🔥",quality:"red",hp:1200,atk:180,skills:["火尖枪","乾坤圈","风火轮"]},{id:2,name:"杨戬",icon:"🐕",quality:"red",hp:1100,atk:160,skills:["八九玄功","哮天犬"]},{id:3,name:"雷震子",icon:"⚡",quality:"purple",hp:1000,atk:150,skills:["风雷棍"]},{id:4,name:"姜子牙",icon:"📜",quality:"orange",hp:900,atk:140,skills:["打神鞭","封神榜"]},{id:5,name:"金吒",icon:"🗡️",quality:"purple",hp:950,atk:145,skills:["遁龙桩"]},{id:6,name:"木吒",icon:"🎋",quality:"purple",hp:930,atk:140,skills:["混天绫"]},{id:7,name:"李靖",icon:"🏰",quality:"purple",hp:1100,atk:120,skills:["玲珑宝塔"]},{id:8,name:"纣王",icon:"👑",quality:"orange",hp:1500,atk:170,skills:["天子剑"]},{id:9,name:"妲己",icon:"🦊",quality:"orange",hp:800,atk:200,skills:["魅惑"]},{id:10,name:"申公豹",icon:"🐆",quality:"orange",hp:950,atk:165,skills:["开天珠"]},{id:11,name:"赵公明",icon:"💰",quality:"orange",hp:1300,atk:175,skills:["定海珠"]},{id:12,name:"闻仲",icon:"👁️",quality:"orange",hp:1400,atk:150,skills:["雌雄双鞭"]}],chapters:[{id:1,name:"第一章",title:"陈塘关",desc:"哪吒闹海",enemies:[{name:"巡海夜叉",hp:300,atk:30,icon:"👹"},{name:"敖丙",hp:800,atk:80,icon:"🐉"}],reward:{lingqi:100,gold:50}},{id:2,name:"第二章",title:"渭水河",desc:"姜子牙下山",enemies:[{name:"渔夫",hp:400,atk:40,icon:"🎣"},{name:"樵夫",hp:450,atk:45,icon:"🪓"}],reward:{lingqi:150,gold:80}},{id:3,name:"第三章",title:"西岐",desc:"文王访贤",enemies:[{name:"纣使",hp:500,atk:50,icon:"👮"},{name:"官兵",hp:600,atk:60,icon:"💂"}],reward:{lingqi:200,gold:100}},{id:4,name:"第四章",title:"佳梦关",desc:"魔家四将",enemies:[{name:"魔礼青",hp:800,atk:90,icon:"🌿"},{name:"魔礼红",hp:850,atk:95,icon:"🔥"}],reward:{lingqi:300,gold:150}},{id:5,name:"第五章",title:"青龙关",desc:"哼哈二将",enemies:[{name:"郑伦",hp:900,atk:100,icon:"🤨"},{name:"陈奇",hp:950,atk:105,icon:"😤"}],reward:{lingqi:350,gold:180}},{id:6,name:"第六章",title:"汜水关",desc:"余元余化",enemies:[{name:"余化",hp:1000,atk:120,icon:"⚔️"},{name:"余元",hp:1200,atk:130,icon:"🧙"}],reward:{lingqi:400,gold:200}}],quests:[{id:1,name:"初战告捷",desc:"完成第一章",reward:50},{id:2,name:"伙伴招募",desc:"拥有5个伙伴",reward:100},{id:3,name:"战力提升",desc:"总战力达到1000",reward:150},{id:4,name:"连续挑战",desc:"完成3场战斗",reward:100},{id:5,name:"法宝收集",desc:"拥有3件法宝",reward:200}]};
+var GAME_DATA={
+partners:[
+{id:1,name:"哪吒",icon:"🔥",quality:"red",type:"骑",hp:1200,atk:180,def:80,speed:95,skills:["火尖枪"],yuanfen:[]},
+{id:2,name:"杨戬",icon:"🐕",quality:"red",type:"步",hp:1100,atk:160,def:90,speed:90,skills:["哮天犬"],yuanfen:[]},
+{id:3,name:"雷震子",icon:"⚡",quality:"purple",type:"弓",hp:1000,atk:150,def:70,speed:100,skills:["风雷棍"],yuanfen:[]},
+{id:4,name:"姜子牙",icon:"📜",quality:"orange",type:"弓",hp:900,atk:140,def:60,speed:70,skills:["打神鞭"],yuanfen:[]},
+{id:5,name:"金吒",icon:"🗡️",quality:"purple",type:"步",hp:950,atk:145,def:85,speed:85,skills:["遁龙桩"],yuanfen:[]},
+{id:6,name:"木吒",icon:"🎋",quality:"purple",type:"步",hp:930,atk:140,def:80,speed:83,skills:["混天绫"],yuanfen:[]},
+{id:7,name:"李靖",icon:"🏰",quality:"purple",type:"步",hp:1100,atk:120,def:100,speed:60,skills:["玲珑宝塔"],yuanfen:[]},
+{id:8,name:"纣王",icon:"👑",quality:"orange",type:"骑",hp:1500,atk:170,def:75,speed:65,skills:["天子剑"],yuanfen:[]},
+{id:9,name:"妲己",icon:"🦊",quality:"orange",type:"弓",hp:800,atk:200,def:50,speed:110,skills:["魅惑"],yuanfen:[]},
+{id:10,name:"申公豹",icon:"🐆",quality:"orange",type:"骑",hp:950,atk:165,def:65,speed:88,skills:["开天珠"],yuanfen:[]},
+{id:11,name:"赵公明",icon:"💰",quality:"orange",type:"骑",hp:1300,atk:175,def:70,speed:75,skills:["定海珠"],yuanfen:[]},
+{id:12,name:"闻仲",icon:"👁️",quality:"orange",type:"步",hp:1400,atk:150,def:95,speed:70,skills:["雌雄双鞭"],yuanfen:[]}
+],
+skills:[
+{id:1,name:"火尖枪",type:"主动",desc:"单体攻击130%",level:1,maxLevel:5,atkBonus:1.3,upgrades:[{cost:100,bonus:0.1},{cost:200,bonus:0.15},{cost:400,bonus:0.2},{cost:800,bonus:0.25}]},
+{id:2,name:"乾坤圈",type:"主动",desc:"必定暴击",level:1,maxLevel:5,critRate:0.3,upgrades:[{cost:150,bonus:0.1},{cost:300,bonus:0.1},{cost:600,bonus:0.15},{cost:1200,bonus:0.15}]},
+{id:3,name:"风火轮",type:"被动",desc:"速度+20",level:1,maxLevel:5,speedBonus:20,upgrades:[{cost:80,bonus:5},{cost:160,bonus:5},{cost:320,bonus:8},{cost:640,bonus:12}]},
+{id:4,name:"八九玄功",type:"被动",desc:"防御+15%",level:1,maxLevel:5,defBonus:0.15,upgrades:[{cost:120,bonus:0.05},{cost:240,bonus:0.05},{cost:480,bonus:0.08},{cost:960,bonus:0.12}]},
+{id:5,name:"哮天犬",type:"主动",desc:"追击残血敌人",level:1,maxLevel:5,pursuit:0.3,upgrades:[{cost:150,bonus:0.1},{cost:300,bonus:0.1},{cost:600,bonus:0.15},{cost:1200,bonus:0.15}]},
+{id:6,name:"打神鞭",type:"主动",desc:"对BOSS伤害+20%",level:1,maxLevel:5,bossDmg:0.2,upgrades:[{cost:200,bonus:0.1},{cost:400,bonus:0.1},{cost:800,bonus:0.15},{cost:1600,bonus:0.15}]},
+{id:7,name:"封神榜",type:"被动",desc:"全队气血+10%",level:1,maxLevel:5,teamHp:0.1,upgrades:[{cost:180,bonus:0.05},{cost:360,bonus:0.05},{cost:720,bonus:0.08},{cost:1440,bonus:0.12}]},
+{id:8,name:"天子剑",type:"主动",desc:"全体攻击",level:1,maxLevel:5, aoe:0.4,upgrades:[{cost:250,bonus:0.1},{cost:500,bonus:0.1},{cost:1000,bonus:0.15},{cost:2000,bonus:0.15}]},
+{id:9,name:"魅惑",type:"主动",desc:"敌人攻击力-15%",level:1,maxLevel:5,enemyAtk:-0.15,upgrades:[{cost:100,bonus:0.05},{cost:200,bonus:0.05},{cost:400,bonus:0.05},{cost:800,bonus:0.1}]},
+{id:10,name:"玲珑宝塔",type:"被动",desc:"援护全体队友",level:1,maxLevel:5,guard:0.2,upgrades:[{cost:150,bonus:0.05},{cost:300,bonus:0.05},{cost:600,bonus:0.1},{cost:1200,bonus:0.1}]}
+],
+skillExchange:{1:[2,3],2:[1,4],3:[5],4:[6,7],5:[8],6:[9],7:[10],8:[],9:[],10:[],11:[],12:[]},
+types:{步:{weak:"",strong:"弓"},弓:{weak:"骑",strong:"步"},骑:{weak:"步",strong:"骑"}},
+chapters:[
+{id:1,name:"第一章",title:"陈塘关",desc:"哪吒闹海",enemies:[{name:"巡海夜叉",hp:300,atk:30,type:"步"},{name:"敖丙",hp:800,atk:80,type:"骑"}],reward:{lingqi:100,gold:50,food:100,wood:100}},
+{id:2,name:"第二章",title:"渭水河",desc:"姜子牙下山",enemies:[{name:"渔夫",hp:400,atk:40,type:"步"},{name:"樵夫",hp:450,atk:45,type:"弓"}],reward:{lingqi:150,gold:80,food:150,wood:150}},
+{id:3,name:"第三章",title:"西岐",desc:"文王访贤",enemies:[{name:"纣使",hp:500,atk:50,type:"骑"},{name:"官兵",hp:600,atk:60,type:"步"}],reward:{lingqi:200,gold:100,food:200,wood:200}},
+{id:4,name:"第四章",title:"佳梦关",desc:"魔家四将",enemies:[{name:"魔礼青",hp:800,atk:90,type:"弓"},{name:"魔礼红",hp:850,atk:95,type:"步"}],reward:{lingqi:300,gold:150,food:300,wood:300}},
+{id:5,name:"第五章",title:"青龙关",desc:"哼哈二将",enemies:[{name:"郑伦",hp:900,atk:100,type:"骑"},{name:"陈奇",hp:950,atk:105,type:"步"}],reward:{lingqi:350,gold:180,food:350,wood:350}},
+{id:6,name:"第六章",title:"汜水关",desc:"余元余化",enemies:[{name:"余化",hp:1000,atk:120,type:"步"},{name:"余元",hp:1200,atk:130,type:"骑"}],reward:{lingqi:400,gold:200,food:400,wood:400}}
+],
+buildings:[
+{id:1,name:"民居",level:1,maxLevel:10,base:10},
+{id:2,name:"灵田",level:1,maxLevel:10,base:10},
+{id:3,name:"粮仓",level:1,maxLevel:10,base:10},
+{id:4,name:"林场",level:1,maxLevel:10,base:10}
+],
+quests:[
+{id:1,name:"初战告捷",desc:"完成第一章",reward:50},
+{id:2,name:"武将招募",desc:"拥有5个武将",reward:100},
+{id:3,name:"战力提升",desc:"总战力达到2000",reward:200},
+{id:4,name:"技能解锁",desc:"学习3个技能",reward:150}
+]
+};
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});document.getElementById(id).classList.add('active')}
 function showLogin(){showScreen('login-screen')}
-function showTab(tab){document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active')});event.target.closest('.nav-item').classList.add('active');document.querySelectorAll('.tab-content').forEach(function(x){x.classList.remove('active')});document.getElementById('tab-'+tab).classList.add('active');if(tab==='partners')renderPartners();else if(tab==='battle')renderChapters();else if(tab==='quests')renderQuests();else if(tab==='rank')renderRank();}
-function showToast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove()},2000);}
-function showModal(txt,tit){document.getElementById('modal-title').textContent=tit||'提示';document.getElementById('modal-text').innerHTML=txt;document.getElementById('modal').classList.add('active')}
+function showTab(tab){
+    document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active')});
+    event.target.closest('.nav-item').classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(function(x){x.classList.remove('active')});
+    document.getElementById('tab-'+tab).classList.add('active');
+    if(tab==='partners')renderPartners();
+    else if(tab==='battle')renderChapters();
+    else if(tab==='skills')renderSkills();
+    else if(tab==='build')renderBuildings();
+    else if(tab==='quests')renderQuests();
+}
+function showToast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove()},2500);}
+function showModal(txt,tit,btns){document.getElementById('modal-title').textContent=tit||'提示';document.getElementById('modal-text').innerHTML=txt;document.getElementById('modal').classList.add('active');}
 function closeModal(){document.getElementById('modal').classList.remove('active')}
 
-var state={player:null,partners:[],selected:[],battleCount:0,chapterId:0};
+var state={player:null,partners:[],selected:[],battleCount:0,chapterId:0,buildings:[],skills:{},duplicates:[]};
 
-function save(){localStorage.setItem('fengshen_data',JSON.stringify(state))}
-function load(){var s=localStorage.getItem('fengshen_data');if(s){state=JSON.parse(s);return true;}return false;}
+function save(){localStorage.setItem('fengshen_v3',JSON.stringify(state))}
+function load(){var s=localStorage.getItem('fengshen_v3');if(s){state=JSON.parse(s);return true;}return false;}
 
 function doRegister(){
     var name=document.getElementById('username').value.trim();
     if(!name){showModal('请输入用户名');return;}
-    state.player={name:name,lingqi:200,gold:100};
+    state.player={name:name,lingqi:300,gold:200,food:200,wood:200};
     var p=GAME_DATA.partners[0];
-    state.partners=[{name:p.name,icon:p.icon,quality:p.quality,hp:p.hp,atk:p.atk,level:1,star:0}];
+    state.partners=[{uid:Date.now(),id:p.id,name:p.name,icon:p.icon,quality:p.quality,type:p.type,hp:p.hp,atk:p.atk,def:p.def,speed:p.speed,skills:[],level:1,duplicates:0}];
     state.selected=[0];
     state.battleCount=0;
     state.chapterId=0;
+    state.skills={};
+    state.buildings=GAME_DATA.buildings.map(function(b){return{id:b.id,level:1}});
+    state.duplicates=[];
     save();
     showToast('注册成功！获得哪吒！');
     showScreen('main-screen');
@@ -113,80 +200,202 @@ function doLogin(){
 function renderAll(){
     document.getElementById('lingqi').textContent=state.player.lingqi;
     document.getElementById('gold').textContent=state.player.gold;
+    document.getElementById('food').textContent=state.player.food;
+    document.getElementById('wood').textContent=state.player.wood;
     document.getElementById('zhanli').textContent=calcZhanli();
 }
 
 function calcZhanli(){
-    return state.partners.reduce(function(s,p){return s+(p.hp||0)+(p.atk||0)*2;},0)+(state.player.name.length||0)*10;
+    return state.partners.reduce(function(s,p){
+        var hp=p.hp;
+        var atk=p.atk;
+        var def=p.def;
+        // 技能加成
+        p.skills.forEach(function(sid){
+            var sk=GAME_DATA.skills.find(function(x){return x.id===sid});
+            if(sk&&sk.level>1){
+                var up=sk.upgrades[sk.level-2];
+                if(up&&sk.atkBonus)atk+=atk*up.bonus;
+                if(up&&sk.defBonus)def+=def*up.bonus;
+            }
+        });
+        return s+hp+atk*2+def;
+    },0);
 }
 
 function renderPartners(){
     var list=document.getElementById('partners-list');
-    if(state.partners.length===0){
-        list.innerHTML='<div style="grid-column:span2;text-align:center;padding:20px;color:#888">暂无伙伴<br><button class="btn" style="margin-top:10px" onclick="doGacha()">抽卡</button></div>';
-        return;
-    }
     list.innerHTML=state.partners.map(function(p,i){
         var sel=state.selected.indexOf(i)>=0?'selected':'';
-        var cost=Math.floor(50*Math.pow(1.5,p.level));
-        var stars='★'.repeat(p.star||0);
-        return '<div class="partner-card '+sel+'" onclick="togglePartner('+i+')"><div class="partner-header"><div class="partner-avatar">'+p.icon+'</div><div><div style="font-weight:bold;font-size:11px">'+p.name+'</div><div style="font-size:8px;color:#888">Lv.'+p.level+'</div></div></div><div class="star">'+stars+'</div><div style="font-size:8px;color:#aaa">♥ '+p.hp+' | ⚔ '+p.atk+'</div><button class="upgrade-btn" onclick="event.stopPropagation();upgradePartner('+i+')">↑'+cost+'</button></div>';
-    }).join('')+'<div style="grid-column:span2;text-align:center;padding:10px"><button class="btn" onclick="doGacha()">抽卡 (50灵气)</button></div>';
+        var isMax=p.duplicates>0;
+        var skillTags=p.skills.map(function(sid){
+            var sk=GAME_DATA.skills.find(function(x){return x.id===sid);
+            return sk?'<span class="skill-tag">'+sk.name+(sk.level>1?' Lv'+sk.level:'')+'</span>':'';
+        }).join('');
+        var dupTip=p.duplicates>0?'<div style="font-size:9px;color:#e74c3c">可进阶+'+p.duplicates+'次</div>':'';
+        return '<div class="partner-card '+sel+' '+ (isMax?'maxed':'') +'" onclick="togglePartner('+i+')"><div class="partner-header"><div class="partner-avatar">'+p.icon+'</div><div><div style="font-weight:bold;font-size:11px">'+p.name+'</div><div style="font-size:8px;color:#888">'+p.type+' | Lv.'+p.level+'</div></div></div><div style="font-size:9px;margin:4px 0">♥'+p.hp+' ⚔'+p.atk+' 🛡'+p.def+' ⚡'+p.speed+'</div><div>'+skillTags+'</div>'+dupTip+(isMax?'<button class="btn btn-small btn-purple" style="margin-top:4px;width:100%" onclick="event.stopPropagation();evolvePartner('+i+')">进阶 (+'+p.duplicates+')</button>':'')+'</div>';
+    }).join('');
 }
 
-function togglePartner(idx){
-    var i=state.selected.indexOf(idx);
-    if(i>=0)state.selected.splice(i,1);
-    else if(state.selected.length<5)state.selected.push(idx);
-    else{showToast('最多选择5个伙伴');return;}
+function togglePartner(i){
+    var idx=state.selected.indexOf(i);
+    if(idx>=0)state.selected.splice(idx,1);
+    else if(state.selected.length<5)state.selected.push(i);
+    else{showToast('最多选择5个');return;}
     save();renderPartners();
 }
 
-function upgradePartner(idx){
+function evolvePartner(idx){
     var p=state.partners[idx];
-    var cost=Math.floor(50*Math.pow(1.5,p.level));
-    if(state.player.lingqi<cost){showModal('升级需要'+cost+'灵气');return;}
-    state.player.lingqi-=cost;
+    if(p.duplicates<=0){showModal('无可用重复武将');return;}
+    p.duplicates--;
     p.level++;
-    p.hp=Math.floor(p.hp*1.1);
-    p.atk=Math.floor(p.atk*1.1);
-    save();renderAll();showToast(p.name+' 升级到 Lv.'+p.level);
+    p.hp=Math.floor(p.hp*1.2);
+    p.atk=Math.floor(p.atk*1.2);
+    p.def=Math.floor(p.def*1.2);
+    showToast(p.name+' 进阶到 Lv.'+p.level+'！');
+    save();renderPartners();renderAll();
 }
 
 function doGacha(){
-    if(state.player.lingqi<50){showModal('抽卡需要50灵气');return;}
-    state.player.lingqi-=50;
+    if(state.player.lingqi<100){showModal('抽卡需要100灵气');return;}
+    state.player.lingqi-=100;
     var r=Math.random(),q;
     if(r<0.03)q='red';else if(r<0.15)q='orange';else if(r<0.40)q='purple';else q='blue';
     var cand=GAME_DATA.partners.filter(function(p){if(q==='red')return p.quality==='red';if(q==='orange')return p.quality==='orange'||p.quality==='red';return true});
     var p=cand[Math.floor(Math.random()*cand.length)];
-    var np={name:p.name,icon:p.icon,quality:p.quality,hp:p.hp,atk:p.atk,level:1,star:0};
-    state.partners.push(np);
-    if(state.selected.length<5)state.selected.push(state.partners.length-1);
-    save();renderAll();
-    var c={red:'#e74c3c',orange:'#e67e22',purple:'#9b59b6',blue:'#3498db'};
-    showModal('<div class="gacha-card" style="border-color:'+c[q]+'"><div style="font-size:30px">'+p.icon+'</div><div style="color:#ffd700;font-weight:bold;margin-top:4px">'+p.name+'</div><div style="font-size:9px;color:'+c[q]+'">'+q.toUpperCase()+'品质</div></div>','抽卡结果');
+    
+    // 检查是否已有
+    var existingIdx=state.partners.findIndex(function(x){return x.id===p.id});
+    if(existingIdx>=0){
+        state.partners[existingIdx].duplicates++;
+        state.duplicates.push(p.id);
+        save();renderAll();
+        showModal('<div style="color:#ffd700;font-size:14px">获得重复武将 '+p.name+'！</div><div style="color:#e74c3c;margin-top:10px">已自动进阶，可用此武将升级技能</div>','抽卡结果');
+    }else{
+        var np={uid:Date.now(),id:p.id,name:p.name,icon:p.icon,quality:p.quality,type:p.type,hp:p.hp,atk:p.atk,def:p.def,speed:p.speed,skills:[],level:1,duplicates:0};
+        state.partners.push(np);
+        if(state.selected.length<5)state.selected.push(state.partners.length-1);
+        save();renderAll();
+        var c={red:'#e74c3c',orange:'#e67e22',purple:'#9b59b6',blue:'#3498db'};
+        showModal('<div style="border:3px solid '+c[q]+';padding:15px;border-radius:10px"><div style="font-size:30px">'+p.icon+'</div><div style="color:#ffd700;font-weight:bold;margin-top:5px">'+p.name+'</div><div style="font-size:10px;color:'+c[q]+'">'+q.toUpperCase()+' | '+p.type+'</div></div>','抽卡结果');
+    }
+}
+
+function renderSkills(){
+    var list=document.getElementById('skill-list');
+    var learnedSkills=[];
+    state.partners.forEach(function(p){
+        learnedSkills=learnedSkills.concat(p.skills||[]);
+    });
+    learnedSkills=[...new Set(learnedSkills)];
+    
+    var html='<div style="margin-bottom:10px"><button class="btn" onclick="doGacha()">抽卡获取武将 (100灵)</button></div>';
+    
+    // 已解锁技能
+    html+='<div style="font-weight:bold;margin:10px 0">已解锁技能</div>';
+    if(learnedSkills.length===0){
+        html+='<div style="color:#888;text-align:center;padding:20px">暂无技能<br>通过武将解锁技能</div>';
+    }else{
+        learnedSkills.forEach(function(sid){
+            var sk=GAME_DATA.skills.find(function(x){return x.id===sid});
+            var canUpgrade=sk.level<sk.maxLevel;
+            var upCost=canUpgrade?sk.upgrades[sk.level-1].cost:0;
+            var nextBonus=canUpgrade?sk.upgrades[sk.level-1].bonus:0;
+            html+='<div class="skill-card"><div class="skill-name">'+sk.name+' <span style="color:#3498db">Lv.'+sk.level+'/'+sk.maxLevel+'</span></div><div class="skill-desc">'+sk.desc+'</div>'+(canUpgrade?'<button class="btn btn-small btn-blue" onclick="upgradeSkill('+sk.id+')">升级 💎'+upCost+' (+'+Math.round(nextBonus*100)+'%)</button>':'<div style="color:#ffd700;font-size:9px">已满级</div>')+'</div>';
+        });
+    }
+    
+    // 可兑换技能
+    var exchangeable=[];
+    state.partners.forEach(function(p){
+        var ex=GAME_DATA.skillExchange[p.id]||[];
+        ex.forEach(function(sid){
+            if(!learnedSkills.includes(sid)){
+                var sk=GAME_DATA.skills.find(function(x){return x.id===sid);
+                exchangeable.push(sk);
+            }
+        });
+    });
+    
+    if(exchangeable.length>0){
+        html+='<div style="font-weight:bold;margin:15px 0">可兑换技能</div>';
+        exchangeable.forEach(function(sk){
+            html+='<div class="skill-card" style="opacity:0.8"><div class="skill-name">'+sk.name+'</div><div class="skill-desc">'+sk.desc+'</div><button class="btn btn-small btn-green" onclick="exchangeSkill('+sk.id+')">兑换 (需对应武将)</button></div>';
+        });
+    }
+    
+    list.innerHTML=html;
+}
+
+function upgradeSkill(sid){
+    var sk=GAME_DATA.skills.find(function(x){return x.id===sid);
+    var up=sk.upgrades[sk.level-1];
+    if(state.player.lingqi<up.cost){showModal('升级需要'+up.cost+'灵气');return;}
+    state.player.lingqi-=up.cost;
+    sk.level++;
+    showToast(sk.name+' 升级到 Lv.'+sk.level+'！');
+    save();renderSkills();renderAll();
+}
+
+function exchangeSkill(sid){
+    var sk=GAME_DATA.skills.find(function(x){return x.id===sid});
+    // 找到可兑换的武将
+    var availablePartner=null;
+    state.partners.forEach(function(p){
+        var ex=GAME_DATA.skillExchange[p.id]||[];
+        if(ex.includes(sid)&&(!p.skills||!p.skills.includes(sid))){
+            availablePartner=p;
+        }
+    });
+    if(!availablePartner){
+        // 直接学习
+    }else{
+        availablePartner.skills=availablePartner.skills||[];
+        availablePartner.skills.push(sid);
+    }
+    if(!state.skills[sid])state.skills[sid]=sk;
+    save();renderSkills();renderPartners();showToast('学会 '+sk.name+'！');
 }
 
 function renderChapters(){
     var list=document.getElementById('chapter-list');
     list.innerHTML=GAME_DATA.chapters.map(function(c){
         var passed=state.chapterId>=c.id;
-        return '<div class="chapter-card"><div><div style="font-weight:bold">'+c.name+'</div><div style="font-size:9px;color:#888">'+c.title+' - '+c.desc+'</div></div><div><button class="btn btn-small" onclick="startBattle('+c.id+')">'+(passed?'扫荡':'战斗')+'</button></div></div>';
+        return '<div class="card"><div><div style="font-weight:bold">'+c.name+'</div><div style="font-size:9px;color:#888">'+c.title+' - '+c.desc+'</div><div style="font-size:8px;color:#ffd700">'+c.reward.lingqi+'灵 '+c.reward.gold+'金</div></div><button class="btn btn-small" onclick="startBattle('+c.id+')">'+(passed?'扫荡':'战斗')+'</button></div>';
     }).join('');
 }
 
 function startBattle(id){
-    if(state.selected.length===0){showModal('请先选择伙伴');return;}
+    if(state.selected.length===0){showModal('请先选择武将');return;}
     var ch=GAME_DATA.chapters.find(function(c){return c.id===id});
-    var enemies=ch.enemies.map(function(e){return{name:e.name,hp:e.hp,atk:e.atk,icon:e.icon,currentHp:e.hp}});
-    var players=state.selected.map(function(i){var p=state.partners[i];return{name:p.name,hp:p.hp,atk:p.atk,icon:p.icon,currentHp:p.hp}});
-    var log=['战斗开始！'];
+    var enemies=ch.enemies.map(function(e){return{name:e.name,hp:e.hp,atk:e.atk,type:e.type,currentHp:e.hp}});
+    var players=state.selected.map(function(i){
+        var p=state.partners[i];
+        return{name:p.name,hp:p.hp,atk:p.atk,type:p.type,currentHp:p.hp,skills:p.skills||[]};
+    });
+    var log=['⚔ 战斗开始！'];
     while(players.length>0 && enemies.length>0){
         var pa=players[0],ea=enemies[0];
-        var dmg=Math.max(1,pa.atk-Math.floor(Math.random()*20));
+        var bonus=1;
+        var strong=GAME_DATA.types[pa.type].strong;
+        if(strong&&ea.type===strong)bonus=1.3;
+        var weak=GAME_DATA.types[pa.type].weak;
+        if(weak&&ea.type===weak)bonus=0.8;
+        
+        // 技能伤害
+        var skillDmg=0;
+        pa.skills.forEach(function(sid){
+            var sk=GAME_DATA.skills.find(function(x){return x.id===sid);
+            if(sk&&sk.level>1){
+                var up=sk.upgrades[sk.level-2];
+                if(up&&up.bonus)skillDmg+=up.bonus;
+            }
+        });
+        
+        var dmg=Math.max(1,Math.floor(pa.atk*(bonus+skillDmg))-Math.floor(Math.random()*20);
         ea.currentHp-=dmg;
-        log.push('⚔ '+pa.name+' 攻击 '+ea.name+'，造成 '+dmg+' 伤害');
+        log.push('⚔ '+pa.name+'['+pa.type+'] 攻击 '+ea.name+'['+ea.type+']，造成 '+dmg+' 伤害'+(bonus>1?' (克制!)':bonus<1?' (被克制)':''));
         if(ea.currentHp<=0){enemies.shift();if(enemies.length===0)break;}
         var edmg=Math.max(1,ea.atk-Math.floor(Math.random()*25));
         pa.currentHp-=edmg;
@@ -196,44 +405,22 @@ function startBattle(id){
     if(players.length>0){
         state.player.lingqi+=ch.reward.lingqi;
         state.player.gold+=ch.reward.gold;
+        state.player.food+=ch.reward.food;
+        state.player.wood+=ch.reward.wood;
         state.battleCount++;
         if(id>state.chapterId)state.chapterId=id;
         save();
-        showModal('🎉 战斗胜利！\n\n'+log.slice(-4).join('\n')+'\n\n获得 '+ch.reward.lingqi+'灵气 '+ch.reward.gold+'金币','战斗结果');
+        showModal('🎉 战斗胜利！\n\n'+log.slice(-3).join('\n')+'\n\n获得:\n💎'+ch.reward.lingqi+' 💰'+ch.reward.gold,'战斗结果');
     }else{
-        showModal('💀 战斗失败！\n\n'+log.slice(-4).join('\n'),'战斗结果');
+        showModal('💀 战斗失败！\n\n'+log.slice(-3).join('\n'),'战斗结果');
     }
     renderAll();
 }
 
-function renderQuests(){
-    var list=document.getElementById('quest-list');
-    list.innerHTML=GAME_DATA.quests.map(function(q){
-        var done=isQuestComplete(q);
-        return '<div class="quest-card"><div><div style="font-weight:bold;font-size:11px">'+q.name+'</div><div style="font-size:9px;color:#888">'+q.desc+'</div></div><div style="text-align:right"><div class="quest-reward">💎'+q.reward+'</div><button class="btn btn-small btn-green" onclick="claimQuest('+q.id+')">'+(done?'领取':q.reward)+'</button></div></div>';
-    }).join('');
-}
-
-function isQuestComplete(q){
-    if(q.id===1)return state.chapterId>=1;
-    if(q.id===2)return state.partners.length>=5;
-    if(q.id===3)return calcZhanli()>=1000;
-    if(q.id===4)return state.battleCount>=3;
-    if(q.id===5)return state.partners.length>=3;
-    return false;
-}
-
-function claimQuest(id){
-    var q=GAME_DATA.quests.find(function(x){return x.id===id});
-    if(!isQuestComplete(q)){showModal('任务未完成');return;}
-    state.player.lingqi+=q.reward;
-    save();renderAll();showToast('任务完成！+'+q.reward+'灵气');
-}
-
-function renderRank(){
-    var list=document.getElementById('rank-list');
-    list.innerHTML='<div class="rank-card"><div style="width:20px;font-size:11px;font-weight:bold;color:#ffd700">1</div><div style="flex:1"><div style="font-size:11px">战力榜</div><div style="font-size:9px;color:#888">战力:'+calcZhanli()+'</div></div></div><div class="rank-card"><div style="width:20px;font-size:11px;font-weight:bold;color:#ffd700">2</div><div style="flex:1"><div style="font-size:11px">伙伴榜</div><div style="font-size:9px;color:#888">数量:'+state.partners.length+'</div></div></div>';
-}
-</script>
-</body>
-</html>
+function renderBuildings(){
+    var list=document.getElementById('build-list');
+    list.innerHTML=GAME_DATA.buildings.map(function(b){
+        var my=state.buildings.find(function(x){return x.id===b.id})||{level:1};
+        var cost=Math.floor(b.base*Math.pow(1.5,my.level));
+        var output=Math.floor(b.base*my.level);
+        return '<div class="build-item"><div style="display:flex;justify-content:space-between"><div><div style
