@@ -17,6 +17,7 @@ com/game/entity/Player.class
 com/game/service/GachaService$GachaResult.class
 com/game/service/UserService.class
 com/game/mapper/MaterialRepository.class
+com/game/entity/Mount.class
 com/game/mapper/SkillRepository.class
 com/game/controller/AchievementController.class
 com/game/controller/admin/AdminController.class
@@ -36,8 +37,10 @@ com/game/mapper/PartnerRepository.class
 com/game/controller/BattleController.class
 com/game/entity/GachaRecord.class
 com/game/mapper/EquipmentRepository.class
+com/game/mapper/MountRepository.class
 com/game/controller/GachaController.class
 com/game/controller/SweepController.class
 com/game/controller/EquipmentController.class
+com/game/controller/MountController.class
 com/game/controller/TreasureController.class
 com/game/config/CorsConfig.class

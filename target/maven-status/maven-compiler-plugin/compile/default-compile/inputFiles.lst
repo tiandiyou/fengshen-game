@@ -17,7 +17,9 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/AuthController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/TreasureRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/BattleController.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/MountController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Treasure.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/MountRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/UserRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/PartnerData.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/PartnerRepository.java
@@ -37,6 +39,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/SigninController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/CorsConfig.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Equipment.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Mount.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/GameData.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/JwtUtil.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/PlayerRepository.java
