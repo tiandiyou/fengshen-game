@@ -5,17 +5,14 @@ spring:
   application:
     name: fengshen-game
   datasource:
-    url: jdbc:mysql://localhost:3306/fengshen?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:fengshen;DB_CLOSE_DELAY=-1;MODE=MySQL
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+      ddl-auto: create-drop
+    show-sql: false
 
 jwt:
   secret: fengshen-game-secret-key-2024
