@@ -129,19 +129,19 @@ body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16
 <script>
 var GAME_DATA={
 partners:[
-{id:1,name:"哪吒",icon:"🔥",quality:"red",type:"骑",hp:1200,atk:180,def:80,speed:95,politics:30,military:95,lead:90,charm:70,intelligence:85,skills:["火尖枪"]},
-{id:2,name:"杨戬",icon:"🐕",quality:"red",type:"步",hp:1100,atk:160,def:90,speed:90,politics:40,military:90,lead:85,charm:60,intelligence:80,skills:["八九玄功"]},
-{id:2,name:"杨戬",icon:"🐕",quality:"red",hp:1100,atk:160,speed:90,skills:["八九玄功","哮天犬"]},
-{id:3,name:"雷震子",icon:"⚡",quality:"purple",hp:1000,atk:150,speed:100,skills:["风雷棍"]},
-{id:4,name:"姜子牙",icon:"📜",quality:"orange",hp:900,atk:140,speed:70,skills:["打神鞭","封神榜"]},
-{id:5,name:"金吒",icon:"🗡️",quality:"purple",hp:950,atk:145,speed:85,skills:["遁龙桩"]},
-{id:6,name:"木吒",icon:"🎋",quality:"purple",hp:930,atk:140,speed:83,skills:["混天绫"]},
-{id:7,name:"李靖",icon:"🏰",quality:"purple",hp:1100,atk:120,speed:60,skills:["玲珑宝塔"]},
-{id:8,name:"纣王",icon:"👑",quality:"orange",hp:1500,atk:170,speed:65,skills:["天子剑"]},
-{id:9,name:"妲己",icon:"🦊",quality:"orange",hp:800,atk:200,speed:110,skills:["魅惑"]},
-{id:10,name:"申公豹",icon:"🐆",quality:"orange",hp:950,atk:165,speed:88,skills:["开天珠"]},
-{id:11,name:"赵公明",icon:"💰",quality:"orange",hp:1300,atk:175,speed:75,skills:["定海珠"]},
-{id:12,name:"闻仲",icon:"👁️",quality:"orange",hp:1400,atk:150,speed:70,skills:["雌雄双鞭"]}
+{id:1,name:"哪吒",icon:"🔥",quality:"red",type:"骑",troops:10000,atk:180,int:85,lead:90,speed:95,politics:30,military:95,charm:70,growth:{atk:8,int:4,lead:5},skills:["火尖枪","莲花护体"]},
+{id:2,name:"杨戬",icon:"🐕",quality:"red",type:"步",troops:10000,atk:160,int:80,lead:85,speed:90,politics:40,military:90,charm:60,growth:{atk:7,int:3,lead:4},skills:["八九玄功","天眼通"]},
+
+{id:3,name:"雷震子",icon:"⚡",quality:"purple",type:"骑",troops:8000,atk:150,int:60,lead:70,speed:100,growth:{atk:6,int:2,lead:3},skills:["风雷棍"]},
+{id:4,name:"姜子牙",icon:"📜",quality:"orange",type:"策",troops:8000,atk:60,int:140,lead:95,speed:70,growth:{atk:2,int:7,lead:5},skills:["打神鞭","封神榜"]},
+{id:5,name:"金吒",icon:"🗡️",quality:"purple",type:"骑",troops:8000,atk:145,int:50,lead:75,speed:85,growth:{atk:5,int:2,lead:3},skills:["遁龙桩"]},
+{id:6,name:"木吒",icon:"🎋",quality:"purple",type:"步",troops:8000,atk:140,int:45,lead:70,speed:83,growth:{atk:5,int:2,lead:3},skills:["吴钩剑"]},
+{id:7,name:"李靖",icon:"🏰",quality:"purple",type:"步",troops:9000,atk:120,int:55,lead:85,speed:60,growth:{atk:4,int:2,lead:5},skills:["玲珑宝塔"]},
+{id:8,name:"纣王",icon:"👑",quality:"orange",type:"步",troops:12000,atk:170,int:70,lead:95,speed:65,growth:{atk:7,int:3,lead:5},skills:["天子剑","帝王之气"]},
+{id:9,name:"妲己",icon:"🦊",quality:"orange",type:"策",troops:6000,atk:50,int:200,lead:60,speed:110,growth:{atk:2,int:8,lead:3},skills:["魅惑","倾城之貌"]},
+{id:10,name:"申公豹",icon:"🐆",quality:"orange",type:"策",troops:8000,atk:55,int:165,lead:75,speed:88,growth:{atk:2,int:7,lead:3},skills:["开天珠"]},
+{id:11,name:"赵公明",icon:"💰",quality:"orange",type:"步",troops:10000,atk:175,int:60,lead:80,speed:75,growth:{atk:7,int:2,lead:4},skills:["定海珠"]},
+{id:12,name:"闻仲",icon:"👁️",quality:"orange",type:"步",troops:11000,atk:150,int:65,lead:90,speed:70,growth:{atk:6,int:3,lead:5},skills:["雌雄双鞭"]}
 ],
 treasures:[
 {id:1,name:"乾坤圈",icon:"⭕",bonus:"暴击+15%",hp:200,atk:30},
@@ -152,12 +152,12 @@ treasures:[
 {id:6,name:"封神榜",icon:"📜",bonus:"全属性+10%",hp:300,atk:50}
 ],
 chapters:[
-{id:1,name:"第一章",title:"陈塘关",desc:"哪吒闹海",enemies:[{name:"巡海夜叉",hp:300,atk:30,icon:"👹"},{name:"敖丙",hp:800,atk:80,icon:"🐉"}],reward:{lingqi:100,gold:50}},
-{id:2,name:"第二章",title:"渭水河",desc:"姜子牙下山",enemies:[{name:"渔夫",hp:400,atk:40,icon:"🎣"},{name:"樵夫",hp:450,atk:45,icon:"🪓"}],reward:{lingqi:150,gold:80}},
-{id:3,name:"第三章",title:"西岐",desc:"文王访贤",enemies:[{name:"纣使",hp:500,atk:50,icon:"👮"},{name:"官兵",hp:600,atk:60,icon:"💂"}],reward:{lingqi:200,gold:100}},
-{id:4,name:"第四章",title:"佳梦关",desc:"魔家四将",enemies:[{name:"魔礼青",hp:800,atk:90,icon:"🌿"},{name:"魔礼红",hp:850,atk:95,icon:"🔥"}],reward:{lingqi:300,gold:150}},
-{id:5,name:"第五章",title:"青龙关",desc:"哼哈二将",enemies:[{name:"郑伦",hp:900,atk:100,icon:"🤨"},{name:"陈奇",hp:950,atk:105,icon:"😤"}],reward:{lingqi:350,gold:180}},
-{id:6,name:"第六章",title:"汜水关",desc:"余元余化",enemies:[{name:"余化",hp:1000,atk:120,icon:"⚔️"},{name:"余元",hp:1200,atk:130,icon:"🧙"}],reward:{lingqi:400,gold:200}}
+{id:1,name:"第一章",title:"陈塘关",desc:"哪吒闹海",enemies:[{name:"巡海夜叉",troops:3000,atk:30,int:20,lead:20,icon:"👹"},{name:"敖丙",troops:8000,atk:80,int:40,lead:50,icon:"🐉"}],reward:{lingqi:100,gold:50}},
+{id:2,name:"第二章",title:"渭水河",desc:"姜子牙下山",enemies:[{name:"渔夫",troops:4000,atk:40,int:20,lead:25,icon:"🎣"},{name:"樵夫",troops:4500,atk:45,int:20,lead:25,icon:"🪓"}],reward:{lingqi:150,gold:80}},
+{id:3,name:"第三章",title:"西岐",desc:"文王访贤",enemies:[{name:"纣使",troops:5000,atk:50,int:30,lead:35,icon:"👮"},{name:"官兵",troops:6000,atk:60,int:30,lead:40,icon:"💂"}],reward:{lingqi:200,gold:100}},
+{id:4,name:"第四章",title:"佳梦关",desc:"魔家四将",enemies:[{name:"魔礼青",troops:8000,atk:90,int:50,lead:60,icon:"🌿"},{name:"魔礼红",troops:8500,atk:95,int:50,lead:65,icon:"🔥"}],reward:{lingqi:300,gold:150}},
+{id:5,name:"第五章",title:"青龙关",desc:"哼哈二将",enemies:[{name:"郑伦",troops:9000,atk:100,int:60,lead:70,icon:"🤨"},{name:"陈奇",troops:9500,atk:105,int:60,lead:70,icon:"😤"}],reward:{lingqi:350,gold:180}},
+{id:6,name:"第六章",title:"汜水关",desc:"余元余化",enemies:[{name:"余化",troops:10000,atk:120,int:70,lead:80,icon:"⚔️"},{name:"余元",troops:12000,atk:130,int:80,lead:90,icon:"🧙"}],reward:{lingqi:400,gold:200}}
 ],
 shop:[
 {id:1,name:"灵气100",icon:"💎",price:10},
@@ -187,7 +187,7 @@ achievements:[
 signinRewards:[50,80,100,150,200,300,500]
 };
 var PRACTICE_DATA=[{attr:"atk",name:"武力",cost:30,bonus:10},{attr:"def",name:"防御",cost:30,bonus:8},{attr:"hp",name:"生命",cost:20,bonus:50}];var BUILD_DATA=[{id:1,name:"民居",base:10},{id:2,name:"灵田",base:10}];
-var state={name:"",lingqi:200,gold:100,partners:[],treasures:[],selectedPartners:[],currentChapter:0,battle:null,signin:{days:0,lastDate:""},quests:[],achievements:[],battleCount:0,firstPaid:false,monthlyPaid:false};
+var state={name:"",lingqi:200,gold:100,partners:[],treasures:[],selectedPartners:[],currentChapter:0,battle:null,signin:{days:0,lastDate:""},quests:[],achievements:[],battleCount:0,firstPaid:false,monthlyPaid:false,gachaCount:0};
 
 function init(){
 var s=localStorage.getItem("fengshen_save");
@@ -253,7 +253,7 @@ var cost=Math.floor(50*Math.pow(1.5,p.level||1));
 if(state.lingqi<cost){showModal("升级","灵气不足，需要"+cost+"灵气");return;}
 state.lingqi-=cost;
 p.level=(p.level||0)+1;
-p.hp=Math.floor(p.hp*1.1);
+p.troops=Math.floor((p.troops||8000)*1.1);
 p.atk=Math.floor(p.atk*1.1);
 save();renderAll();
 showToast(p.name+" 升级到 Lv."+p.level);
@@ -266,7 +266,7 @@ var cost=Math.floor(200*Math.pow(2,p.star||0));
 if(state.lingqi<cost){showModal("升星","灵气不足，需要"+cost+"灵气");return;}
 state.lingqi-=cost;
 p.star=(p.star||0)+1;
-p.hp=Math.floor(p.hp*1.3);
+p.troops=Math.floor((p.troops||8000)*1.3);
 p.atk=Math.floor(p.atk*1.3);
 save();renderAll();
 showToast(p.name+" 升星到 "+p.star+"★");
@@ -280,7 +280,7 @@ var r=Math.random(),q;
 if(r<0.03)q="red";else if(r<0.15)q="orange";else if(r<0.40)q="purple";else q="blue";
 var cand=GAME_DATA.partners.filter(function(p){if(q==="red")return p.quality==="red";if(q==="orange")return p.quality==="orange"||p.quality==="red";if(q==="purple")return p.quality==="purple"||p.quality==="orange"||p.quality==="red";return true});
 var p=cand[Math.floor(Math.random()*cand.length)];
-var np={hp:p.hp,atk:p.atk,def:80,speed:p.speed,politics:30,military:60,lead:60,charm:40,intelligence:70,icon:p.icon,name:p.name,quality:p.quality,skills:[p.skills?p.skills[0]:""],level:1,star:0};
+var np={troops:p.troops||10000,atk:p.atk,int:p.int||70,lead:p.lead||70,speed:p.speed,politics:30,military:60,charm:40,icon:p.icon,name:p.name,quality:p.quality,skills:[p.skills?p.skills[0]:""],level:1,star:0,type:p.type};
 state.partners.push(np);
 if(state.selectedPartners.length<3)state.selectedPartners.push(state.partners.length-1);
 save();renderAll();showGachaResult(p);checkQuests();
@@ -315,7 +315,7 @@ state.treasures.push(t);save();renderAll();showToast("获得法宝 "+t.name);che
 }
 
 function exchangeSkill(i){var p=state.partners[i];if(!p)return;var pd=GAME_DATA.partners.find(function(x){return x.name===p.name});if(!pd||!pd.skills||pd.skills.length<2){alert('该武将暂无其他技能');return;}var cur=p.skills[0]||'';var others=pd.skills.filter(function(s){return s!==cur});if(others.length===0){alert('暂无可兑换技能');return;}var newSkill=others[Math.floor(Math.random()*others.length)];var cost=500;if(state.lingqi<cost){alert('需要500灵气');return;}state.lingqi-=cost;p.skills=[newSkill];renderPartners();document.getElementById('lingqi').textContent=state.lingqi;}
-function renderPractice(){var l=document.getElementById("practice-list");if(!l)return;l.innerHTML=state.partners.map(function(p,i){var atk=p.practice&&p.practice.atk||0;var def=p.practice&&p.practice.def||0;var hp=p.practice&&p.practice.hp||0;return"<div style='background:rgba(255,255,255,0.1);padding:10px;margin:4px 0;border-radius:8px'><b>"+p.icon+" "+p.name+"</b><br><button onclick=practice("+i+",0)>武力+"+atk+" (30)</button> <button onclick=practice("+i+",1)>防御+"+def+" (30)</button> <button onclick=practice("+i+",2)>生命+"+hp+" (20)</button></div>"}).join("");}
+function renderPractice(){var l=document.getElementById("practice-list");if(!l)return;l.innerHTML=state.partners.map(function(p,i){var atk=p.practice&&p.practice.atk||0;var def=p.practice&&p.practice.def||0;var hp=p.practice&&p.practice.troops||0;return"<div style='background:rgba(255,255,255,0.1);padding:10px;margin:4px 0;border-radius:8px'><b>"+p.icon+" "+p.name+"</b><br><button onclick=practice("+i+",0)>武力+"+atk+" (30)</button> <button onclick=practice("+i+",1)>防御+"+def+" (30)</button> <button onclick=practice("+i+",2)>生命+"+hp+" (20)</button></div>"}).join("");}
 function practice(i,t){var p=state.partners[i];if(!p)return;var cost=t==2?20:30;if(state.lingqi<cost){alert('灵气不足');return;}state.lingqi-=cost;if(!p.practice)p.practice={};p.practice[['atk','def','hp'][t]]=(p.practice[['atk','def','hp'][t]]||0)+(t==2?50:(t==0?10:8));renderPractice();document.getElementById('lingqi').textContent=state.lingqi;}
 function renderBuildings(){var l=document.getElementById("build-list");if(!l)return;if(!state.buildings)state.buildings=BUILD_DATA.map(function(b){return{id:b.id,level:1}});l.innerHTML=BUILD_DATA.map(function(b){var my=state.buildings.find(function(x){return x.id===b.id})||{level:1};var cost=Math.floor(b.base*Math.pow(1.5,my.level));return"<div style='background:rgba(255,255,255,0.1);padding:10px;margin:4px 0;border-radius:8px;display:flex;justify-content:space-between'><span><b>"+b.name+"</b> Lv"+my.level+"<br>产+"+Math.floor(b.base*my.level)+"/h</span><button onclick=upgrade("+b.id+")>升级"+cost+"</button></div>"}).join("");}
 function renderQuests(){
@@ -426,11 +426,11 @@ state.selectedPartners=[0];save();showScreen("main-screen");renderAll();showToas
 function showModal(txt,tit){document.getElementById("modal-title").textContent=tit||"提示";document.getElementById("modal-text").textContent=txt;document.getElementById("modal-buttons").innerHTML="<button class=\"btn\" onclick=\"closeModal()\">确定</button>";document.getElementById("modal").classList.add("active")}
 function closeModal(){document.getElementById("modal").classList.remove("active")}
 function showToast(msg){var t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove()},2000)}
-function startBattle(chapterId){if(state.selectedPartners.length===0){showModal("提示","请先选择至少1个伙伴上阵");return;}var chapter=GAME_DATA.chapters.find(function(c){return c.id===chapterId});state.currentChapter=chapterId;state.battle={chapter:chapterId,turn:1,playerUnits:state.selectedPartners.map(function(i){var p=state.partners[i];return{name:p.name,icon:p.icon,currentHp:p.hp,maxHp:p.hp,atk:p.atk,isPlayer:true}}),enemyUnits:chapter.enemies.map(function(e){return{name:e.name,icon:e.icon,currentHp:e.hp,maxHp:e.hp,atk:e.atk,isPlayer:false}}),log:["战斗开始！"]};showScreen("battle-screen");document.getElementById("battle-title").textContent=chapter.title;renderBattle()}
-function renderBattle(){var b=state.battle;document.getElementById("enemy-side").innerHTML=b.enemyUnits.filter(function(u){return u.currentHp>0}).map(function(u){return"<div class=\"battle-unit enemy\"><div class=\"unit-avatar\">"+u.icon+"</div><div style=\"flex:1\"><div style=\"font-size:11px\">"+u.name+"</div><div class=\"unit-hp-bar\"><div class=\"unit-hp-fill\" style=\"width:"+(u.currentHp/u.maxHp*100)+"%\"></div></div></div></div>"}).join("");document.getElementById("player-side").innerHTML=b.playerUnits.filter(function(u){return u.currentHp>0}).map(function(u){return"<div class=\"battle-unit\"><div class=\"unit-avatar\" style=\"background:rgba(0,100,255,0.2)\">"+u.icon+"</div><div style=\"flex:1\"><div style=\"font-size:11px\">"+u.name+"</div><div class=\"unit-hp-bar\"><div class=\"unit-hp-fill\" style=\"width:"+(u.currentHp/u.maxHp*100)+"%\"></div></div></div></div>"}).join("");document.getElementById("battle-log").innerHTML=b.log.slice(-3).join("<br>");var pa=b.playerUnits.filter(function(u){return u.currentHp>0}).length;var ea=b.enemyUnits.filter(function(u){return u.currentHp>0}).length;if(ea===0){battleWin();return;}if(pa===0){battleLose();return;}}
-function battleAttack(){var b=state.battle;var pl=b.playerUnits.filter(function(u){return u.currentHp>0});var en=b.enemyUnits.filter(function(u){return u.currentHp>0});if(pl.length===0||en.length===0)return;var att=pl[Math.floor(Math.random()*pl.length)];var tgt=en[Math.floor(Math.random()*en.length)];var dmg=Math.max(1,att.atk-Math.floor(Math.random()*20));tgt.currentHp=Math.max(0,tgt.currentHp-dmg);b.log.push("⚔ "+att.name+" 普攻 "+tgt.name+"，造成 "+dmg+" 伤害");if(tgt.currentHp>0){var eAtt=en[Math.floor(Math.random()*en.length)];var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,eAtt.atk-Math.floor(Math.random()*25));eTgt.currentHp=Math.max(0,eTgt.currentHp-eDmg);b.log.push("💢 "+eAtt.name+" 反击 "+eTgt.name+"，造成 "+eDmg+" 伤害")}b.turn++;renderBattle()}
-function battleSkill(){var b=state.battle;var pl=b.playerUnits.filter(function(u){return u.currentHp>0});var en=b.enemyUnits.filter(function(u){return u.currentHp>0});if(pl.length===0||en.length===0)return;var att=pl[Math.floor(Math.random()*pl.length)];var tgt=en[Math.floor(Math.random()*en.length)];var dmg=Math.max(1,Math.floor(att.atk*1.5)-Math.floor(Math.random()*20));tgt.currentHp=Math.max(0,tgt.currentHp-dmg);b.log.push("✨ "+att.name+" 使用技能，重创 "+tgt.name+"，造成 "+dmg+" 伤害");if(tgt.currentHp>0){var eAtt=en[Math.floor(Math.random()*en.length)];var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,eAtt.atk-Math.floor(Math.random()*25));eTgt.currentHp=Math.max(0,eTgt.currentHp-eDmg);b.log.push("💢 "+eAtt.name+" 反击 "+eTgt.name+"，造成 "+eDmg+" 伤害")}b.turn++;renderBattle()}
-function battleUltimate(){var b=state.battle;var pl=b.playerUnits.filter(function(u){return u.currentHp>0});var en=b.enemyUnits.filter(function(u){return u.currentHp>0});if(pl.length===0||en.length===0)return;var td=0;pl.forEach(function(att){en.forEach(function(tgt){if(tgt.currentHp>0){var d=Math.max(1,Math.floor(att.atk*2)-Math.floor(Math.random()*30));tgt.currentHp=Math.max(0,tgt.currentHp-d);td+=d}})});b.log.push("🔥 "+pl.map(function(p){return p.name;}).join("、")+" 发动合体大招，造成 "+td+" 群体伤害！");var eAtt=en.find(function(u){return u.currentHp>0});if(eAtt){var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,Math.floor(eAtt.atk*1.2)-Math.floor(Math.random()*20));eTgt.currentHp=Math.max(0,eTgt.currentHp-eDmg);b.log.push("💢 "+eAtt.name+" 反击 "+eTgt.name+"，造成 "+eDmg+" 伤害")}b.turn++;renderBattle()}
+function startBattle(chapterId){if(state.selectedPartners.length===0){showModal("提示","请先选择至少1个伙伴上阵");return;}var chapter=GAME_DATA.chapters.find(function(c){return c.id===chapterId});state.currentChapter=chapterId;state.battle={chapter:chapterId,turn:1,playerUnits:state.selectedPartners.map(function(i){var p=state.partners[i];return{name:p.name,icon:p.icon,currentTroops:p.troops||10000,maxTroops:p.troops||10000,atk:p.atk,int:p.int||70,lead:p.lead||70,isPlayer:true}}),enemyUnits:chapter.enemies.map(function(e){return{name:e.name,icon:e.icon,currentTroops:e.troops||5000,maxTroops:e.troops||5000,atk:e.atk||50,int:e.int||30,lead:e.lead||30,isPlayer:false}}),log:["战斗开始！"]};showScreen("battle-screen");document.getElementById("battle-title").textContent=chapter.title;renderBattle()}
+function renderBattle(){var b=state.battle;document.getElementById("enemy-side").innerHTML=b.enemyUnits.filter(function(u){return u.currentTroops>0}).map(function(u){return"<div class=\"battle-unit enemy\"><div class=\"unit-avatar\">"+u.icon+"</div><div style=\"flex:1\"><div style=\"font-size:11px\">"+u.name+"</div><div class=\"unit-hp-bar\"><div class=\"unit-hp-fill\" style=\"width:"+(u.currentTroops/u.maxTroops*100)+"%\"></div></div></div></div>"}).join("");document.getElementById("player-side").innerHTML=b.playerUnits.filter(function(u){return u.currentTroops>0}).map(function(u){return"<div class=\"battle-unit\"><div class=\"unit-avatar\" style=\"background:rgba(0,100,255,0.2)\">"+u.icon+"</div><div style=\"flex:1\"><div style=\"font-size:11px\">"+u.name+"</div><div class=\"unit-hp-bar\"><div class=\"unit-hp-fill\" style=\"width:"+(u.currentTroops/u.maxTroops*100)+"%\"></div></div></div></div>"}).join("");document.getElementById("battle-log").innerHTML=b.log.slice(-3).join("<br>");var pa=b.playerUnits.filter(function(u){return u.currentTroops>0}).length;var ea=b.enemyUnits.filter(function(u){return u.currentTroops>0}).length;if(ea===0){battleWin();return;}if(pa===0){battleLose();return;}}
+function battleAttack(){var b=state.battle;var pl=b.playerUnits.filter(function(u){return u.currentTroops>0});var en=b.enemyUnits.filter(function(u){return u.currentTroops>0});if(pl.length===0||en.length===0)return;var att=pl[Math.floor(Math.random()*pl.length)];var tgt=en[Math.floor(Math.random()*en.length)];var dmg=Math.max(1,(att.atk||0)-(tgt.lead||0));tgt.currentTroops=Math.max(0,tgt.currentTroops-dmg);b.log.push("⚔ "+att.name+" 物理攻击 "+tgt.name+"，造成 "+dmg+" 伤害(武力"+att.atk+"-"+"统率"+tgt.lead+")");if(tgt.currentTroops>0){var eAtt=en[Math.floor(Math.random()*en.length)];var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,(eAtt.atk||0)-(eTgt.lead||0));eTgt.currentTroops=Math.max(0,eTgt.currentTroops-eDmg);b.log.push("💢 "+eAtt.name+" 反击 "+eTgt.name+"，造成 "+eDmg+" 伤害")}b.turn++;renderBattle()}
+function battleSkill(){var b=state.battle;var pl=b.playerUnits.filter(function(u){return u.currentTroops>0});var en=b.enemyUnits.filter(function(u){return u.currentTroops>0});if(pl.length===0||en.length===0)return;var att=pl[Math.floor(Math.random()*pl.length)];var tgt=en[Math.floor(Math.random()*en.length)];var dmg=Math.max(1,Math.floor((att.int||70)*1.5)-(tgt.int||30));tgt.currentTroops=Math.max(0,tgt.currentTroops-dmg);b.log.push("✨ "+att.name+" 法术技能，重创 "+tgt.name+"，造成 "+dmg+" 伤害(智力"+att.int+"-"+"法防"+tgt.int+")");if(tgt.currentTroops>0){var eAtt=en[Math.floor(Math.random()*en.length)];var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,(eAtt.atk||0)-(eTgt.lead||0));eTgt.currentTroops=Math.max(0,eTgt.currentTroops-eDmg);b.log.push("💢 "+eAtt.name+" 反击 "+eTgt.name+"，造成 "+eDmg+" 伤害")}b.turn++;renderBattle()}
+function battleUltimate(){var b=state.battle;var pl=b.playerUnits.filter(function(u){return u.currentTroops>0});var en=b.enemyUnits.filter(function(u){return u.currentTroops>0});if(pl.length===0||en.length===0)return;var td=0;pl.forEach(function(att){en.forEach(function(tgt){if(tgt.currentTroops>0){var d=Math.max(1,(att.atk||0)*2-(tgt.lead||0));tgt.currentTroops=Math.max(0,tgt.currentTroops-d);td+=d}})});b.log.push("🔥 "+pl.map(function(p){return p.name;}).join("、")+" 发动合体大招，造成 "+td+" 群体伤害！");var eAtt=en.find(function(u){return u.currentTroops>0});if(eAtt){var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,(eAtt.atk||0)-(eTgt.lead||0));eTgt.currentTroops=Math.max(0,eTgt.currentTroops-eDmg);b.log.push("💢 "+eAtt.name+" 反击 "+eTgt.name+"，造成 "+eDmg+" 伤害")}b.turn++;renderBattle()}
 function battleWin(){var c=GAME_DATA.chapters.find(function(x){return x.id===state.currentChapter});state.lingqi+=c.reward.lingqi;state.gold+=c.reward.gold;state.battleCount++;save();document.getElementById("battle-log").innerHTML="<span style=\"color:#ffd700\">🎉 战斗胜利！</span>";document.getElementById("battle-actions").innerHTML="<div style=\"grid-column:span 3;text-align:center;padding:10px\"><div style=\"color:#ffd700;margin-bottom:10px\">获得 "+c.reward.lingqi+"灵气 "+c.reward.gold+"金币</div><button class=\"btn\" onclick=\"exitBattle()\">返回</button></div>";checkQuests()}
 function battleLose(){document.getElementById("battle-log").innerHTML="<span style=\"color:#e74c3c\">💀 战斗失败！</span>";document.getElementById("battle-actions").innerHTML="<div style=\"grid-column:span 3;text-align:center;padding:10px\"><button class=\"btn\" onclick=\"startBattle(state.currentChapter)\">重新挑战</button><button class=\"btn\" onclick=\"exitBattle()\">返回</button></div>"}
 function exitBattle(){state.battle=null;showScreen("main-screen");renderAll()}
