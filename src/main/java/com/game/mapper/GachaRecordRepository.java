@@ -7,4 +7,5 @@ import java.util.List;
 public interface GachaRecordRepository extends JpaRepository<GachaRecord, Long> {
     List<GachaRecord> findByPlayerIdOrderByGachaTimeDesc(Long playerId);
     List<GachaRecord> findByPlayerIdAndQuality(Long playerId, String quality);
+    List<GachaRecord> findByPlayerId(Long playerId);
 }
