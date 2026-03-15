@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 /**
- * 武将实体
- * 包含六维属性、战法、成长系统
+ * 武将实体 v2.1
+ * 包含等级成长、星级系统
  */
 @Data
 @Entity
@@ -18,7 +18,7 @@ public class Partner {
     // 玩家ID
     private Long playerId;
     
-    // 武将ID(对应GameData)
+    // 武将ID(对应PartnerData)
     private Integer partnerId;
     
     // 武将名称
@@ -27,123 +27,92 @@ public class Partner {
     // 图标
     private String icon;
     
-    // 品质: red(隐藏红将)/orange/purple/blue
+    // 品质: red/orange/purple/blue
     private String quality;
     
     // 兵种: 步/骑/弓/策
     private String type;
     
-    // ========== 六维属性 ==========
-    // 武力 - 物理攻击
-    private Integer atk = 0;
+    // ========== 基础属性 (1级) ==========
+    private Integer atk;        // 武力
+    private Integer intelligence; // 智力
+    private Integer lead;       // 统率
+    private Integer speed;     // 速度
     
-    // 智力 - 法术攻击/法术防御
-    private Integer intelligence = 70;
+    // ========== 成长值 ==========
+    private Integer growthAtk;  // 武力成长
+    private Integer growthInt;  // 智力成长
+    private Integer growthLead; // 统率成长
+    private Integer growthSpeed; // 速度成长
     
-    // 统率 - 物理防御
-    private Integer lead = 70;
+    // ========== 等级系统 ==========
+    private Integer level = 1;   // 等级
+    private Integer exp = 0;    // 经验
+    private Integer maxLevel;   // 等级上限
     
-    // 速度 - 行动顺序
-    private Integer speed = 50;
-    
-    // 政令 - 内政产出
-    private Integer politics = 30;
-    
-    // 军事 - 战斗相关
-    private Integer military = 60;
-    
-    // 魅力 - 抽卡概率
-    private Integer charm = 50;
+    // ========== 星级系统 ==========
+    private Integer star = 1;   // 星级 (1-6)
+    private Integer starExp = 0; // 升星经验
     
     // ========== 战斗属性 ==========
-    // 兵量(由玩家等级决定，这里记录最大兵量)
-    private Integer maxTroops = 10000;
+    private Integer maxTroops = 10000; // 最大兵量
     
-    // 等级
-    private Integer level = 1;
-    
-    // 星级(0-5)
-    private Integer star = 0;
-    
-    // 经验
-    private Integer exp = 0;
-    
-    // ========== 战法 ==========
-    // 战法列表(JSON格式)
-    private String skills;
-    
-    // 主动战法
-    private String activeSkill;
-    
-    // 被动战法
-    private String passiveSkill;
+    // ========== 技能 ==========
+    private String skill1;  // 主动技能
+    private String skill2; // 被动技能
     
     // 是否选中上阵
     private Boolean selected = false;
     
-    // ========== 成长值 ==========
-    // 武力成长
-    private Integer growthAtk = 5;
-    
-    // 智力成长
-    private Integer growthInt = 3;
-    
-    // 统率成长
-    private Integer growthLead = 3;
-    
     // ========== 计算方法 ==========
     
     /**
-     * 计算当前攻击力
-     * 基础 + (等级-1) * 成长值
+     * 获取星级属性加成百分比
+     */
+    public double getStarBonus() {
+        // 1星=0%, 2星=10%, 3星=25%, 4星=45%, 5星=70%, 6星=100%
+        int[] bonus = {0, 10, 25, 45, 70, 100};
+        return bonus[star] / 100.0;
+    }
+    
+    /**
+     * 获取当前武力
      */
     public int getCurrentAtk() {
-        return atk + (level - 1) * growthAtk;
+        // 基础 + 等级成长 + 星级加成
+        double base = atk + (level - 1) * growthAtk;
+        return (int) (base * (1 + getStarBonus()));
     }
     
     /**
-     * 计算当前智力
+     * 获取当前智力
      */
     public int getCurrentInt() {
-        return intelligence + (level - 1) * growthInt;
+        double base = intelligence + (level - 1) * growthInt;
+        return (int) (base * (1 + getStarBonus()));
     }
     
     /**
-     * 计算当前统率(物理防御)
+     * 获取当前统率
      */
     public int getCurrentLead() {
-        return lead + (level - 1) * growthLead;
+        double base = lead + (level - 1) * growthLead;
+        return (int) (base * (1 + getStarBonus()));
     }
     
     /**
-     * 物理伤害 = 武力 × (1 - 统率 / (统率 + 200))
-     * 采用方案B: 百分比穿透，攻防双方属性都有影响
+     * 获取当前速度
      */
-    public int calcPhysicalDamage(int enemyLead) {
-        double atk = getCurrentAtk();
-        double defense = enemyLead;
-        // 公式: 伤害 = 武力 × (1 - 统率 / (统率 + 200))
-        double damage = atk * (1 - defense / (defense + 200));
-        return Math.max(1, (int) Math.floor(damage));
+    public int getCurrentSpeed() {
+        double base = speed + (level - 1) * growthSpeed;
+        return (int) (base * (1 + getStarBonus()));
     }
     
     /**
-     * 法术伤害 = 智力 × (1 - 智力 / (智力 + 200))
-     * 敌方智力作为法术防御
+     * 获取当前兵量
      */
-    public int calcMagicDamage(int enemyInt) {
-        double intel = getCurrentInt();
-        double defense = enemyInt;
-        // 公式: 伤害 = 智力 × (1 - 智力 / (智力 + 200))
-        double damage = intel * (1 - defense / (defense + 200));
-        return Math.max(1, (int) Math.floor(damage));
-    }
-    
-    /**
-     * 获取战力值
-     */
-    public int getZhanli() {
-        return getCurrentAtk() * 2 + getCurrentInt() * 2 + getCurrentLead() * 2 + maxTroops / 100;
+    public int getCurrentTroops() {
+        return 10000 + level * 500;
     }
     
     /**
@@ -157,7 +126,7 @@ public class Partner {
      * 是否可以升级
      */
     public boolean canLevelUp() {
-        return exp >= getExpForNextLevel();
+        return exp >= getExpForNextLevel() && level < maxLevel;
     }
     
     /**
@@ -178,5 +147,48 @@ public class Partner {
         while (canLevelUp()) {
             levelUp();
         }
+    }
+    
+    /**
+     * 升星所需武将数
+     */
+    public int getStarCost() {
+        // 2星需要2个, 3星需要2个...
+        return star >= 6 ? 0 : 2;
+    }
+    
+    /**
+     * 升星
+     */
+    public void promoteStar() {
+        if (star < 6) {
+            star++;
+        }
+    }
+    
+    /**
+     * 计算战力
+     */
+    public int getZhanli() {
+        int base = (getCurrentAtk() + getCurrentInt() + getCurrentLead()) * 2 
+                   + getCurrentSpeed();
+        int skillBonus = (skill1 != null ? 50 : 0) + (skill2 != null ? 50 : 0);
+        return base + getCurrentTroops() / 100 + skillBonus;
+    }
+    
+    /**
+     * 物理伤害计算 (方案B)
+     */
+    public int calcPhysicalDamage(int enemyLead) {
+        double dmg = getCurrentAtk() * (1 - (double)enemyLead / (enemyLead + 200));
+        return Math.max(1, (int) dmg);
+    }
+    
+    /**
+     * 法术伤害计算 (方案B)
+     */
+    public int calcMagicDamage(int enemyInt) {
+        double dmg = getCurrentInt() * (1 - (double)enemyInt / (enemyInt + 200));
+        return Math.max(1, (int) dmg);
     }
 }
