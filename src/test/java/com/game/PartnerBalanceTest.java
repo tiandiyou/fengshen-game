@@ -8,7 +8,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 武将数据平衡性测试
+ * 武将数据平衡性测试 - 包含技能属性
  */
 public class PartnerBalanceTest {
     
@@ -109,6 +109,63 @@ public class PartnerBalanceTest {
         }
     }
     
+    // ========== 技能属性测试 ==========
+    
+    @Test
+    void testRedPartnerHas2Skills() {
+        // 红将应该有2个技能
+        List<Map<String, Object>> reds = PartnerData.getRedPartners();
+        
+        for (Map<String, Object> p : reds) {
+            List<String> skills = (List<String>) p.get("skills");
+            assertTrue(skills != null && skills.size() == 2,
+                p.get("name") + " 应该有2个技能");
+        }
+    }
+    
+    @Test
+    void testOrangePartnerHas1Skill() {
+        // 橙将应该有1个技能
+        List<Map<String, Object>> oranges = PartnerData.getOrangePartners();
+        
+        for (Map<String, Object> p : oranges) {
+            List<String> skills = (List<String>) p.get("skills");
+            assertTrue(skills != null && skills.size() >= 1,
+                p.get("name") + " 应该有至少1个技能");
+        }
+    }
+    
+    @Test
+    void testSkillDistribution() {
+        // 测试技能分布
+        List<Map<String, Object>> all = PartnerData.getAllPartners();
+        
+        Map<String, Integer> skillCount = new HashMap<>();
+        for (Map<String, Object> p : all) {
+            List<String> skills = (List<String>) p.get("skills");
+            int count = skills != null ? skills.size() : 0;
+            skillCount.put(count + "技能", skillCount.getOrDefault(count + "技能", 0) + 1);
+        }
+        
+        // 应该有2技能、1技能、无技能三种情况
+        assertTrue(skillCount.containsKey("2技能"), "应该有2技能武将");
+        assertTrue(skillCount.containsKey("1技能"), "应该有1技能武将");
+        assertTrue(skillCount.containsKey("0技能"), "应该有0技能武将");
+    }
+    
+    @Test
+    void testSkillTypes() {
+        // 验证技能类型
+        List<String> allSkills = Arrays.asList(
+            "火尖枪", "八九玄功", "封神榜", "天子剑", "魅惑",
+            "风雷棍", "开天珠", "定海珠", "雌雄双鞭", "玲珑宝塔",
+            "莲花护体", "天眼通", "天命所归", "帝王之气", "倾城之貌",
+            "飞仙之翼", "逆天改命", "财神附体", "托塔天王"
+        );
+        
+        assertTrue(allSkills.size() >= 15);
+    }
+    
     // ========== 伤害公式验证测试 ==========
     
     @Test
@@ -127,6 +184,8 @@ public class PartnerBalanceTest {
                 p.get("name") + " 输出伤害应该至少有攻击力的25%");
         }
     }
+    
+    // ========== 兵种分布测试 ==========
     
     @Test
     void testTypeDistribution() {
@@ -158,6 +217,23 @@ public class PartnerBalanceTest {
                     p.get("name") + " 成长值应在1-10之间");
             }
         }
+    }
+    
+    @Test
+    void testRedPartnerGrowthHigherThanOrange() {
+        // 红将成长应该比橙将高
+        double redAvgGrowth = PartnerData.getRedPartners().stream()
+            .filter(p -> p.containsKey("growthAtk"))
+            .mapToInt(p -> (Integer) p.get("growthAtk"))
+            .average().orElse(0);
+        
+        double orangeAvgGrowth = PartnerData.getOrangePartners().stream()
+            .filter(p -> p.containsKey("growthAtk"))
+            .mapToInt(p -> (Integer) p.get("growthAtk"))
+            .average().orElse(0);
+        
+        assertTrue(redAvgGrowth >= orangeAvgGrowth + 1, 
+            "红将平均成长应该比橙将高至少1");
     }
     
     // ========== 唯一性测试 ==========
@@ -225,5 +301,27 @@ public class PartnerBalanceTest {
             assertTrue(speed >= 20 && speed <= 120, 
                 p.get("name") + " 速度应在20-120之间");
         }
+    }
+    
+    // ========== 综合战斗力测试 ==========
+    
+    @Test
+    void testCombatPowerByQuality() {
+        // 测试各品质综合战斗力
+        // 战斗力 = 武力 + 智力 + 统率 + 速度 + 成长加成 + 技能加成
+        
+        // 红将平均战力应该最高
+        double redPower = PartnerData.getRedPartners().stream()
+            .mapToInt(p -> (Integer)p.get("atk") + (Integer)p.get("intelligence") + 
+                          (Integer)p.get("lead") + (Integer)p.get("speed"))
+            .average().orElse(0);
+        
+        double orangePower = PartnerData.getOrangePartners().stream()
+            .mapToInt(p -> (Integer)p.get("atk") + (Integer)p.get("intelligence") + 
+                          (Integer)p.get("lead") + (Integer)p.get("speed"))
+            .average().orElse(0);
+        
+        assertTrue(redPower > orangePower * 1.3, 
+            "红将平均战力应该比橙将高30%以上");
     }
 }

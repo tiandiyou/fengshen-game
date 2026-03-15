@@ -6,9 +6,18 @@ import java.util.*;
 /**
  * 武将数据配置
  * 包含100+武将，按颜色品质分类
+ * 品质影响: 初始属性 + 成长值 + 技能属性
  */
 @Component
 public class PartnerData {
+    
+    // ========== 技能效果类型 ==========
+    // 伤害类: physical_damage(物理伤害+%), magic_damage(法术伤害+%)
+    // 异常类: stone(石化), bleed(流血), heal(治疗), shield(护盾), silence(沉默)
+    // 增益类: atk_up(攻击+%), def_up(防御+%), speed_up(速度+%)
+    
+    // ========== 红色武将 (SSR) - 10个 (隐藏于橙色中) ==========
+    // 红将: 初始属性高 + 成长值高 + 2个技能(伤害+异常)
     
     // ========== 红色武将 (SSR) - 10个 (隐藏于橙色中) ==========
     public static final List<Map<String, Object>> RED_PARTNERS = Arrays.asList(
