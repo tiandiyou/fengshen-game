@@ -3,12 +3,14 @@ com/game/mapper/PlayerRepository.class
 com/game/config/SkillEffect.class
 com/game/config/GameData.class
 com/game/config/JwtUtil.class
+com/game/controller/CultivationController.class
 com/game/mapper/GachaRecordRepository.class
 com/game/controller/SigninController.class
 com/game/controller/ShopController.class
 com/game/controller/PartnerController.class
 com/game/entity/Skill.class
 com/game/controller/SkillController.class
+com/game/entity/Cultivation.class
 com/game/entity/Player.class
 com/game/service/GachaService$GachaResult.class
 com/game/service/UserService.class
@@ -17,6 +19,7 @@ com/game/controller/AchievementController.class
 com/game/controller/admin/AdminController.class
 com/game/config/PartnerData.class
 com/game/controller/QuestController.class
+com/game/mapper/CultivationRepository.class
 com/game/entity/Treasure.class
 com/game/FengshenApplication.class
 com/game/entity/Partner.class
