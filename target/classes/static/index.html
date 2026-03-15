@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>封神榜 - 伐商演义</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;color:#fff}
+#game-container{max-width:480px;margin:0 auto;min-height:100vh}
+.screen{display:none;min-height:100vh;flex-direction:column;padding:12px}
+.screen.active{display:flex}
+.title{font-size:22px;color:#ffd700;text-align:center;margin:10px 0}
+.btn{background:linear-gradient(180deg,#ff6b00,#c41e3a);border:2px solid #ffd700;color:#fff;padding:8px 14px;font-size:12px;border-radius:12px;margin:4px;cursor:pointer}
+.btn-small{padding:5px 10px;font-size:10px}
+.btn-green{background:linear-gradient(180deg,#27ae60,#1e8449)}
+#title-screen{justify-content:center;align-items:center;text-align:center}
+.menu-buttons{display:flex;flex-direction:column;gap:8px;width:80%;margin-top:20px}
+.input-group{margin-bottom:10px}
+.input-group input{width:100%;padding:8px;border:2px solid #4a9eff;border-radius:6px;background:rgba(0,0,0,0.3);color:#fff;font-size:13px;text-align:center}
+.top-bar{display:flex;justify-content:space-between;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:6px;margin-bottom:8px;font-size:10px}
+.partner-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding-bottom:55px}
+.partner-card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;border:1px solid #333;position:relative}
+.partner-card.selected{border-color:#ffd700;background:rgba(255,215,0,0.1)}
+.star{display:flex;font-size:9px;margin:2px 0}
+.star span{color:#ffd700}
+.partner-header{display:flex;align-items:center;gap:6px}
+.partner-avatar{width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:13px}
+.upgrade-btn{position:absolute;top:3px;right:3px;font-size:8px;padding:2px 5px;background:#27ae60;border-radius:5px}
+.star-btn{position:absolute;bottom:3px;right:3px;font-size:8px;padding:2px 5px;background:#9b59b6;border-radius:5px}
+.chapter-list,.quest-list,.rank-list{display:flex;flex-direction:column;gap:6px;padding-bottom:55px}
+.chapter-card,.quest-card,.rank-card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;display:flex;justify-content:space-between;align-items:center}
+.bottom-nav{display:flex;justify-content:space-around;padding:6px;background:rgba(0,0,0,0.5);position:fixed;bottom:0;width:100%;max-width:480px}
+.nav-item{display:flex;flex-direction:column;align-items:center;font-size:8px;color:#888;cursor:pointer;padding:3px 6px}
+.nav-item.active{color:#ffd700}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000}
+.modal.active{display:flex}
+.modal-content{background:#1a1a2e;border:2px solid #ffd700;border-radius:12px;padding:12px;max-width:280px;text-align:center}
+.shop-items,.treasure-list{display:flex;flex-direction:column;gap:6px;padding-bottom:55px}
+.shop-card,.treasure-card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;display:flex;align-items:center;gap:8px}
+#battle-screen{padding:8px}
+.battle-field{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.battle-side{display:flex;flex-direction:column;gap:4px;margin:6px 0}
+.battle-unit{display:flex;align-items:center;gap:6px;padding:4px 8px;background:rgba(0,0,0,0.3);border-radius:4px}
+.battle-unit.enemy{flex-direction:row-reverse}
+.unit-avatar{width:24px;height:24px;border-radius:50%;background:rgba(255,0,0,0.2);display:flex;align-items:center;justify-content:center;font-size:11px}
+.unit-hp-bar{width:40px;height:3px;background:#333;border-radius:2px;overflow:hidden}
+.unit-hp-fill{height:100%;background:linear-gradient(90deg,#e74c3c,#f39c12);transition:width 0.3s}
+.battle-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:8px;background:rgba(0,0,0,0.4);border-radius:8px;margin-top:6px}
+.skill-btn{padding:6px;border-radius:4px;font-size:10px;cursor:pointer;border:none}
+.skill-btn.normal{background:#3498db;color:#fff}
+.skill-btn.skill{background:#9b59b6;color:#fff}
+.skill-btn.ultimate{background:linear-gradient(180deg,#e74c3c,#c0392b);color:#ffd700;grid-column:span 2}
+.battle-log{font-size:9px;color:#aaa;text-align:center;padding:6px;max-height:40px;overflow-y:auto}
+.gacha-card{background:linear-gradient(180deg,#1a1a2e,#0d1b2a);border:3px solid #ffd700;border-radius:12px;padding:12px;margin:10px 0}
+.gacha-avatar{font-size:30px}
+.gacha-name{color:#ffd700;font-weight:bold;margin-top:4px}
+.toast{position:fixed;top:12%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);color:#ffd700;padding:8px 14px;border-radius:14px;z-index:2000;border:1px solid #ffd700;font-size:11px}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.quest-reward{font-size:9px;color:#ffd700}
+</style>
+</head>
+<body>
+<div id="game-container">
+<div id="title-screen" class="screen active">
+<div style="font-size:34px;margin-top:40px">⚔封神榜⚔</div>
+<div class="title" style="margin-top:6px">伐商演义</div>
+<div style="color:#888;margin-bottom:18px">商朝末年，封神之战</div>
+<div class="menu-buttons">
+<button class="btn" onclick="showLogin()">登录</button>
+<button class="btn" style="background:#9b59b6" onclick="showRegister()">注册</button>
+</div>
+</div>
+<div id="login-screen" class="screen">
+<div class="title">登录</div>
+<div class="input-group" style="max-width:220px;margin:0 auto"><input type="text" id="login-username" placeholder="用户名"></div>
+<div class="input-group" style="max-width:220px;margin:0 auto"><input type="password" id="login-password" placeholder="密码"></div>
+<button class="btn" onclick="doLogin()">登录</button>
+<button class="btn btn-small" onclick="showScreen('title-screen')">返回</button>
+</div>
+<div id="register-screen" class="screen">
+<div class="title">注册</div>
+<div class="input-group" style="max-width:220px;margin:0 auto"><input type="text" id="reg-username" placeholder="用户名"></div>
+<div class="input-group" style="max-width:220px;margin:0 auto"><input type="password" id="reg-password" placeholder="密码"></div>
+<button class="btn" onclick="doRegister()">注册</button>
+<button class="btn btn-small" onclick="showScreen('title-screen')">返回</button>
+</div>
+<div id="main-screen" class="screen">
+<div class="top-bar"><span>💎 <span id="lingqi">0</span></span><span>💰 <span id="gold">0</span></span><span>⚔ <span id="zhanli">0</span></span></div>
+<div id="tab-partners" class="tab-content active"><div style="margin-bottom:6px;font-size:10px;color:#888">点击选择 | ↑升级 | ★升星</div><div id="partners-list" class="partner-list"></div></div>
+<div id="tab-battle" class="tab-content"><div id="chapter-list" class="chapter-list"></div></div>
+<div id="tab-treasures" class="tab-content"><div id="treasure-list" class="treasure-list"></div></div>
+<div id="tab-quests" class="tab-content"><div id="quest-list" class="quest-list"></div></div>
+<div id="tab-rank" class="tab-content"><div id="rank-list" class="rank-list"></div></div>
+<div class="bottom-nav">
+<div class="nav-item active" onclick="showTab('partners')"><span style="font-size:14px">👥</span><span>伙伴</span></div>
+<div class="nav-item" onclick="showTab('battle')"><span style="font-size:14px">⚔</span><span>战斗</span></div>
+<div class="nav-item" onclick="showTab('treasures')"><span style="font-size:14px">🔮</span><span>法宝</span></div>
+<div class="nav-item" onclick="showTab('quests')"><span style="font-size:14px">📋</span><span>任务</span></div>
+<div class="nav-item" onclick="showTab('rank')"><span style="font-size:14px">🏆</span><span>排行</span></div>
+</div>
+</div>
+<div id="battle-screen" class="screen">
+<div style="text-align:center;margin-bottom:4px"><span id="battle-title" style="color:#ffd700;font-weight:bold">战斗</span></div>
+<div class="battle-field"><div class="battle-side" id="enemy-side"></div><div class="battle-log" id="battle-log">战斗开始！</div><div class="battle-side" id="player-side"></div></div>
+<div class="battle-actions" id="battle-actions">
+<button class="skill-btn normal" onclick="battleAttack()">⚔ 普攻</button>
+<button class="skill-btn skill" onclick="battleSkill()">✨ 技能</button>
+<button class="skill-btn ultimate" onclick="battleUltimate()">🔥 大招</button>
+</div>
+<button class="btn btn-small" onclick="exitBattle()" style="margin-top:4px">← 返回</button>
+</div>
+</div>
+<div id="modal" class="modal" onclick="closeModal()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<h3 id="modal-title" style="color:#ffd700;margin-bottom:8px">提示</h3>
+<p id="modal-text" style="margin-bottom:10px"></p>
+<div id="modal-buttons"></div>
+</div>
+</div>
+<script>
+var API_BASE = "http://localhost:8080/api";
+var state = {token: "", playerId: null, username: "", player: null, partners: [], treasures: [], battle: null};
+
+function showScreen(id) {
+    document.querySelectorAll(".screen").forEach(function(x){x.classList.remove("active")});
+    document.getElementById(id).classList.add("active");
+}
+function showLogin(){showScreen("login-screen")}
+function showRegister(){showScreen("register-screen")}
+function showTab(tab) {
+    document.querySelectorAll(".nav-item").forEach(function(x){x.classList.remove("active")});
+    event.target.closest(".nav-item").classList.add("active");
+    document.querySelectorAll(".tab-content").forEach(function(x){x.classList.remove("active")});
+    document.getElementById("tab-"+tab).classList.add("active");
+    if(tab==="partners")loadPartners();
+    else if(tab==="battle")loadChapters();
+    else if(tab==="treasures")loadTreasures();
+    else if(tab==="quests")loadQuests();
+    else if(tab==="rank")loadRanks();
+}
+function showToast(msg) {
+    var t=document.createElement("div");
+    t.className="toast";t.textContent=msg;document.body.appendChild(t);
+    setTimeout(function(){t.remove()},2000);
+}
+function showModal(txt,tit) {
+    document.getElementById("modal-title").textContent=tit||"提示";
+    document.getElementById("modal-text").textContent=txt;
+    document.getElementById("modal-buttons").innerHTML='<button class="btn" onclick="closeModal()">确定</button>';
+    document.getElementById("modal").classList.add("active");
+}
+function closeModal(){document.getElementById("modal").classList.remove("active")}
+
+async function api(url, data) {
+    var opts = {method: data ? "POST" : "GET", headers:{"Content-Type":"application/json"}};
+    if(state.token) opts.headers["Authorization"] = "Bearer " + state.token;
+    if(data) opts.body = JSON.stringify(data);
+    var res = await fetch(API_BASE + url, opts);
+    return await res.json();
+}
+
+async function doLogin() {
+    var username = document.getElementById("login-username").value.trim();
+    var password = document.getElementById("login-password").value;
+    if(!username || !password) return showModal("请输入用户名和密码");
+    var r = await api("/auth/login", {username:username, password:password});
+    if(r.success) {
+        state.token = r.token;
+        state.playerId = r.playerId;
+        state.username = r.username;
+        localStorage.setItem("fengshen_token", r.token);
+        localStorage.setItem("fengshen_playerId", r.playerId);
+        showScreen("main-screen");
+        loadAll();
+    } else {
+        showModal(r.message);
+    }
+}
+
+async function doRegister() {
+    var username = document.getElementById("reg-username").value.trim();
+    var password = document.getElementById("reg-password").value;
+    if(!username || !password) return showModal("请输入用户名和密码");
+    var r = await api("/auth/register", {username:username, password:password});
+    if(r.success) {
+        showToast("注册成功，请登录");
+        showScreen("login-screen");
+    } else {
+        showModal(r.message);
+    }
+}
+
+async function loadAll() {
+    var r = await api("/player/" + state.playerId);
+    if(r.success) {
+        state.player = r.player;
+        state.partners = r.partners || [];
+        state.treasures = r.treasures || [];
+        renderTopBar();
+    }
+}
+
+function renderTopBar() {
+    document.getElementById("lingqi").textContent = state.player.lingqi || 0;
+    document.getElementById("gold").textContent = state.player.gold || 0;
+    document.getElementById("zhanli").textContent = calcZhanli();
+}
+
+function calcZhanli() {
+    return state.partners.reduce(function(s,p){return s+(p.hp||0)+(p.atk||0)*2;},0)+(state.player.name.length||0)*10;
+}
+
+async function loadPartners() {
+    var r = await api("/partner/list?playerId=" + state.playerId);
+    if(r.success) {
+        state.partners = r.partners || [];
+        renderPartners();
+    }
+}
+
+function renderPartners() {
+    var list = document.getElementById("partners-list");
+    if(state.partners.length === 0) {
+        list.innerHTML = '<div style="grid-column:span2;text-align:center;padding:20px;color:#888">暂无伙伴<br><button class="btn" style="margin-top:10px" onclick="doGacha()">抽卡</button></div>';
+        return;
+    }
+    list.innerHTML = state.partners.map(function(p,i) {
+        var sel = p.selected ? "selected" : "";
+        var cost = Math.floor(50 * Math.pow(1.5, p.level||1));
+        var starCost = Math.floor(200 * Math.pow(2, p.star||0));
+        var stars = "★".repeat(p.star||0);
+        return '<div class="partner-card ' + sel + '" onclick="togglePartner(' + i + ')"><div class="partner-header"><div class="partner-avatar">' + p.icon + '</div><div><div style="font-weight:bold;font-size:11px">' + p.name + '</div><div style="font-size:8px;color:#888">Lv.' + (p.level||1) + '</div></div></div><div class="star"><span>' + stars + '</span></div><div style="font-size:8px;color:#aaa">♥ ' + p.hp + ' | ⚔ ' + p.atk + '</div><button class="upgrade-btn" onclick="event.stopPropagation();upgradePartner(' + i + ')">↑' + cost + '</button><button class="star-btn" onclick="event.stopPropagation();starPartner(' + i + ')">★' + starCost + '</button></div>';
+    }).join("");
+}
+
+async function togglePartner(i) {
+    var p = state.partners[i];
+    var r = await api("/partner/select", {playerId:state.playerId, partnerId:p.id, selected:!p.selected});
+    if(r.success) loadPartners();
+}
+
+async function upgradePartner(i) {
+    var p = state.partners[i];
+    var r = await api("/gacha/upgrade", {playerId:state.playerId, partnerId:p.id});
+    if(r.success) {showToast(p.name + " 升级到 Lv." + r.level); loadPartners(); renderTopBar();}
+    else showModal(r.message);
+}
+
+async function starPartner(i) {
+    var p = state.partners[i];
+    var r = await api("/partner/star", {playerId:state.playerId, partnerId:p.id});
+    if(r.success) {showToast(p.name + " 升星到 " + r.star + "★"); loadPartners(); renderTopBar();}
+    else showModal(r.message);
+}
+
+async function doGacha() {
+    var r = await api("/gacha/draw", {playerId:state.playerId, cost:50});
+    if(r.success) {
+        showModal("<div class='gacha-card' style='border-color:#" + (r.quality=="red"?"e74c3c":r.quality=="orange"?"e67e22":"9b59b6") + "'><div class='gacha-avatar'>" + r.partner.icon + "</div><div class='gacha-name'>" + r.partner.name + "</div></div>", "抽卡结果");
+        loadPartners();
+        loadAll();
+    } else {
+        showModal(r.message);
+    }
+}
+
+async function loadChapters() {
+    var r = await api("/player/chapters");
+    var list = document.getElementById("chapter-list");
+    list.innerHTML = r.map(function(c) {
+        return '<div class="chapter-card"><div><div style="font-weight:bold">' + c.name + '</div><div style="font-size:9px;color:#888">' + c.title + " - " + c.desc + '</div></div><div><button class="btn btn-small" onclick="startBattle(' + c.id + ')">战斗</button></div></div>';
+    }).join("");
+}
+
+async function startBattle(chapterId) {
+    var r = await api("/battle/start", {playerId:state.playerId, chapterId:chapterId});
+    if(!r.success) {showModal(r.message);return;}
+    if(r.playerUnits.length === 0) {showModal("请先选择伙伴");return;}
+    state.battle = {chapterId:chapterId, units:r.playerUnits, enemies:r.enemyUnits, turn:1, log:["战斗开始！"]};
+    showScreen("battle-screen");
+    document.getElementById("battle-title").textContent = r.chapterId + "章";
+    renderBattle();
+}
+
+function renderBattle() {
+    var b = state.battle;
+    document.getElementById("enemy-side").innerHTML = b.enemies.filter(function(u){return u.currentHp>0}).map(function(u){return"<div class='battle-unit enemy'><div class='unit-avatar'>"+u.icon+"</div><div style='flex:1'><div style='font-size:11px'>"+u.name+"</div><div class='unit-hp-bar'><div class='unit-hp-fill' style='width:"+(u.currentHp/u.maxHp*100)+"%'></div></div></div></div>"}).join("");
+    document.getElementById("player-side").innerHTML = b.units.filter(function(u){return u.currentHp>0}).map(function(u){return"<div class='battle-unit'><div class='unit-avatar' style='background:rgba(0,100,255,0.2)'>"+u.icon+"</div><div style='flex:1'><div style='font-size:11px'>"+u.name+"</div><div class='unit-hp-bar'><div class='unit-hp-fill' style='width:"+(u.currentHp/u.maxHp*100)+"%'></div></div></div></div>"}).join("");
+    document.getElementById("battle-log").innerHTML = b.log.slice(-3).join("<br>");
+    var pa = b.units.filter(function(u){return u.currentHp>0}).length;
+    var ea = b.enemies.filter(function(u){return u.currentHp>0}).length;
+    if(ea===0){battleWin();return;}
+    if(pa===0){battleLose();return;}
+}
+
+async function battleAttack() {
+    var b = state.battle;
+    var pl = b.units.filter(function(u){return u.currentHp>0});
+    var en = b.enemies.filter(function(u){return u.currentHp>0});
+    if(pl.length===0||en.length===0)return;
+    var att = pl[Math.floor(Math.random()*pl.length)];
+    var tgt = en[Math.floor(Math.random()*en.length)];
+    var dmg = Math.max(1, att.atk - Math.floor(Math.random()*20));
+    tgt.currentHp = Math.max(0, tgt.currentHp - dmg);
+    b.log.push("⚔ " + att.name + " 普攻 " + tgt.name + "，造成 " + dmg + " 伤害");
+    if(tgt.currentHp>0 && en.length>0) {
+        var eAtt = en[Math.floor(Math.random()*en.length)];
+        var eTgt = pl[Math.floor(Math.random()*pl.length)];
+        var eDmg = Math.max(1, eAtt.atk - Math.floor(Math.random()*25));
+        eTgt.currentHp = Math.max(0, eTgt.currentHp - eDmg);
+        b.log.push("💢 " + eAtt.name + " 反击 " + eTgt.name + "，造成 " + eDmg + " 伤害");
+    }
+    b.turn++;renderBattle();
+}
+
+async function battleSkill() {
+    var b = state.battle;
+    var pl = b.units.filter(function(u){return u.currentHp>0});
+    var en = b.enemies.filter(function(u){return u.currentHp>0});
+    if(pl.length===0||en.length===0)return;
+    var att = pl[Math.floor(Math.random()*pl.length)];
+    var tgt = en[Math.floor(Math.random()*en.length)];
+    var dmg = Math.max(1, Math.floor(att.atk*1.5) - Math.floor(Math.random()*20));
+    tgt.currentHp = Math.max(0, tgt.currentHp - dmg);
+    b.log.push("✨ " + att.name + " 使用技能，重创 " + tgt.name + "，造成 " + dmg + " 伤害");
+    if(tgt.currentHp>0 && en.length>0) {
+        var eAtt = en[Math.floor(Math.random()*en.length)];
+        var eTgt = pl[Math.floor(Math.random()*pl.length)];
+        var eDmg = Math.max(1, eAtt.atk - Math.floor(Math.random()*25));
+        eTgt.currentHp = Math.max(0, eTgt.currentHp - eDmg);
+        b.log.push("💢 " + eAtt.name + " 反击 " + eTgt.name + "，造成 " + eDmg + " 伤害");
+    }
+    b.turn++;renderBattle();
+}
+
+async function battleUltimate() {
+    var b = state.battle;
+    var pl = b.units.filter(function(u){return u.currentHp>0});
+    var en = b.enemies.filter(function(u){return u.currentHp>0});
+    if(pl.length===0||en.length===0)return;
+    var td = 0;
+    pl.forEach(function(att){en.forEach(function(tgt){if(tgt.currentHp>0){var d=Math.max(1,Math.floor(att.atk*2)-Math.floor(Math.random()*30));tgt.currentHp=Math.max(0,tgt.currentHp-d);td+=d}})});
+    b.log.push("🔥 " + pl.map(function(p){return p.name;}).join("、") + " 发动合体大招，造成 " + td + " 群体伤害！");
+    var eAtt = en.find(function(u){return u.currentHp>0});
+    if(eAtt) {
+        var eTgt = pl[Math.floor(Math.random()*pl.length)];
+        var eDmg = Math.max(1, Math.floor(eAtt.atk*1.2)-Math.floor(Math.random()*20));
+        eTgt.currentHp = Math.max(0, eTgt.currentHp - eDmg);
+        b.log.push("💢 " + eAtt.name + " 反击 " + eTgt.name + "，造成 " + eDmg + " 伤害");
+    }
+    b.turn++;renderBattle();
+}
+
+async function battleWin() {
+    var r = await api("/battle/result", {playerId:state.playerId, chapterId:state.battle.chapterId, win:true});
+    document.getElementById("battle-log").innerHTML = "<span style='color:#ffd700'>🎉 战斗胜利！</span>";
+    document.getElementById("battle-actions").innerHTML = "<div style='grid-column:span 3;text-align:center;padding:10px'><div style='color:#ffd700;margin-bottom:10px'>获得 " + (r.lingqi||0) + "灵气 " + (r.gold||0) + "金币</div><button class='btn' onclick='exitBattle()'>返回</button></div>";
+    loadAll();
+}
+
+function battleLose() {
+    document.getElementById("battle-log").innerHTML = "<span style='color:#e74c3c'>💀 战斗失败！</span>";
+    document.getElementById("battle-actions").innerHTML = "<div style='grid-column:span 3;text-align:center;padding:10px'><button class='btn' onclick='startBattle(state.battle.chapterId)'>重新挑战</button><button class='btn' onclick='exitBattle()'>返回</button></div>";
+}
+
+function exitBattle(){state.battle=null;showScreen("main-screen");loadAll();}
+
+async function loadTreasures() {
+    var r = await api("/treasure/list?playerId=" + state.playerId);
+    if(r.success) {
+        var list = document.getElementById("treasure-list");
+        list.innerHTML = r.allTreasures.map(function(t) {
+            var owned = r.treasures.some(function(x){return x.treasureId===t.id});
+            var btn = owned ? "✓ 已领" : "<button class='btn btn-small' onclick='receiveTreasure(" + t.id + ")'>领取</button>";
+            return '<div class="treasure-card"><div style="font-size:18px">' + t.icon + '</div><div style="flex:1"><div style="font-weight:bold;font-size:10px">' + t.name + '</div><div style="font-size:8px;color:#ffd700">' + t.bonus + '</div></div>' + btn + '</div>';
+        }).join("");
+    }
+}
+
+async function receiveTreasure(id) {
+    var r = await api("/treasure/receive", {playerId:state.playerId, treasureId:id});
+    if(r.success) showToast("获得法宝 " + r.treasure.name);
+    loadTreasures();
+}
+
+async function loadQuests() {
+    var r = await api("/quest/list");
+    var list = document.getElementById("quest-list");
+    list.innerHTML = r.map(function(q) {
+        return '<div class="quest-card"><div><div style="font-weight:bold;font-size:11px">' + q.name + '</div><div style="font-size:9px;color:#888">' + q.desc + '</div></div><div style="text-align:right"><div class="quest-reward">💎' + (q.reward.lingqi||q.reward.gold||0) + '</div><button class="btn btn-small btn-green" onclick="claimQuest(' + q.id + ')">领取</button></div></div>';
+    }).join("");
+}
+
+async function claimQuest(id) {
+    var r = await api("/quest/claim", {playerId:state.playerId, questId:id});
+    if(r.success) {showToast("任务完成！");loadAll();}
+}
+
+async function loadRanks() {
+    var r = await api("/rank/list");
+    if(r.success) {
+        var zhanliRank = r.zhanliRank || [];
+        var list = document.getElementById("rank-list");
+        list.innerHTML = '<div style="font-weight:bold;margin-bottom:6px">战力榜</div>' + zhanliRank.map(function(p,i) {
+            return '<div class="rank-card"><div style="width:20px;font-size:11px;font-weight:bold;color:#ffd700">' + (i+1) + '</div><div style="flex:1"><div style="font-size:11px">' + (p.name||"玩家") + '</div><div style="font-size:9px;color:#888">战力:' + (p.zhanli||0) + '</div></div></div>';
+        }).join("");
+    }
+}
+
+var token = localStorage.getItem("fengshen_token");
+var playerId = localStorage.getItem("fengshen_playerId");
+if(token && playerId) {
+    state.token = token;
+    state.playerId = parseInt(playerId);
+    showScreen("main-screen");
+    loadAll();
+}
+</script>
+</body>
+</html>

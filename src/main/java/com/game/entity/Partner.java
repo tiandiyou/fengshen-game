@@ -191,4 +191,46 @@ public class Partner {
         double dmg = getCurrentInt() * (1 - (double)enemyInt / (enemyInt + 200));
         return Math.max(1, (int) dmg);
     }
+    
+    // ========== 兼容旧版本方法 ==========
+    
+    /**
+     * 获取生命值 (兼容旧版本)
+     */
+    public int getHp() {
+        return getCurrentTroops();
+    }
+    
+    /**
+     * 设置生命值 (兼容旧版本)
+     */
+    public void setHp(int hp) {
+        // 兵量由等级决定，不允许手动设置
+    }
+    
+    /**
+     * 获取技能列表 (兼容旧版本)
+     */
+    public String getSkills() {
+        if (skill1 != null && skill2 != null) {
+            return skill1 + "," + skill2;
+        } else if (skill1 != null) {
+            return skill1;
+        } else if (skill2 != null) {
+            return skill2;
+        }
+        return "";
+    }
+    
+    /**
+     * 设置技能 (兼容旧版本)
+     */
+    public void setSkills(String skills) {
+        if (skills == null || skills.isEmpty()) {
+            return;
+        }
+        String[] arr = skills.split(",");
+        if (arr.length > 0) skill1 = arr[0].trim();
+        if (arr.length > 1) skill2 = arr[1].trim();
+    }
 }
