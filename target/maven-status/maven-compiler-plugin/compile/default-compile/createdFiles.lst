@@ -13,6 +13,7 @@ com/game/controller/BattleController.class
 com/game/mapper/MountRepository.class
 com/game/controller/GachaController.class
 com/game/controller/SweepController.class
+com/game/mapper/CityRepository.class
 com/game/controller/MountController.class
 com/game/controller/TreasureController.class
 com/game/config/CorsConfig.class
@@ -35,6 +36,7 @@ com/game/service/UserService.class
 com/game/mapper/MaterialRepository.class
 com/game/entity/Mount.class
 com/game/config/PartnerData.class
+com/game/controller/CityController.class
 com/game/controller/QuestController.class
 com/game/mapper/CultivationRepository.class
 com/game/entity/Treasure.class
@@ -45,6 +47,7 @@ com/game/service/GachaService.class
 com/game/mapper/TreasureRepository.class
 com/game/controller/RankController.class
 com/game/entity/AllianceMember.class
+com/game/entity/City.class
 com/game/mapper/AllianceRepository.class
 com/game/entity/GachaRecord.class
 com/game/mapper/EquipmentRepository.class
