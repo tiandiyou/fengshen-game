@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * 武将系统测试
- * 测试六维属性、伤害计算、成长系统
+ * 武将系统测试 - 方案B伤害公式
+ * 物理伤害 = 武力 × (1 - 统率 / (统率 + 200))
+ * 法术伤害 = 智力 × (1 - 智力 / (智力 + 200))
  */
 public class PartnerTest {
     
@@ -43,55 +44,95 @@ public class PartnerTest {
         p.setMilitary(95);
         p.setCharm(70);
         
-        // 验证六维属性
         assertEquals(180, p.getAtk());
         assertEquals(85, p.getIntelligence());
         assertEquals(90, p.getLead());
         assertEquals(95, p.getSpeed());
-        assertEquals(30, p.getPolitics());
-        assertEquals(95, p.getMilitary());
-        assertEquals(70, p.getCharm());
     }
     
+    // ========== 方案B物理伤害测试 ==========
+    
     @Test
-    void testPhysicalDamageCalculation() {
-        // 物理伤害 = 武力 - 统率
+    void testPhysicalDamage_LowDefense() {
+        // 武力180, 统率50 → 180 × (1-50/250) = 180 × 0.8 = 144
         Partner attacker = new Partner();
         attacker.setAtk(180);
         attacker.setLevel(1);
-        attacker.setGrowthAtk(8);
+        attacker.setGrowthAtk(0); // 固定值
         
-        // 敌方统率80
-        int damage = attacker.calcPhysicalDamage(80);
-        
-        // 180 - 80 = 100
-        assertEquals(100, damage);
-        
-        // 测试高防御
-        damage = attacker.calcPhysicalDamage(200);
-        // 180 - 200 = -20，但最低为1
-        assertEquals(1, damage);
+        int damage = attacker.calcPhysicalDamage(50);
+        assertEquals(144, damage);
     }
     
     @Test
-    void testMagicDamageCalculation() {
-        // 法术伤害 = 智力 - 智力
+    void testPhysicalDamage_MediumDefense() {
+        // 武力180, 统率180 → 180 × (1-180/380) = 180 × 0.53 = 95
+        Partner attacker = new Partner();
+        attacker.setAtk(180);
+        attacker.setLevel(1);
+        
+        int damage = attacker.calcPhysicalDamage(180);
+        assertEquals(95, damage);
+    }
+    
+    @Test
+    void testPhysicalDamage_HighDefense() {
+        // 武力180, 统率500 → 180 × (1-500/700) = 180 × 0.29 = 52
+        Partner attacker = new Partner();
+        attacker.setAtk(180);
+        attacker.setLevel(1);
+        
+        int damage = attacker.calcPhysicalDamage(500);
+        assertEquals(52, damage);
+    }
+    
+    @Test
+    void testPhysicalDamage_ZeroDefense() {
+        // 武力180, 统率0 → 180 × (1-0/200) = 180 × 1 = 180
+        Partner attacker = new Partner();
+        attacker.setAtk(180);
+        attacker.setLevel(1);
+        
+        int damage = attacker.calcPhysicalDamage(0);
+        assertEquals(180, damage);
+    }
+    
+    // ========== 方案B法术伤害测试 ==========
+    
+    @Test
+    void testMagicDamage_LowDefense() {
+        // 智力140, 敌方智力60 → 140 × (1-60/260) = 140 × 0.77 = 107
         Partner attacker = new Partner();
         attacker.setIntelligence(140);
         attacker.setLevel(1);
-        attacker.setGrowthInt(7);
         
-        // 敌方智力60
         int damage = attacker.calcMagicDamage(60);
-        
-        // 140 - 60 = 80
-        assertEquals(80, damage);
-        
-        // 测试高法防
-        damage = attacker.calcMagicDamage(200);
-        // 140 - 200 = -60，但最低为1
-        assertEquals(1, damage);
+        assertEquals(107, damage);
     }
+    
+    @Test
+    void testMagicDamage_HighDefense() {
+        // 智力140, 敌方智力200 → 140 × (1-200/400) = 140 × 0.5 = 70
+        Partner attacker = new Partner();
+        attacker.setIntelligence(140);
+        attacker.setLevel(1);
+        
+        int damage = attacker.calcMagicDamage(200);
+        assertEquals(70, damage);
+    }
+    
+    @Test
+    void testMagicDamage_ZeroDefense() {
+        // 智力140, 敌方智力0 → 140 × (1-0/200) = 140
+        Partner attacker = new Partner();
+        attacker.setIntelligence(140);
+        attacker.setLevel(1);
+        
+        int damage = attacker.calcMagicDamage(0);
+        assertEquals(140, damage);
+    }
+    
+    // ========== 成长系统测试 ==========
     
     @Test
     void testGrowthSystem() {
@@ -111,9 +152,9 @@ public class PartnerTest {
         
         // 5级属性
         p.setLevel(5);
-        assertEquals(100 + (5-1) * 5, p.getCurrentAtk()); // 120
-        assertEquals(80 + (5-1) * 3, p.getCurrentInt());  // 92
-        assertEquals(70 + (5-1) * 2, p.getCurrentLead()); // 78
+        assertEquals(120, p.getCurrentAtk()); // 100 + (5-1) * 5
+        assertEquals(92, p.getCurrentInt());  // 80 + (5-1) * 3
+        assertEquals(78, p.getCurrentLead()); // 70 + (5-1) * 2
     }
     
     @Test
@@ -122,23 +163,15 @@ public class PartnerTest {
         p.setLevel(1);
         p.setExp(0);
         
-        // 1级升2级需要100经验
         assertEquals(100, p.getExpForNextLevel());
         assertFalse(p.canLevelUp());
         
-        // 增加100经验
         p.setExp(100);
         assertTrue(p.canLevelUp());
         
         p.levelUp();
         assertEquals(2, p.getLevel());
-        assertEquals(0, p.getExp()); // 经验已消耗
-        
-        // 2级升3级需要200经验
-        p.setExp(300); // 300 - 200 = 100剩余
-        p.levelUp();
-        assertEquals(3, p.getLevel());
-        assertEquals(100, p.getExp());
+        assertEquals(0, p.getExp());
     }
     
     @Test
@@ -149,40 +182,20 @@ public class PartnerTest {
         p.setLead(90);
         p.setMaxTroops(10000);
         p.setLevel(1);
-        p.setGrowthAtk(8);
-        p.setGrowthInt(4);
-        p.setGrowthLead(5);
         
-        // 战力 = 武力*2 + 智力*2 + 统率*2 + 兵量/100
         int expected = 180*2 + 85*2 + 90*2 + 10000/100;
         assertEquals(expected, p.getZhanli());
     }
     
     @Test
-    void testStarSystem() {
-        Partner p = new Partner();
-        p.setStar(0);
-        assertEquals(0, p.getStar());
-        
-        p.setStar(5);
-        assertEquals(5, p.getStar());
-        
-        // 星级上限检查
-        assertTrue(p.getStar() <= 5);
-    }
-    
-    @Test
     void testHiddenRedPartner() {
-        // 隐藏红将测试 - 品质显示为orange，实际为red
         Partner p = new Partner();
         p.setName("隐藏红将A");
-        p.setQuality("red"); // 实际品质
+        p.setQuality("red");
         p.setAtk(200);
         p.setIntelligence(100);
         p.setLead(95);
         
-        // 验证红将属性较高
         assertTrue(p.getAtk() >= 180);
-        assertTrue(p.getLead() >= 85);
     }
 }

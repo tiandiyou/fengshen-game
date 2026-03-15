@@ -116,17 +116,27 @@ public class Partner {
     }
     
     /**
-     * 物理伤害 = 武力 - 敌方统率
+     * 物理伤害 = 武力 × (1 - 统率 / (统率 + 200))
+     * 采用方案B: 百分比穿透，攻防双方属性都有影响
      */
     public int calcPhysicalDamage(int enemyLead) {
-        return Math.max(1, getCurrentAtk() - enemyLead);
+        double atk = getCurrentAtk();
+        double defense = enemyLead;
+        // 公式: 伤害 = 武力 × (1 - 统率 / (统率 + 200))
+        double damage = atk * (1 - defense / (defense + 200));
+        return Math.max(1, (int) Math.floor(damage));
     }
     
     /**
-     * 法术伤害 = 智力 - 敌方智力
+     * 法术伤害 = 智力 × (1 - 智力 / (智力 + 200))
+     * 敌方智力作为法术防御
      */
     public int calcMagicDamage(int enemyInt) {
-        return Math.max(1, getCurrentInt() - enemyInt);
+        double intel = getCurrentInt();
+        double defense = enemyInt;
+        // 公式: 伤害 = 智力 × (1 - 智力 / (智力 + 200))
+        double damage = intel * (1 - defense / (defense + 200));
+        return Math.max(1, (int) Math.floor(damage));
     }
     
     /**
