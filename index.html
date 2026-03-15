@@ -2,337 +2,364 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>封神榜 - 伐商演义</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            color: #fff;
-        }
-        #game-container {
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-            position: relative;
-        }
-        .screen { display: none; min-height: 100vh; flex-direction: column; padding: 15px; }
-        .screen.active { display: flex; }
-        
-        .title { font-size: 32px; color: #ffd700; text-align: center; margin: 20px 0; text-shadow: 0 0 20px #ff6b00; }
-        .btn { background: linear-gradient(180deg, #ff6b00, #c41e3a); border: 2px solid #ffd700; color: #fff; padding: 12px 30px; font-size: 16px; border-radius: 20px; margin: 8px; cursor: pointer; }
-        .btn:hover { transform: scale(1.05); }
-        
-        #title-screen { justify-content: center; align-items: center; text-align: center; }
-        .menu-buttons { display: flex; flex-direction: column; gap: 15px; width: 80%; margin-top: 40px; }
-        
-        .input-group { margin-bottom: 20px; }
-        .input-group input { width: 100%; padding: 12px; border: 2px solid #4a9eff; border-radius: 10px; background: rgba(0,0,0,0.3); color: #fff; font-size: 16px; text-align: center; }
-        
-        .top-bar { display: flex; justify-content: space-between; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 10px; margin-bottom: 15px; }
-        
-        .partner-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 60px; }
-        .partner-card { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; border: 1px solid #333; }
-        .partner-header { display: flex; align-items: center; gap: 8px; }
-        .partner-avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-        
-        .chapter-list { display: flex; flex-direction: column; gap: 10px; padding-bottom: 60px; }
-        .chapter-card { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-        
-        .bottom-nav { display: flex; justify-content: space-around; padding: 10px; background: rgba(0,0,0,0.5); position: fixed; bottom: 0; width: 100%; max-width: 480px; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #888; cursor: pointer; }
-        .nav-item.active { color: #ffd700; }
-        
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; }
-        .modal.active { display: flex; }
-        .modal-content { background: #1a1a2e; border: 2px solid #ffd700; border-radius: 16px; padding: 20px; max-width: 350px; text-align: center; }
-        
-        .toast { position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); color: #ffd700; padding: 12px 24px; border-radius: 25px; z-index: 2000; border: 1px solid #ffd700; }
-        
-        .shop-items { display: flex; flex-direction: column; gap: 10px; padding-bottom: 60px; }
-        .shop-card { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 15px; display: flex; align-items: center; gap: 12px; }
-        
-        .signin-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 20px 0; }
-        .signin-day { aspect-ratio: 1; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
-        .signin-day.received { background: #27ae60; }
-        
-        .treasure-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding-bottom: 60px; }
-        .treasure-card { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; text-align: center; border: 1px solid #333; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;color:#fff}
+        #game-container{max-width:480px;margin:0 auto;min-height:100vh}
+        .screen{display:none;min-height:100vh;flex-direction:column;padding:15px}
+        .screen.active{display:flex}
+        .title{font-size:28px;color:#ffd700;text-align:center;margin:15px 0;text-shadow:0 0 15px #ff6b00}
+        .btn{background:linear-gradient(180deg,#ff6b00,#c41e3a);border:2px solid #ffd700;color:#fff;padding:10px 24px;font-size:14px;border-radius:18px;margin:6px;cursor:pointer}
+        .btn:hover{transform:scale(1.05)}
+        .btn-small{padding:6px 14px;font-size:12px}
+        #title-screen{justify-content:center;align-items:center;text-align:center}
+        .menu-buttons{display:flex;flex-direction:column;gap:12px;width:80%;margin-top:30px}
+        .input-group{margin-bottom:15px}
+        .input-group input{width:100%;padding:10px;border:2px solid #4a9eff;border-radius:8px;background:rgba(0,0,0,0.3);color:#fff;font-size:14px;text-align:center}
+        .top-bar{display:flex;justify-content:space-between;padding:8px 12px;background:rgba(0,0,0,0.3);border-radius:8px;margin-bottom:12px;font-size:12px}
+        .partner-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding-bottom:55px}
+        .partner-card{background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;border:1px solid #333}
+        .partner-card.selected{border-color:#ffd700;background:rgba(255,215,0,0.1)}
+        .partner-header{display:flex;align-items:center;gap:8px}
+        .partner-avatar{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:18px}
+        .chapter-list{display:flex;flex-direction:column;gap:8px;padding-bottom:55px}
+        .chapter-card{background:rgba(255,255,255,0.08);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center}
+        .bottom-nav{display:flex;justify-content:space-around;padding:8px;background:rgba(0,0,0,0.5);position:fixed;bottom:0;width:100%;max-width:480px}
+        .nav-item{display:flex;flex-direction:column;align-items:center;font-size:9px;color:#888;cursor:pointer;padding:4px 8px}
+        .nav-item.active{color:#ffd700}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000}
+        .modal.active{display:flex}
+        .modal-content{background:#1a1a2e;border:2px solid #ffd700;border-radius:14px;padding:16px;max-width:320px;text-align:center}
+        .shop-items{display:flex;flex-direction:column;gap:8px;padding-bottom:55px}
+        .shop-card{background:rgba(255,255,255,0.08);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px}
+        #battle-screen{padding:10px}
+        .battle-field{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+        .battle-side{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+        .battle-unit{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(0,0,0,0.3);border-radius:6px}
+        .battle-unit.enemy{flex-direction:row-reverse}
+        .unit-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,0,0,0.2);display:flex;align-items:center;justify-content:center;font-size:16px}
+        .unit-hp-bar{width:60px;height:5px;background:#333;border-radius:3px;overflow:hidden}
+        .unit-hp-fill{height:100%;background:linear-gradient(90deg,#e74c3c,#f39c12);transition:width 0.3s}
+        .battle-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:10px;background:rgba(0,0,0,0.4);border-radius:10px;margin-top:8px}
+        .skill-btn{padding:8px;border-radius:6px;font-size:11px;cursor:pointer;border:none}
+        .skill-btn.normal{background:#3498db;color:#fff}
+        .skill-btn.skill{background:#9b59b6;color:#fff}
+        .skill-btn.ultimate{background:linear-gradient(180deg,#e74c3c,#c0392b);color:#ffd700;grid-column:span 2}
+        .battle-log{font-size:11px;color:#aaa;text-align:center;padding:8px;max-height:60px;overflow-y:auto}
+        .gacha-card{background:linear-gradient(180deg,#1a1a2e,#0d1b2a);border:3px solid #ffd700;border-radius:14px;padding:20px;margin:15px 0}
+        .gacha-avatar{font-size:42px}
+        .gacha-name{color:#ffd700;font-weight:bold;margin-top:8px}
+        .treasure-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding-bottom:55px}
+        .treasure-card{background:rgba(255,255,255,0.08);border-radius:10px;padding:10px;text-align:center;border:1px solid #333}
+        .toast{position:fixed;top:15%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);color:#ffd700;padding:10px 20px;border-radius:20px;z-index:2000;border:1px solid #ffd700;font-size:13px}
+        .tab-content{display:none}
+        .tab-content.active{display:block}
     </style>
 </head>
 <body>
 <div id="game-container">
-    <!-- 标题页 -->
     <div id="title-screen" class="screen active">
-        <div style="font-size:48px;margin-top:60px">�封神榜�</div>
-        <div class="title">伐商演义</div>
-        <div style="color:#888;margin-bottom:30px">商朝末年，封神之战</div>
+        <div style="font-size:44px;margin-top:50px">&#x2694;封神榜&#x2694;</div>
+        <div class="title" style="margin-top:10px">伐商演义</div>
+        <div style="color:#888;margin-bottom:25px">商朝末年，封神之战</div>
         <div class="menu-buttons">
             <button class="btn" onclick="startGame()">开始游戏</button>
         </div>
     </div>
-
-    <!-- 角色创建页 -->
     <div id="create-screen" class="screen">
         <div class="title">创建角色</div>
-        <div class="input-group" style="max-width:300px;margin:0 auto">
+        <div class="input-group" style="max-width:280px;margin:0 auto">
             <input type="text" id="player-name" placeholder="输入你的名字" maxlength="8">
         </div>
         <button class="btn" onclick="createCharacter()">进入游戏</button>
     </div>
-
-    <!-- 主界面 -->
     <div id="main-screen" class="screen">
         <div class="top-bar">
-            <span>💎 <span id="lingqi">0</span></span>
-            <span>💰 <span id="gold">0</span></span>
-            <span>⚔️ <span id="zhanli">0</span></span>
+            <span>&#x1F4AE; <span id="lingqi">0</span></span>
+            <span>&#x1F4B0; <span id="gold">0</span></span>
+            <span>&#x2694; <span id="zhanli">0</span></span>
         </div>
-        <div style="padding-bottom:60px">
+        <div id="tab-partners" class="tab-content active">
+            <div style="margin-bottom:10px;font-size:12px;color:#888">点击选择上阵伙伴</div>
             <div id="partners-list" class="partner-list"></div>
         </div>
+        <div id="tab-battle" class="tab-content">
+            <div id="chapter-list" class="chapter-list"></div>
+        </div>
+        <div id="tab-treasures" class="tab-content">
+            <div id="treasure-list" class="treasure-list"></div>
+        </div>
+        <div id="tab-shop" class="tab-content">
+            <div id="shop-list" class="shop-items"></div>
+        </div>
         <div class="bottom-nav">
-            <div class="nav-item active" onclick="showTab('partners')"><span style="font-size:20px">👥</span><span>伙伴</span></div>
-            <div class="nav-item" onclick="showTab('battle')"><span style="font-size:20px">⚔️</span><span>战斗</span></div>
-            <div class="nav-item" onclick="showTab('treasures')"><span style="font-size:20px">🔮</span><span>法宝</span></div>
-            <div class="nav-item" onclick="showTab('shop')"><span style="font-size:20px">🛒</span><span>商城</span></div>
+            <div class="nav-item active" onclick="showTab('partners')"><span style="font-size:18px">&#x1F465;</span><span>伙伴</span></div>
+            <div class="nav-item" onclick="showTab('battle')"><span style="font-size:18px">&#x2694;</span><span>战斗</span></div>
+            <div class="nav-item" onclick="showTab('treasures')"><span style="font-size:18px">&#x1F52E;</span><span>法宝</span></div>
+            <div class="nav-item" onclick="showTab('shop')"><span style="font-size:18px">&#x1F6D2;</span><span>商城</span></div>
         </div>
     </div>
-
-    <!-- 战斗界面 -->
     <div id="battle-screen" class="screen">
-        <div class="title" style="font-size:24px">关卡</div>
-        <div id="chapter-list" class="chapter-list"></div>
-    </div>
-
-    <!-- 法宝界面 -->
-    <div id="treasures-screen" class="screen">
-        <div class="title" style="font-size:24px">法宝</div>
-        <div id="treasure-list" class="treasure-list"></div>
-    </div>
-
-    <!-- 商城界面 -->
-    <div id="shop-screen" class="screen">
-        <div class="title" style="font-size:24px">商城</div>
-        <div id="shop-list" class="shop-items"></div>
+        <div style="text-align:center;margin-bottom:8px">
+            <span id="battle-title" style="color:#ffd700;font-weight:bold">战斗</span>
+        </div>
+        <div class="battle-field">
+            <div class="battle-side" id="enemy-side"></div>
+            <div class="battle-log" id="battle-log">战斗开始！</div>
+            <div class="battle-side" id="player-side"></div>
+        </div>
+        <div class="battle-actions" id="battle-actions">
+            <button class="skill-btn normal" onclick="battleAttack()">&#x2694; 普攻</button>
+            <button class="skill-btn skill" onclick="battleSkill()">&#x2728; 技能</button>
+            <button class="skill-btn ultimate" onclick="battleUltimate()">&#x1F525; 大招</button>
+        </div>
+        <button class="btn btn-small" onclick="exitBattle()" style="margin-top:8px">&#x2190; 返回</button>
     </div>
 </div>
-
-<!-- 弹窗 -->
 <div id="modal" class="modal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <h3 id="modal-title" style="color:#ffd700;margin-bottom:15px">提示</h3>
-        <p id="modal-text"></p>
-        <button class="btn" onclick="closeModal()">确定</button>
+        <h3 id="modal-title" style="color:#ffd700;margin-bottom:12px">提示</h3>
+        <p id="modal-text" style="margin-bottom:15px"></p>
+        <div id="modal-buttons"></div>
     </div>
 </div>
-
 <script>
-// 游戏数据
-const GAME_DATA = {
-    partners: [
-        { id: 1, name: '哪吒', icon: '🔥', quality: 'red', hp: 1200, atk: 180 },
-        { id: 2, name: '杨戬', icon: '🐕', quality: 'red', hp: 1100, atk: 160 },
-        { id: 3, name: '雷震子', icon: '⚡', quality: 'purple', hp: 1000, atk: 150 },
-        { id: 4, name: '姜子牙', icon: '📜', quality: 'orange', hp: 900, atk: 140 }
+var GAME_DATA={
+    partners:[
+        {id:1,name:'哪吒',icon:'&#x1F525;',quality:'red',hp:1200,atk:180,speed:95,skills:['火尖枪','乾坤圈','风火轮']},
+        {id:2,name:'杨戬',icon:'&#x1F415;',quality:'red',hp:1100,atk:160,speed:90,skills:['八九玄功','哮天犬']},
+        {id:3,name:'雷震子',icon:'&#x26A1;',quality:'purple',hp:1000,atk:150,speed:100,skills:['风雷棍']},
+        {id:4,name:'姜子牙',icon:'&#x1F4DC;',quality:'orange',hp:900,atk:140,speed:70,skills:['打神鞭','封神榜']},
+        {id:5,name:'金吒',icon:'&#x1F5E1;',quality:'purple',hp:950,atk:145,speed:85,skills:['遁龙桩']},
+        {id:6,name:'木吒',icon:'&#x1F38B;',quality:'purple',hp:930,atk:140,speed:83,skills:['混天绫']},
+        {id:7,name:'李靖',icon:'&#x1F3F0;',quality:'purple',hp:1100,atk:120,speed:60,skills:['玲珑宝塔']},
+        {id:8,name:'纣王',icon:'&#x1F451;',quality:'orange',hp:1500,atk:170,speed:65,skills:['天子剑']},
+        {id:9,name:'妲己',icon:'&#x1F98A;',quality:'orange',hp:800,atk:200,speed:110,skills:['魅惑']},
+        {id:10,name:'申公豹',icon:'&#x1F406;',quality:'orange',hp:950,atk:165,speed:88,skills:['开天珠']},
+        {id:11,name:'赵公明',icon:'&#x1F4B0;',quality:'orange',hp:1300,atk:175,speed:75,skills:['定海珠']},
+        {id:12,name:'闻仲',icon:'&#x1F441;',quality:'orange',hp:1400,atk:150,speed:70,skills:['雌雄双鞭']}
     ],
-    treasures: [
-        { id: 1, name: '乾坤圈', icon: '⭕', bonus: '暴击+15%' },
-        { id: 2, name: '风火轮', icon: '🔥', bonus: '速度+20' },
-        { id: 3, name: '混天绫', icon: '🟥', bonus: '防御+10%' },
-        { id: 4, name: '打神鞭', icon: '📿', bonus: '伤害+20%' }
+    treasures:[
+        {id:1,name:'乾坤圈',icon:'&#x2B55;',bonus:'暴击+15%'},
+        {id:2,name:'风火轮',icon:'&#x1F525;',bonus:'速度+20'},
+        {id:3,name:'混天绫',icon:'&#x1F7E5;',bonus:'防御+10%'},
+        {id:4,name:'打神鞭',icon:'&#x1F4CF;',bonus:'伤害+20%'}
     ],
-    chapters: [
-        { id: 1, name: '第一章', title: '陈塘关', desc: '哪吒闹海' },
-        { id: 2, name: '第二章', title: '渭水河', desc: '姜子牙下山' },
-        { id: 3, name: '第三章', title: '西岐', desc: '文王访贤' },
-        { id: 4, name: '第四章', title: '佳梦关', desc: '魔家四将' },
-        { id: 5, name: '第五章', title: '青龙关', desc: '哼哈二将' },
-        { id: 6, name: '第六章', title: '汜水关', desc: '余元余化' }
+    chapters:[
+        {id:1,name:'第一章',title:'陈塘关',desc:'哪吒闹海',enemies:[{name:'巡海夜叉',hp:300,atk:30,icon:'&#x1F479;'},{name:'敖丙',hp:800,atk:80,icon:'&#x1F409;'}],reward:{lingqi:100,gold:50}},
+        {id:2,name:'第二章',title:'渭水河',desc:'姜子牙下山',enemies:[{name:'渔夫',hp:400,atk:40,icon:'&#x1F3A3;'},{name:'樵夫',hp:450,atk:45,icon:'&#x1FA93;'}],reward:{lingqi:150,gold:80}},
+        {id:3,name:'第三章',title:'西岐',desc:'文王访贤',enemies:[{name:'纣使',hp:500,atk:50,icon:'&#x1F46E;'},{name:'官兵',hp:600,atk:60,icon:'&#x1F482;'}],reward:{lingqi:200,gold:100}},
+        {id:4,name:'第四章',title:'佳梦关',desc:'魔家四将',enemies:[{name:'魔礼青',hp:800,atk:90,icon:'&#x1F33F;'},{name:'魔礼红',hp:850,atk:95,icon:'&#x1F525;'}],reward:{lingqi:300,gold:150}},
+        {id:5,name:'第五章',title:'青龙关',desc:'哼哈二将',enemies:[{name:'郑伦',hp:900,atk:100,icon:'&#x1F928;'},{name:'陈奇',hp:950,atk:105,icon:'&#x1F924;'}],reward:{lingqi:350,gold:180}},
+        {id:6,name:'第六章',title:'汜水关',desc:'余元余化',enemies:[{name:'余化',hp:1000,atk:120,icon:'&#x2694;'},{name:'余元',hp:1200,atk:130,icon:'&#x1F9D9;'}],reward:{lingqi:400,gold:200}}
     ],
-    shop: [
-        { id: 1, name: '灵气100', icon: '💎', price: 10 },
-        { id: 2, name: '金币500', icon: '💰', price: 10 },
-        { id: 3, name: '单抽', icon: '🎫', price: 50 },
-        { id: 4, name: '首充6元', icon: '🎁', price: 6, special: true }
+    shop:[
+        {id:1,name:'灵气100',icon:'&#x1F4AE;',price:10},
+        {id:2,name:'金币500',icon:'&#x1F4B0;',price:10},
+        {id:3,name:'单抽',icon:'&#x1F3AB;',price:50},
+        {id:4,name:'首充6元',icon:'&#x1F381;',price:6,special:true}
     ]
 };
+var state={name:'',lingqi:200,gold:100,partners:[],treasures:[],selectedPartners:[],currentChapter:0,battle:null};
 
-let state = { name: '', lingqi: 200, gold: 100, partners: [], treasures: [] };
-
-// 初始化
-function init() {
-    const saved = localStorage.getItem('fengshen_save');
-    if (saved) {
-        state = JSON.parse(saved);
-        if (state.name) showScreen('main-screen');
+function init(){
+    var saved=localStorage.getItem('fengshen_save');
+    if(saved){
+        state=JSON.parse(saved);
+        if(state.name)showScreen('main-screen');
     }
     renderAll();
 }
-
-function save() {
-    localStorage.setItem('fengshen_save', JSON.stringify(state));
-}
-
-function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+function save(){localStorage.setItem('fengshen_save',JSON.stringify(state))}
+function showScreen(id){
+    document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
     document.getElementById(id).classList.add('active');
 }
-
-function showTab(tab) {
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+function showTab(tab){
+    document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});
     event.target.closest('.nav-item').classList.add('active');
-    
-    if (tab === 'partners') renderPartners();
-    else if (tab === 'battle') renderChapters();
-    else if (tab === 'treasures') renderTreasures();
-    else if (tab === 'shop') renderShop();
+    document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active')});
+    document.getElementById('tab-'+tab).classList.add('active');
+    if(tab==='partners')renderPartners();
+    else if(tab==='battle')renderChapters();
+    else if(tab==='treasures')renderTreasures();
+    else if(tab==='shop')renderShop();
 }
-
-function renderAll() {
-    document.getElementById('lingqi').textContent = state.lingqi;
-    document.getElementById('gold').textContent = state.gold;
-    document.getElementById('zhanli').textContent = calcZhanli();
-    renderPartners();
-    renderChapters();
-    renderTreasures();
-    renderShop();
+function renderAll(){
+    document.getElementById('lingqi').textContent=state.lingqi;
+    document.getElementById('gold').textContent=state.gold;
+    document.getElementById('zhanli').textContent=calcZhanli();
+    renderPartners();renderChapters();renderTreasures();renderShop();
 }
+function calcZhanli(){return state.partners.reduce(function(s,p){return s+(p.hp||0)+(p.atk||0)*2;},0)+(state.name.length||0)*10}
 
-function calcZhanli() {
-    return state.partners.reduce((sum, p) => sum + p.hp + p.atk * 2, 0) + state.name.length * 10;
-}
-
-function renderPartners() {
-    const list = document.getElementById('partners-list');
-    if (state.partners.length === 0) {
-        list.innerHTML = '<div style="grid-column:span 2;text-align:center;padding:40px;color:#888">暂无伙伴<br><button class="btn" style="margin-top:20px" onclick="gacha()">抽卡</button></div>';
+function renderPartners(){
+    var list=document.getElementById('partners-list');
+    if(state.partners.length===0){
+        list.innerHTML='<div style="grid-column:span 2;text-align:center;padding:30px;color:#888">暂无伙伴<br><button class="btn" style="margin-top:15px" onclick="gacha()">抽卡</button></div>';
         return;
     }
-    list.innerHTML = state.partners.map(p => `
-        <div class="partner-card">
-            <div class="partner-header">
-                <div class="partner-avatar">${p.icon}</div>
-                <div>
-                    <div style="font-weight:bold">${p.name}</div>
-                    <div style="font-size:10px;color:#888">等级${p.level||1}</div>
-                </div>
-            </div>
-            <div style="font-size:11px;color:#888;margin-top:8px">
-                生命 ${p.hp} | 攻击 ${p.atk}
-            </div>
-        </div>
-    `).join('');
+    list.innerHTML=state.partners.map(function(p,i){
+        var sel=state.selectedPartners.indexOf(i)>=0;
+        return'<div class="partner-card '+(sel?'selected':'')+'" onclick="togglePartner('+i+')"><div class="partner-header"><div class="partner-avatar">'+p.icon+'</div><div><div style="font-weight:bold;font-size:13px">'+p.name+'</div><div style="font-size:10px;color:#888">Lv.'+(p.level||1)+'</div></div></div><div style="font-size:10px;color:#aaa;margin-top:6px">&#x2764; '+p.hp+' | &#x2694; '+p.atk+' | &#x1F4A8; '+p.speed+'</div></div>';
+    }).join('');
+}
+function togglePartner(idx){
+    var i=state.selectedPartners.indexOf(idx);
+    if(i>=0)state.selectedPartners.splice(i,1);
+    else if(state.selectedPartners.length<5)state.selectedPartners.push(idx);
+    else{showToast('最多选择5个伙伴');return;}
+    save();renderPartners();
 }
 
-function renderChapters() {
-    const list = document.getElementById('chapter-list');
-    list.innerHTML = GAME_DATA.chapters.map(c => `
-        <div class="chapter-card" onclick="enterBattle(${c.id})">
-            <div>
-                <div style="font-weight:bold">${c.name}</div>
-                <div style="font-size:12px;color:#888">${c.title} - ${c.desc}</div>
-            </div>
-            <button class="btn btn-small">前往</button>
-        </div>
-    `).join('');
+function gacha(){
+    if(state.lingqi<50){showModal('提示','灵气不足，需要50灵气');return;}
+    state.lingqi-=50;
+    var rand=Math.random(),q;
+    if(rand<0.03)q='red';else if(rand<0.15)q='orange';else if(rand<0.40)q='purple';else q='blue';
+    var cand=GAME_DATA.partners.filter(function(p){if(q==='red')return p.quality==='red';if(q==='orange')return p.quality==='orange'||p.quality==='red';if(q==='purple')return p.quality==='purple'||p.quality==='orange'||p.quality==='red';return true});
+    var p=cand[Math.floor(Math.random()*cand.length)];
+    state.partners.push({hp:p.hp,atk:p.atk,speed:p.speed,icon:p.icon,name:p.name,quality:p.quality,skills:p.skills,level:1});
+    if(state.selectedPartners.length<5)state.selectedPartners.push(state.partners.length-1);
+    save();renderAll();showGachaResult(p,q);
 }
-
-function renderTreasures() {
-    const list = document.getElementById('treasure-list');
-    if (state.treasures.length === 0) {
-        list.innerHTML = '<div style="grid-column:span 2;text-align:center;padding:40px;color:#888">暂无法宝</div>';
-        return;
-    }
-    list.innerHTML = state.treasures.map(t => `
-        <div class="treasure-card">
-            <div style="font-size:28px">${t.icon}</div>
-            <div style="font-weight:bold;margin:5px 0">${t.name}</div>
-            <div style="font-size:11px;color:#ffd700">${t.bonus}</div>
-        </div>
-    `).join('');
-}
-
-function renderShop() {
-    const list = document.getElementById('shop-list');
-    list.innerHTML = GAME_DATA.shop.map(s => `
-        <div class="shop-card">
-            <div style="font-size:28px">${s.icon}</div>
-            <div style="flex:1">
-                <div style="font-weight:bold">${s.name}</div>
-                <div style="font-size:11px;color:#888">${s.special ? '限时优惠' : '购买'}</div>
-            </div>
-            <button class="btn btn-small" onclick="buy(${s.id})">${s.price}元</button>
-        </div>
-    `).join('');
-}
-
-function startGame() {
-    if (state.name) {
-        showScreen('main-screen');
-    } else {
-        showScreen('create-screen');
-    }
-}
-
-function createCharacter() {
-    const name = document.getElementById('player-name').value.trim() || '阐教弟子';
-    state.name = name;
-    // 送哪吒
-    const data = GAME_DATA.partners[0];
-    state.partners.push({...data, level: 1});
-    save();
-    showScreen('main-screen');
-    renderAll();
-    showToast('欢迎 ' + name + '！获得初始伙伴哪吒！');
-}
-
-function gacha() {
-    if (state.lingqi < 50) {
-        showModal('提示', '灵气不足，需要50灵气');
-        return;
-    }
-    state.lingqi -= 50;
-    const p = GAME_DATA.partners[Math.floor(Math.random() * GAME_DATA.partners.length)];
-    state.partners.push({...p, level: 1});
-    save();
-    renderAll();
-    showModal('抽卡结果', `获得伙伴 ${p.name} ${p.icon}`);
-}
-
-function buy(id) {
-    const item = GAME_DATA.shop.find(s => s.id === id);
-    if (id === 4) {
-        showModal('首充', '首充功能开发中...');
-        return;
-    }
-    showModal('购买', item.name + ' 需要 ' + item.price + ' 元（模拟）');
-}
-
-function enterBattle(id) {
-    showModal('战斗', '第' + id + '章战斗功能开发中...');
-}
-
-function showModal(title, text) {
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-text').textContent = text;
+function showGachaResult(p,q){
+    var c={red:'#e74c3c',orange:'#e67e22',purple:'#9b59b6',blue:'#3498db'};
+    document.getElementById('modal-title').textContent='抽卡结果';
+    document.getElementById('modal-text').innerHTML='<div class="gacha-card" style="border-color:'+c[p.quality]+'"><div class="gacha-avatar">'+p.icon+'</div><div class="gacha-name">'+p.name+'</div><div style="font-size:11px;color:'+c[p.quality]+'">'+p.quality.toUpperCase()+'品质</div></div>';
+    document.getElementById('modal-buttons').innerHTML='<button class="btn" onclick="closeModal()">确定</button>';
     document.getElementById('modal').classList.add('active');
 }
 
-function closeModal() {
-    document.getElementById('modal').classList.remove('active');
+function renderChapters(){
+    var list=document.getElementById('chapter-list');
+    list.innerHTML=GAME_DATA.chapters.map(function(c){
+        return'<div class="chapter-card" onclick="startBattle('+c.id+')"><div><div style="font-weight:bold">'+c.name+'</div><div style="font-size:11px;color:#888">'+c.title+' - '+c.desc+'</div></div><button class="btn btn-small">挑战</button></div>';
+    }).join('');
 }
 
-function showToast(msg) {
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.textContent = msg;
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 2000);
+function startBattle(chapterId){
+    if(state.selectedPartners.length===0){showModal('提示','请先选择至少1个伙伴上阵');return;}
+    var chapter=GAME_DATA.chapters.find(function(c){return c.id===chapterId});
+    state.currentChapter=chapterId;
+    state.battle={
+        chapter:chapterId,turn:1,
+        playerUnits:state.selectedPartners.map(function(i){var p=state.partners[i];return{name:p.name,icon:p.icon,currentHp:p.hp,maxHp:p.hp,atk:p.atk,isPlayer:true}}),
+        enemyUnits:chapter.enemies.map(function(e){return{name:e.name,icon:e.icon,currentHp:e.hp,maxHp:e.hp,atk:e.atk,isPlayer:false}}),
+        log:['战斗开始！']
+    };
+    showScreen('battle-screen');
+    document.getElementById('battle-title').textContent=chapter.title;
+    renderBattle();
 }
+function renderBattle(){
+    var b=state.battle;
+    document.getElementById('enemy-side').innerHTML=b.enemyUnits.filter(function(u){return u.currentHp>0}).map(function(u){return'<div class="battle-unit enemy"><div class="unit-avatar">'+u.icon+'</div><div style="flex:1"><div style="font-size:11px">'+u.name+'</div><div class="unit-hp-bar"><div class="unit-hp-fill" style="width:'+(u.currentHp/u.maxHp*100)+'%"></div></div></div></div>'}).join('');
+    document.getElementById('player-side').innerHTML=b.playerUnits.filter(function(u){return u.currentHp>0}).map(function(u){return'<div class="battle-unit"><div class="unit-avatar" style="background:rgba(0,100,255,0.2)">'+u.icon+'</div><div style="flex:1"><div style="font-size:11px">'+u.name+'</div><div class="unit-hp-bar"><div class="unit-hp-fill" style="width:'+(u.currentHp/u.maxHp*100)+'%"></div></div></div></div>'}).join('');
+    document.getElementById('battle-log').innerHTML=b.log.slice(-3).join('<br>');
+    var pa=b.playerUnits.filter(function(u){return u.currentHp>0}).length;
+    var ea=b.enemyUnits.filter(function(u){return u.currentHp>0}).length;
+    if(ea===0){battleWin();return;}
+    if(pa===0){battleLose();return;}
+}
+function battleAttack(){
+    var b=state.battle;
+    var pl=b.playerUnits.filter(function(u){return u.currentHp>0});
+    var en=b.enemyUnits.filter(function(u){return u.currentHp>0});
+    if(pl.length===0||en.length===0)return;
+    var att=pl[Math.floor(Math.random()*pl.length)];
+    var tgt=en[Math.floor(Math.random()*en.length)];
+    var dmg=Math.max(1,att.atk-Math.floor(Math.random()*20));
+    tgt.currentHp=Math.max(0,tgt.currentHp-dmg);
+    b.log.push('&#x2694; '+att.name+' 普攻 '+tgt.name+'，造成 '+dmg+' 伤害');
+    if(tgt.currentHp>0){
+        var eAtt=en[Math.floor(Math.random()*en.length)];
+        var eTgt=pl[Math.floor(Math.random()*pl.length)];
+        var eDmg=Math.max(1,eAtt.atk-Math.floor(Math.random()*25));
+        eTgt.currentHp=Math.max(0,eTgt.currentHp-eDmg);
+        b.log.push('&#x1F4A2; '+eAtt.name+' 反击 '+eTgt.name+'，造成 '+eDmg+' 伤害');
+    }
+    b.turn++;renderBattle();
+}
+function battleSkill(){
+    var b=state.battle;
+    var pl=b.playerUnits.filter(function(u){return u.currentHp>0});
+    var en=b.enemyUnits.filter(function(u){return u.currentHp>0});
+    if(pl.length===0||en.length===0)return;
+    var att=pl[Math.floor(Math.random()*pl.length)];
+    var tgt=en[Math.floor(Math.random()*en.length)];
+    var dmg=Math.max(1,Math.floor(att.atk*1.5)-Math.floor(Math.random()*20));
+    tgt.currentHp=Math.max(0,tgt.currentHp-dmg);
+    b.log.push('&#x2728; '+att.name+' 使用技能，重创 '+tgt.name+'，造成 '+dmg+' 伤害');
+    if(tgt.currentHp>0){
+        var eAtt=en[Math.floor(Math.random()*en.length)];
+        var eTgt=pl[Math.floor(Math.random()*pl.length)];
+        var eDmg=Math.max(1,eAtt.atk-Math.floor(Math.random()*25));
+        eTgt.currentHp=Math.max(0,eTgt.currentHp-eDmg);
+        b.log.push('&#x1F4A2; '+eAtt.name+' 反击 '+eTgt.name+'，造成 '+eDmg+' 伤害');
+    }
+    b.turn++;renderBattle();
+}
+function battleUltimate(){
+    var b=state.battle;
+    var pl=b.playerUnits.filter(function(u){return u.currentHp>0});
+    var en=b.enemyUnits.filter(function(u){return u.currentHp>0});
+    if(pl.length===0||en.length===0)return;
+    var td=0;
+    pl.forEach(function(att){en.forEach(function(tgt){if(tgt.currentHp>0){var d=Math.max(1,Math.floor(att.atk*2)-Math.floor(Math.random()*30));tgt.currentHp=Math.max(0,tgt.currentHp-d);td+=d}})});
+    b.log.push('&#x1F525; '+pl.map(function(p){return p.name;}).join('、')+' 发动合体大招，造成 '+td+' 群体伤害！');
+    var eAtt=en.find(function(u){return u.currentHp>0});
+    if(eAtt){var eTgt=pl[Math.floor(Math.random()*pl.length)];var eDmg=Math.max(1,Math.floor(eAtt.atk*1.2)-Math.floor(Math.random()*20));eTgt.currentHp=Math.max(0,eTgt.currentHp-eDmg);b.log.push('&#x1F4A2; '+eAtt.name+' 反击 '+eTgt.name+'，造成 '+eDmg+' 伤害')}
+    b.turn++;renderBattle();
+}
+function battleWin(){
+    var c=GAME_DATA.chapters.find(function(x){return x.id===state.currentChapter});
+    state.lingqi+=c.reward.lingqi;state.gold+=c.reward.gold;save();
+    document.getElementById('battle-log').innerHTML='<span style="color:#ffd700">&#x1F389; 战斗胜利！</span>';
+    document.getElementById('battle-actions').innerHTML='<div style="grid-column:span 3;text-align:center;padding:10px"><div style="color:#ffd700;margin-bottom:10px">获得 '+c.reward.lingqi+'灵气 '+c.reward.gold+'金币</div><button class="btn" onclick="exitBattle()">返回</button></div>';
+}
+function battleLose(){
+    document.getElementById('battle-log').innerHTML='<span style="color:#e74c3c">&#x1F480; 战斗失败！</span>';
+    document.getElementById('battle-actions').innerHTML='<div style="grid-column:span 3;text-align:center;padding:10px"><button class="btn" onclick="startBattle(state.currentChapter)">重新挑战</button><button class="btn" onclick="exitBattle()">返回</button></div>';
+}
+function exitBattle(){state.battle=null;showScreen('main-screen');renderAll()}
 
+function renderTreasures(){
+    var list=document.getElementById('treasure-list');
+    if(state.treasures.length===0){
+        list.innerHTML='<div style="grid-column:span 2;text-align:center;padding:30px;color:#888">暂无法宝<br><button class="btn" style="margin-top:15px" onclick="gacha()">抽卡获取</button></div>';
+        return;
+    }
+    list.innerHTML=state.treasures.map(function(t){return'<div class="treasure-card"><div style="font-size:24px">'+t.icon+'</div><div style="font-weight:bold;margin:5px 0;font-size:12px">'+t.name+'</div><div style="font-size:10px;color:#ffd700">'+t.bonus+'</div></div>'}).join('');
+}
+function renderShop(){
+    var list=document.getElementById('shop-list');
+    list.innerHTML=GAME_DATA.shop.map(function(s){return'<div class="shop-card"><div style="font-size:24px">'+s.icon+'</div><div style="flex:1"><div style="font-weight:bold;font-size:13px">'+s.name+'</div></div><button class="btn btn-small" onclick="buy('+s.id+')">'+s.price+'元</button></div>'}).join('');
+}
+function buy(id){showModal('购买','此功能需要真实支付')}
+
+function startGame(){if(state.name)showScreen('main-screen');else showScreen('create-screen')}
+function createCharacter(){
+    var name=document.getElementById('player-name').value.trim()||'阐教弟子';
+    state.name=name;
+    state.partners.push({name:'哪吒',icon:'&#x1F525;',quality:'red',hp:1200,atk:180,speed:95,skills:['火尖枪','乾坤圈','风火轮'],level:1});
+    state.selectedPartners=[0];
+    save();showScreen('main-screen');renderAll();showToast('欢迎 '+name+'！获得初始伙伴哪吒！');
+}
+function showModal(txt,tit){
+    document.getElementById('modal-title').textContent=tit||'提示';
+    document.getElementById('modal-text').textContent=txt;
+    document.getElementById('modal-buttons').innerHTML='<button class="btn" onclick="closeModal()">确定</button>';
+    document.getElementById('modal').classList.add('active');
+}
+function closeModal(){document.getElementById('modal').classList.remove('active')}
+function showToast(msg){
+    var t=document.createElement('div');
+    t.className='toast';t.textContent=msg;document.body.appendChild(t);
+    setTimeout(function(){t.remove()},2000);
+}
 init();
 </script>
 </body>
