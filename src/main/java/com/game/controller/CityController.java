@@ -1,7 +1,9 @@
 package com.game.controller;
 
 import com.game.entity.City;
+import com.game.entity.Player;
 import com.game.mapper.CityRepository;
+import com.game.mapper.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -12,6 +14,8 @@ import java.util.*;
 public class CityController {
     @Autowired
     private CityRepository cityRepository;
+    @Autowired
+    private PlayerRepository playerRepository;
     
     // 建筑数据
     private static final Map<String, int[]> BUILDING_DATA = Map.of(
@@ -62,6 +66,9 @@ public class CityController {
         Long playerId = ((Number) req.get("playerId")).longValue();
         String building = (String) req.get("building"); // palace/barracks/warehouse/market
         
+        Player player = playerRepository.findById(playerId).orElse(null);
+        if (player == null) return Map.of("success", false, "message", "玩家不存在");
+        
         Optional<City> opt = cityRepository.findByPlayerId(playerId);
         if (!opt.isPresent()) {
             return Map.of("success", false, "message", "城池不存在");
@@ -87,8 +94,20 @@ public class CityController {
         int goldCost = data[1] * currentLevel;
         int lingqiCost = data[2] * currentLevel;
         
-        // 这里简化处理，不实际扣除资源
-        // 升级
+        // 检查资源是否足够
+        if (player.getGold() < goldCost) {
+            return Map.of("success", false, "message", "金币不足，需要" + goldCost);
+        }
+        if (player.getLingqi() < lingqiCost) {
+            return Map.of("success", false, "message", "灵气不足，需要" + lingqiCost);
+        }
+        
+        // 扣除资源
+        player.setGold(player.getGold() - goldCost);
+        player.setLingqi(player.getLingqi() - lingqiCost);
+        playerRepository.save(player);
+        
+        // 升级建筑
         switch (building) {
             case "palace": city.setPalaceLevel(currentLevel + 1); break;
             case "barracks": city.setBarracksLevel(currentLevel + 1); break;
@@ -102,14 +121,23 @@ public class CityController {
         
         cityRepository.save(city);
         
-        return Map.of("success", true, "message", building + "升级到" + (currentLevel + 1), 
-            "city", city);
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("message", building + "升级到" + (currentLevel + 1));
+        result.put("city", city);
+        result.put("gold", player.getGold());
+        result.put("lingqi", player.getLingqi());
+        
+        return result;
     }
     
     // 征收(获得资源)
     @PostMapping("/collect")
     public Map<String, Object> collect(@RequestBody Map<String, Object> req) {
         Long playerId = ((Number) req.get("playerId")).longValue();
+        
+        Player player = playerRepository.findById(playerId).orElse(null);
+        if (player == null) return Map.of("success", false, "message", "玩家不存在");
         
         Optional<City> opt = cityRepository.findByPlayerId(playerId);
         if (!opt.isPresent()) {
@@ -127,7 +155,33 @@ public class CityController {
         gold = (int) (gold * moraleFactor);
         lingqi = (int) (lingqi * moraleFactor);
         
+        // 发放资源
+        player.setGold(player.getGold() + gold);
+        player.setLingqi(player.getLingqi() + lingqi);
+        playerRepository.save(player);
+        
         return Map.of("success", true, "gold", gold, "lingqi", lingqi, 
+            "totalGold", player.getGold(), "totalLingqi", player.getLingqi(),
             "message", "征收成功");
+    }
+    
+    // 民心/士气
+    @PostMapping("/morale")
+    public Map<String, Object> morale(@RequestBody Map<String, Object> req) {
+        Long playerId = ((Number) req.get("playerId")).longValue();
+        Integer change = (Integer) req.getOrDefault("change", 0); // 正数增加，负数减少
+        
+        Optional<City> opt = cityRepository.findByPlayerId(playerId);
+        if (!opt.isPresent()) {
+            return Map.of("success", false, "message", "城池不存在");
+        }
+        
+        City city = opt.get();
+        int newMorale = Math.max(0, Math.min(100, city.getMorale() + change));
+        city.setMorale(newMorale);
+        cityRepository.save(city);
+        
+        return Map.of("success", true, "morale", newMorale, "message", 
+            change > 0 ? "民心增加" : "民心减少");
     }
 }
