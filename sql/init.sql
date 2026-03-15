@@ -1,0 +1,20 @@
+-- 封神榜游戏数据库初始化脚本
+CREATE DATABASE IF NOT EXISTS fengshen DEFAULT CHARACTER SET utf8mb4;
+USE fengshen;
+
+CREATE TABLE IF NOT EXISTS t_user (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS t_player (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    lingqi INT DEFAULT 200,
+    gold INT DEFAULT 100,
+    zhanli INT DEFAULT 0,
+    chapter_id INT DEFAULT 0,
+    battle_count INT DEFAULT 0
+);
