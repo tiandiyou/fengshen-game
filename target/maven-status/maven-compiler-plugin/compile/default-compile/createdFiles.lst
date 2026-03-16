@@ -1,8 +1,11 @@
 com/game/config/SkillEffect.class
 com/game/controller/BattleLogController.class
 com/game/mapper/MapZoneRepository.class
+com/game/mapper/SeasonRepository.class
+com/game/entity/WarCredit.class
 com/game/service/FactionService$1.class
 com/game/config/FactionBonus.class
+com/game/mapper/AllianceDiplomacyRepository.class
 com/game/mapper/SkillRepository.class
 com/game/controller/AchievementController.class
 com/game/config/SkillConfig.class
@@ -11,6 +14,7 @@ com/game/entity/Alliance.class
 com/game/controller/PlayerController.class
 com/game/config/FateConfig.class
 com/game/config/CorsConfig.class
+com/game/entity/Season.class
 com/game/entity/Equipment.class
 com/game/config/GameData.class
 com/game/service/FateService.class
@@ -33,17 +37,21 @@ com/game/entity/City.class
 com/game/service/WarBattleService.class
 com/game/entity/GachaRecord.class
 com/game/mapper/EquipmentRepository.class
+com/game/entity/AllianceDiplomacy.class
 com/game/controller/ResourceController.class
 com/game/service/GrowthService.class
 com/game/mapper/PlayerRepository.class
+com/game/mapper/WarCreditRepository.class
 com/game/config/BattleBalanceConfig$EffectType.class
 com/game/entity/Team.class
 com/game/controller/GrowthController.class
 com/game/controller/TeamController.class
 com/game/config/FactionBonus$BonusType.class
+com/game/controller/DiplomacyController.class
 com/game/controller/AllianceController.class
 com/game/mapper/BuildingRepository.class
 com/game/mapper/AllianceMemberRepository.class
+com/game/controller/SeasonController.class
 com/game/entity/MapZone.class
 com/game/controller/admin/AdminController.class
 com/game/controller/WarController.class
@@ -92,4 +100,3 @@ com/game/entity/Resource.class
 com/game/entity/AllianceMember.class
 com/game/mapper/AllianceRepository.class
 com/game/config/BattleBalanceConfig.class
-com/game/controller/EquipmentController.class
