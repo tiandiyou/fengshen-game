@@ -22,6 +22,7 @@ com/game/controller/ShopController.class
 com/game/controller/MapController.class
 com/game/controller/PartnerController.class
 com/game/entity/Player.class
+com/game/config/HeroIconConfig.class
 com/game/entity/BattleLog.class
 com/game/mapper/MaterialRepository.class
 com/game/service/FateService$1.class
