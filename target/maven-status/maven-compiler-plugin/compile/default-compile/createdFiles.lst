@@ -1,5 +1,7 @@
 com/game/mapper/PlayerRepository.class
 com/game/config/SkillEffect.class
+com/game/entity/Team.class
+com/game/controller/TeamController.class
 com/game/mapper/MapZoneRepository.class
 com/game/controller/AllianceController.class
 com/game/mapper/AllianceMemberRepository.class
@@ -45,6 +47,7 @@ com/game/controller/CityController.class
 com/game/controller/QuestController.class
 com/game/mapper/CultivationRepository.class
 com/game/entity/Treasure.class
+com/game/mapper/TeamRepository.class
 com/game/FengshenApplication.class
 com/game/entity/Partner.class
 com/game/controller/AuthController.class
