@@ -16,6 +16,7 @@ com/game/entity/User.class
 com/game/entity/Alliance.class
 com/game/controller/PlayerController.class
 com/game/mapper/PartnerRepository.class
+com/game/config/FateConfig$1.class
 com/game/entity/PlayerMap.class
 com/game/controller/BattleController.class
 com/game/mapper/MountRepository.class
@@ -34,6 +35,7 @@ com/game/config/GameData.class
 com/game/config/JwtUtil.class
 com/game/controller/CultivationController.class
 com/game/mapper/GachaRecordRepository.class
+com/game/config/FateConfig$FateEffect.class
 com/game/entity/Material.class
 com/game/service/FateService.class
 com/game/config/FateConfig$FateType.class
