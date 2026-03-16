@@ -17,6 +17,7 @@ com/game/controller/AchievementController.class
 com/game/controller/admin/AdminController.class
 com/game/config/SkillConfig.class
 com/game/controller/WarController.class
+com/game/mapper/ResourceRepository.class
 com/game/config/SkillConfig$SkillType.class
 com/game/entity/User.class
 com/game/entity/Alliance.class
@@ -74,6 +75,7 @@ com/game/config/BattleBalanceConfig$SkillType.class
 com/game/controller/AuthController.class
 com/game/service/GachaService.class
 com/game/mapper/TreasureRepository.class
+com/game/entity/Resource.class
 com/game/controller/RankController.class
 com/game/entity/CityWar.class
 com/game/entity/AllianceMember.class
@@ -84,3 +86,4 @@ com/game/config/BattleBalanceConfig.class
 com/game/entity/GachaRecord.class
 com/game/mapper/EquipmentRepository.class
 com/game/controller/EquipmentController.class
+com/game/controller/ResourceController.class
