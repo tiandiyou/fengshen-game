@@ -30,6 +30,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/TeamController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/GachaRecordRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/SigninController.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/RecommendController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Equipment.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Mount.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/CityRepository.java
@@ -63,6 +64,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/RankController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/FengshenApplication.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/CultivationController.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/TeamRecommendService.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Team.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/SkillController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/WarController.java
