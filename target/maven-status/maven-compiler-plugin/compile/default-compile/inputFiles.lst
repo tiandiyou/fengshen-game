@@ -11,6 +11,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/PlayerMap.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/PlayerController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/AuthController.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/GrowthConfig.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/TreasureRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/MountRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/MapZone.java
@@ -18,6 +19,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/admin/AdminController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/UserService.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/City.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/GrowthController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/FateService.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/QuestController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Player.java
@@ -30,6 +32,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/CityRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/PlayerRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/GachaRecord.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/GrowthService.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/MapZoneRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/AchievementController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Material.java
