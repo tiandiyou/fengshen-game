@@ -1,3 +1,4 @@
+com/game/entity/PlayerSkill.class
 com/game/config/SkillEffect.class
 com/game/controller/BattleLogController.class
 com/game/mapper/MapZoneRepository.class
@@ -55,6 +56,7 @@ com/game/controller/SkillExchangeController.class
 com/game/controller/SeasonController.class
 com/game/entity/MapZone.class
 com/game/controller/admin/AdminController.class
+com/game/config/SkillExchangeConfig.class
 com/game/controller/WarController.class
 com/game/mapper/ResourceRepository.class
 com/game/entity/User.class
@@ -89,6 +91,7 @@ com/game/service/GachaService$GachaResult.class
 com/game/service/UserService.class
 com/game/mapper/BattleLogRepository.class
 com/game/entity/Mount.class
+com/game/mapper/PlayerSkillRepository.class
 com/game/entity/Building.class
 com/game/mapper/CultivationRepository.class
 com/game/mapper/TeamRepository.class
