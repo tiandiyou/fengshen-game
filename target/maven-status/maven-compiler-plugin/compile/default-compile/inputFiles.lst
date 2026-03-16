@@ -63,6 +63,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/MapController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/BattleController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/AllianceMemberRepository.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/SkillRequirementConfig.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/MountController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/CityController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Treasure.java

@@ -40,6 +40,7 @@ com/game/entity/AllianceDiplomacy.class
 com/game/controller/ResourceController.class
 com/game/service/GrowthService.class
 com/game/mapper/PlayerRepository.class
+com/game/config/SkillRequirementConfig.class
 com/game/mapper/WarCreditRepository.class
 com/game/config/BattleBalanceConfig$EffectType.class
 com/game/entity/Team.class
