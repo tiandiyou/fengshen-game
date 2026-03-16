@@ -145,6 +145,10 @@ body{font-family:"Microsoft YaHei";background:#0a0a15;color:#fff;overflow-x:hidd
         <div class="func-item" data-page="battle" onclick="switchPage(this)">战斗</div>
         <div class="func-item" data-page="alliance" onclick="switchPage(this)">联盟</div>
         <div class="func-item" data-page="season" onclick="switchPage(this)">赛季</div>
+        <div class="func-item" data-page="skills" onclick="switchPage(this)">技能
+        <div class="func-item" data-page="shop" onclick="switchPage(this)">商店
+        <div class="func-item" data-page="quest" onclick="switchPage(this)">任务
+        <div class="func-item" data-page="rank" onclick="switchPage(this)">排行
         <div class="func-item" data-page="resource" onclick="switchPage(this)">资源</div>
     </div>
     
@@ -211,7 +215,44 @@ body{font-family:"Microsoft YaHei";background:#0a0a15;color:#fff;overflow-x:hidd
             </div>
         </div>
         
-        <!-- 资源页 -->
+        
+        <!-- 技能页 -->
+        <div id="page-skills" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">我的技能</div>
+                <div class="partner-grid" id="my-skill-list"></div>
+            </div>
+            <div class="card">
+                <div class="card-title">可兑换技能</div>
+                <div class="partner-grid" id="skill-list"></div>
+            </div>
+        </div>
+        
+        <!-- 商店页 -->
+        <div id="page-shop" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">道具商店</div>
+                <div id="shop-list"></div>
+            </div>
+        </div>
+        
+        <!-- 任务页 -->
+        <div id="page-quest" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">每日任务</div>
+                <div id="quest-list"></div>
+            </div>
+        </div>
+        
+        <!-- 排行页 -->
+        <div id="page-rank" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">战力排行</div>
+                <div id="power-rank"></div>
+            </div>
+        </div>
+
+<!-- 资源页 -->
         <div id="page-resource" class="page-content" style="display:none">
             <div class="card">
                 <div class="card-title">资源产出</div>
@@ -281,6 +322,10 @@ async function loadPageData(page) {
     if(page === 'alliance') loadAlliance();
     if(page === 'season') loadSeason();
     if(page === 'resource') loadResource();
+    if(page === 'skills') loadSkills();
+    if(page === 'shop') loadShop();
+    if(page === 'quest') loadQuest();
+    if(page === 'rank') loadRank();
 }
 
 // 登录
