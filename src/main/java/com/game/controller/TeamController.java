@@ -7,6 +7,7 @@ import com.game.mapper.CityRepository;
 import com.game.mapper.PartnerRepository;
 import com.game.mapper.TeamRepository;
 import com.game.service.FactionService;
+import com.game.service.FateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -23,6 +24,8 @@ public class TeamController {
     private PartnerRepository partnerRepository;
     @Autowired
     private FactionService factionService;
+    @Autowired
+    private FateService fateService;
     
     // 每队最大伙伴数
     private static final int MAX_PARTNERS_PER_TEAM = 3;
@@ -294,5 +297,51 @@ public class TeamController {
             factions.add(factionService.getFactionInfo(faction));
         }
         return Map.of("success", true, "factions", factions);
+    }
+    
+    /**
+     * 计算队伍缘分加成
+     */
+    @GetMapping("/fate-bonus")
+    public Map<String, Object> getFateBonus(@RequestParam Long teamId) {
+        Optional<Team> teamOpt = teamRepository.findById(teamId);
+        if (!teamOpt.isPresent()) {
+            return Map.of("success", false, "message", "队伍不存在");
+        }
+        
+        Team team = teamOpt.get();
+        
+        // 获取队伍中的伙伴
+        List<Partner> partners = new ArrayList<>();
+        if (team.getPartner1Id() != null) {
+            partnerRepository.findById(team.getPartner1Id()).ifPresent(partners::add);
+        }
+        if (team.getPartner2Id() != null) {
+            partnerRepository.findById(team.getPartner2Id()).ifPresent(partners::add);
+        }
+        if (team.getPartner3Id() != null) {
+            partnerRepository.findById(team.getPartner3Id()).ifPresent(partners::add);
+        }
+        
+        // 计算缘分加成
+        Map<String, Object> bonus = fateService.calculateFateBonus(partners);
+        
+        return Map.of("success", true, "fateBonus", bonus);
+    }
+    
+    /**
+     * 获取所有缘分配置
+     */
+    @GetMapping("/fates")
+    public Map<String, Object> getAllFates() {
+        return Map.of("success", true, "fates", fateService.getAllFates());
+    }
+    
+    /**
+     * 获取某个武将的缘分
+     */
+    @GetMapping("/hero-fates")
+    public Map<String, Object> getHeroFates(@RequestParam String heroName) {
+        return Map.of("success", true, "fates", fateService.getHeroFates(heroName));
     }
 }

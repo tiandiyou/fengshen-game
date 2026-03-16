@@ -23,6 +23,7 @@ com/game/controller/GachaController.class
 com/game/service/FactionService.class
 com/game/controller/SweepController.class
 com/game/mapper/CityRepository.class
+com/game/config/FateConfig.class
 com/game/controller/MountController.class
 com/game/controller/TreasureController.class
 com/game/mapper/PlayerMapRepository.class
@@ -34,6 +35,8 @@ com/game/config/JwtUtil.class
 com/game/controller/CultivationController.class
 com/game/mapper/GachaRecordRepository.class
 com/game/entity/Material.class
+com/game/service/FateService.class
+com/game/config/FateConfig$FateType.class
 com/game/controller/SigninController.class
 com/game/controller/ShopController.class
 com/game/controller/MapController.class
@@ -46,6 +49,7 @@ com/game/service/GachaService$GachaResult.class
 com/game/service/UserService.class
 com/game/mapper/MaterialRepository.class
 com/game/entity/Mount.class
+com/game/service/FateService$1.class
 com/game/config/PartnerData.class
 com/game/controller/CityController.class
 com/game/controller/QuestController.class
