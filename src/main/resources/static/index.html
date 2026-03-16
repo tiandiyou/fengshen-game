@@ -625,7 +625,9 @@ function loadSeason() {
 
 // 资源
 function loadResource() {
-    const r = fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1').then(r => r.json());
+    fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1')
+    .then(function(res) { return res.json(); })
+    .then(function(r) {
     if(r.success && r.resource) {
         document.getElementById('res-food').textContent = r.resource.food || 0;
         document.getElementById('res-wood').textContent = r.resource.wood || 0;
