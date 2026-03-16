@@ -33,12 +33,14 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/AchievementController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Material.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/PlayerMapRepository.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/FactionBonus.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Skill.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/SkillRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/PartnerController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/CultivationRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/User.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/ShopController.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/FactionService.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/MapController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/BattleController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/AllianceMemberRepository.java

@@ -6,6 +6,7 @@ import com.game.entity.Team;
 import com.game.mapper.CityRepository;
 import com.game.mapper.PartnerRepository;
 import com.game.mapper.TeamRepository;
+import com.game.service.FactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -20,6 +21,8 @@ public class TeamController {
     private CityRepository cityRepository;
     @Autowired
     private PartnerRepository partnerRepository;
+    @Autowired
+    private FactionService factionService;
     
     // 每队最大伙伴数
     private static final int MAX_PARTNERS_PER_TEAM = 3;
@@ -235,5 +238,61 @@ public class TeamController {
         } else {
             partners.add(Map.of("id", partnerId, "name", "未知"));
         }
+    }
+    
+    /**
+     * 计算队伍阵营加成
+     */
+    @GetMapping("/faction-bonus")
+    public Map<String, Object> getFactionBonus(@RequestParam Long teamId) {
+        Optional<Team> teamOpt = teamRepository.findById(teamId);
+        if (!teamOpt.isPresent()) {
+            return Map.of("success", false, "message", "队伍不存在");
+        }
+        
+        Team team = teamOpt.get();
+        
+        // 获取队伍中的伙伴
+        List<Partner> partners = new ArrayList<>();
+        if (team.getPartner1Id() != null) {
+            partnerRepository.findById(team.getPartner1Id()).ifPresent(partners::add);
+        }
+        if (team.getPartner2Id() != null) {
+            partnerRepository.findById(team.getPartner2Id()).ifPresent(partners::add);
+        }
+        if (team.getPartner3Id() != null) {
+            partnerRepository.findById(team.getPartner3Id()).ifPresent(partners::add);
+        }
+        
+        // 计算阵营加成
+        Map<String, Integer> bonus = factionService.calculateFactionBonus(partners);
+        
+        // 统计各阵营数量
+        Map<String, Integer> factionCount = new HashMap<>();
+        for (Partner p : partners) {
+            String faction = p.getFaction();
+            if (faction != null) {
+                factionCount.put(faction, factionCount.getOrDefault(faction, 0) + 1);
+            }
+        }
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("factionCount", factionCount);
+        result.put("bonus", bonus);
+        
+        return result;
+    }
+    
+    /**
+     * 获取所有阵营信息
+     */
+    @GetMapping("/factions")
+    public Map<String, Object> getFactions() {
+        List<Map<String, Object>> factions = new ArrayList<>();
+        for (String faction : Arrays.asList("阐教", "截教", "商朝", "周朝")) {
+            factions.add(factionService.getFactionInfo(faction));
+        }
+        return Map.of("success", true, "factions", factions);
     }
 }
