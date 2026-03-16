@@ -1,6 +1,5 @@
 package com.game.controller;
 
-import com.game.config.GameData;
 import com.game.entity.GachaRecord;
 import com.game.entity.Partner;
 import com.game.entity.Player;
@@ -8,6 +7,8 @@ import com.game.mapper.GachaRecordRepository;
 import com.game.mapper.PartnerRepository;
 import com.game.mapper.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -24,9 +25,9 @@ public class GachaController {
     private GachaRecordRepository gachaRecordRepository;
     
     // 卡包类型
-    private static final String TYPE_BIG = "big";      // 大卡包 280元宝
-    private static final String TYPE_SMALL = "small";  // 小卡包 100元宝
-    private static final String TYPE_PURPLE = "purple"; // 紫将卡包 100灵石
+    private static final String TYPE_BIG = "big";      // 大卡包 280灵气
+    private static final String TYPE_SMALL = "small";  // 小卡包 100灵气
+    private static final String TYPE_PURPLE = "purple"; // 紫将卡包 100灵气
     
     // 卡包概率配置
     private static final Map<String, double[]> QUALITY_RATES = Map.of(
@@ -42,19 +43,68 @@ public class GachaController {
         TYPE_PURPLE, 100
     );
     
-    // 单抽消耗(旧接口兼容)
+    // 单抽消耗
     private static final int SINGLE_COST = 50;
+    
+    // 武将数据缓存
+    private List<Map<String, Object>> HEROES_DATA;
+    
+    // 初始化武将数据
+    private List<Map<String, Object>> getHeroesData() {
+        if (HEROES_DATA == null) {
+            try {
+                Resource resource = new ClassPathResource("heroes_data.json");
+                Scanner scanner = new Scanner(resource.getInputStream());
+                StringBuilder sb = new StringBuilder();
+                while (scanner.hasNext()) {
+                    sb.append(scanner.nextLine());
+                }
+                scanner.close();
+                
+                String json = sb.toString();
+                // 解析JSON
+                json = json.replace("[", "").replace("]", "");
+                // 简单解析
+                HEROES_DATA = parseHeroes(json);
+            } catch (Exception e) {
+                System.out.println("加载武将数据失败: " + e.getMessage());
+                HEROES_DATA = new ArrayList<>();
+            }
+        }
+        return HEROES_DATA;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private List<Map<String, Object>> parseHeroes(String json) {
+        List<Map<String, Object>> heroes = new ArrayList<>();
+        // 这里简化处理，实际项目中可以使用Jackson
+        return heroes;
+    }
+    
+    // 获取所有武将列表(前端展示用)
+    @GetMapping("/heroes")
+    public Map<String, Object> getAllHeroes() {
+        List<Map<String, Object>> heroes = getHeroesData();
+        
+        // 按阵营分类
+        Map<String, List<Map<String, Object>>> byFaction = new HashMap<>();
+        for (Map<String, Object> h : heroes) {
+            String faction = (String) h.getOrDefault("faction", "阐教");
+            byFaction.computeIfAbsent(faction, k -> new ArrayList<>()).add(h);
+        }
+        
+        return Map.of("success", true, "heroes", heroes, "byFaction", byFaction);
+    }
     
     @PostMapping("/draw")
     public Map<String, Object> draw(@RequestBody Map<String, Object> req) {
         Long playerId = ((Number) req.get("playerId")).longValue();
-        String type = (String) req.getOrDefault("type", "single"); // single/big/small/purple
-        Integer times = (Integer) req.getOrDefault("times", 1); // 抽卡次数
+        String type = (String) req.getOrDefault("type", "single");
+        Integer times = (Integer) req.getOrDefault("times", 1);
         
         Player player = playerRepository.findById(playerId).orElse(null);
         if (player == null) return Map.of("success", false, "message", "玩家不存在");
         
-        // 根据类型处理
         if ("single".equals(type)) {
             return singleDraw(player, 1);
         } else if (TYPE_BIG.equals(type) || TYPE_SMALL.equals(type) || TYPE_PURPLE.equals(type)) {
@@ -72,8 +122,7 @@ public class GachaController {
         
         player.setLingqi(player.getLingqi() - SINGLE_COST * count);
         
-        List<Map<String, Object>> partners = new ArrayList<>();
-        String[] qualities = new String[count];
+        List<Map<String, Object>> results = new ArrayList<>();
         
         for (int i = 0; i < count; i++) {
             // 概率: 红1%,橙5%,紫24%,蓝70%
@@ -84,24 +133,13 @@ public class GachaController {
             else if (r < 0.30) quality = "purple";
             else quality = "blue";
             
-            qualities[i] = quality;
-            
-            // 筛选伙伴
-            List<Map<String, Object>> candidates = new ArrayList<>();
-            for (Map<String, Object> p : GameData.PARTNERS) {
-                if (quality.equals(p.get("quality")) ||
-                    ("orange".equals(quality) && "red".equals(p.get("quality")))) {
-                    candidates.add(p);
-                }
-            }
-            
-            Map<String, Object> pdata = candidates.get((int) (Math.random() * candidates.size()));
+            // 从GameData获取伙伴数据
+            Map<String, Object> pdata = selectPartner(quality);
             
             // 创建伙伴
-            Partner partner = createPartner(player.getId(), pdata, quality);
-            partners.add(pdata);
+            Partner partner = createPartner(player.getId(), pdata);
+            results.add(buildPartnerInfo(partner, pdata));
             
-            // 记录抽卡
             saveGachaRecord(player.getId(), "single", quality, (String) pdata.get("name"));
         }
         
@@ -109,23 +147,18 @@ public class GachaController {
         
         Map<String, Object> result = new HashMap<>();
         result.put("success", true);
-        result.put("partners", partners);
-        result.put("qualities", qualities);
+        result.put("partners", results);
         result.put("lingqi", player.getLingqi());
         
         return result;
     }
     
-    // 多抽(大卡包/小卡包/紫将卡包)
+    // 多抽
     private Map<String, Object> multiDraw(Player player, String type, int times) {
-        // 十连抽=10次
-        if (times != 1 && times != 10) {
-            times = 10; // 默认十连
-        }
+        if (times != 1 && times != 10) times = 10;
         
         int totalCost = COST.get(type) * times;
         
-        // 检查元宝是否足够(暂时用灵气代替)
         if (player.getLingqi() < totalCost) {
             return Map.of("success", false, "message", "灵气不足，需要" + totalCost);
         }
@@ -133,12 +166,11 @@ public class GachaController {
         player.setLingqi(player.getLingqi() - totalCost);
         
         double[] rates = QUALITY_RATES.get(type);
-        List<Map<String, Object>> partners = new ArrayList<>();
+        List<Map<String, Object>> results = new ArrayList<>();
         List<String> qualities = new ArrayList<>();
         int orangeCount = 0;
         
         for (int i = 0; i < times; i++) {
-            // 根据概率获取品质
             double r = Math.random();
             String quality;
             if (r < rates[0]) quality = "red";
@@ -149,29 +181,16 @@ public class GachaController {
             if ("orange".equals(quality)) orangeCount++;
             qualities.add(quality);
             
-            // 十连保底: 至少1个橙将
+            // 十连保底
             if (i == times - 1 && orangeCount == 0 && times == 10) {
                 quality = "orange";
                 qualities.set(i, quality);
             }
             
-            // 筛选伙伴
-            List<Map<String, Object>> candidates = new ArrayList<>();
-            for (Map<String, Object> p : GameData.PARTNERS) {
-                if (quality.equals(p.get("quality")) ||
-                    ("orange".equals(quality) && "red".equals(p.get("quality"))) ||
-                    "blue".equals(quality)) {
-                    candidates.add(p);
-                }
-            }
+            Map<String, Object> pdata = selectPartner(quality);
+            Partner partner = createPartner(player.getId(), pdata);
+            results.add(buildPartnerInfo(partner, pdata));
             
-            Map<String, Object> pdata = candidates.get((int) (Math.random() * candidates.size()));
-            
-            // 创建伙伴
-            Partner partner = createPartner(player.getId(), pdata, quality);
-            partners.add(pdata);
-            
-            // 记录抽卡
             saveGachaRecord(player.getId(), type, quality, (String) pdata.get("name"));
         }
         
@@ -179,7 +198,7 @@ public class GachaController {
         
         Map<String, Object> result = new HashMap<>();
         result.put("success", true);
-        result.put("partners", partners);
+        result.put("partners", results);
         result.put("qualities", qualities);
         result.put("type", type);
         result.put("times", times);
@@ -189,8 +208,47 @@ public class GachaController {
         return result;
     }
     
-    // 创建伙伴
-    private Partner createPartner(Long playerId, Map<String, Object> pdata, String quality) {
+    // 根据品质选择伙伴
+    private Map<String, Object> selectPartner(String quality) {
+        // 使用GameData.PARTNERS
+        List<Map<String, Object>> candidates = new ArrayList<>();
+        
+        // 先精确匹配
+        for (Map<String, Object> p : com.game.config.GameData.PARTNERS) {
+            String q = (String) p.get("quality");
+            if (q.equals(quality)) {
+                candidates.add(p);
+            }
+        }
+        
+        // 如果没有对应品质，向下降级
+        if (candidates.isEmpty()) {
+            if ("red".equals(quality)) {
+                for (Map<String, Object> p : com.game.config.GameData.PARTNERS) {
+                    if ("orange".equals(p.get("quality"))) candidates.add(p);
+                }
+            }
+            if (candidates.isEmpty()) {
+                for (Map<String, Object> p : com.game.config.GameData.PARTNERS) {
+                    if ("purple".equals(p.get("quality"))) candidates.add(p);
+                }
+            }
+            if (candidates.isEmpty()) {
+                candidates.addAll(com.game.config.GameData.PARTNERS);
+            }
+        }
+        
+        if (candidates.isEmpty()) {
+            // 兜底：返回第一个伙伴
+            return com.game.config.GameData.PARTNERS.get(0);
+        }
+        
+        return candidates.get((int) (Math.random() * candidates.size()));
+    }
+    
+    // 创建伙伴实体
+    @SuppressWarnings("unchecked")
+    private Partner createPartner(Long playerId, Map<String, Object> pdata) {
         Partner partner = new Partner();
         partner.setPlayerId(playerId);
         partner.setPartnerId((Integer) pdata.get("id"));
@@ -202,8 +260,6 @@ public class GachaController {
         partner.setSpeed((Integer) pdata.get("speed"));
         partner.setLevel(1);
         partner.setStar(1);
-        
-        // 设置成长值
         partner.setGrowthAtk(2);
         partner.setGrowthInt(2);
         partner.setGrowthLead(1);
@@ -213,6 +269,34 @@ public class GachaController {
         
         partnerRepository.save(partner);
         return partner;
+    }
+    
+    // 构建伙伴信息(返回给前端)
+    @SuppressWarnings("unchecked")
+    private Map<String, Object> buildPartnerInfo(Partner partner, Map<String, Object> pdata) {
+        Map<String, Object> info = new HashMap<>();
+        info.put("id", partner.getId());
+        info.put("partnerId", partner.getPartnerId());
+        info.put("name", partner.getName());
+        info.put("icon", partner.getIcon());
+        info.put("quality", partner.getQuality());
+        info.put("hp", partner.getHp());
+        info.put("atk", partner.getAtk());
+        info.put("speed", partner.getSpeed());
+        info.put("level", partner.getLevel());
+        info.put("star", partner.getStar());
+        
+        // 阵营信息(如果有)
+        if (pdata.containsKey("faction")) {
+            info.put("faction", pdata.get("faction"));
+        }
+        
+        // 法术信息(如果有)
+        if (pdata.containsKey("magic")) {
+            info.put("magic", pdata.get("magic"));
+        }
+        
+        return info;
     }
     
     // 记录抽卡
@@ -230,8 +314,6 @@ public class GachaController {
     @GetMapping("/records")
     public Map<String, Object> records(@RequestParam Long playerId) {
         List<GachaRecord> list = gachaRecordRepository.findByPlayerId(playerId);
-        
-        // 按时间倒序
         list.sort((a, b) -> b.getGachaTime().compareTo(a.getGachaTime()));
         
         List<Map<String, Object>> records = new ArrayList<>();
@@ -260,7 +342,6 @@ public class GachaController {
             return Map.of("success", false, "message", "数据不存在");
         }
         
-        // 升级消耗
         int cost = partner.getLevel() * 10;
         if (player.getGold() < cost) {
             return Map.of("success", false, "message", "金币不足");
@@ -268,14 +349,53 @@ public class GachaController {
         
         player.setGold(player.getGold() - cost);
         partner.setLevel(partner.getLevel() + 1);
-        
-        // 更新属性
         partner.setAtk(partner.getAtk() + partner.getGrowthAtk());
-        partner.setHp(partner.getHp() + 100);
         
         playerRepository.save(player);
         partnerRepository.save(partner);
         
         return Map.of("success", true, "level", partner.getLevel(), "cost", cost);
+    }
+    
+    // 获取伙伴详情(含法术信息)
+    @GetMapping("/partner/{id}")
+    public Map<String, Object> getPartnerDetail(@PathVariable Long id) {
+        Partner partner = partnerRepository.findById(id).orElse(null);
+        if (partner == null) {
+            return Map.of("success", false, "message", "伙伴不存在");
+        }
+        
+        // 获取伙伴模板数据
+        Map<String, Object> pdata = null;
+        for (Map<String, Object> p : com.game.config.GameData.PARTNERS) {
+            if (p.get("id").equals(partner.getPartnerId())) {
+                pdata = p;
+                break;
+            }
+        }
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("id", partner.getId());
+        result.put("name", partner.getName());
+        result.put("icon", partner.getIcon());
+        result.put("quality", partner.getQuality());
+        result.put("level", partner.getLevel());
+        result.put("star", partner.getStar());
+        result.put("hp", partner.getHp());
+        result.put("atk", partner.getAtk());
+        result.put("speed", partner.getSpeed());
+        
+        // 模板数据
+        if (pdata != null) {
+            result.put("faction", pdata.getOrDefault("faction", "阐教"));
+            result.put("role", pdata.getOrDefault("role", "输出"));
+            result.put("skills", pdata.getOrDefault("skills", new ArrayList<>()));
+            if (pdata.containsKey("magic")) {
+                result.put("magic", pdata.get("magic"));
+            }
+        }
+        
+        return result;
     }
 }

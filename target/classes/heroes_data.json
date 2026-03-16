@@ -1,0 +1,6212 @@
+[
+  {
+    "id": 1,
+    "name": "燃灯道人",
+    "icon": "🔔",
+    "quality": "red",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1944,
+    "atk": 486,
+    "speed": 178,
+    "skills": [
+      "暴击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "琉璃灯焰",
+      "description": "燃灯道人的琉璃宝灯乃先天灵宝，灯焰可焚天煮海。召唤琉璃神火笼罩敌身，以无上道法引动天地之火，烧尽敌躯。",
+      "effect_type": "damage",
+      "effect_value": 180,
+      "cooldown": 2,
+      "cost": 35,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "附带灼烧效果，每回合损失兵力",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 2,
+    "name": "南极仙翁",
+    "icon": "🦌",
+    "quality": "red",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 2160,
+    "atk": 259,
+    "speed": 145,
+    "skills": [
+      "增益",
+      "护盾"
+    ],
+    "magic": {
+      "name": "南极仙光",
+      "description": "南极长生大帝降临无尽仙光，瑶池金液遍洒众生。光芒所照之处，万物复苏，生机盎然，是为无上治疗圣术。",
+      "effect_type": "heal",
+      "effect_value": 150,
+      "cooldown": 3,
+      "cost": 40,
+      "target_type": "友军",
+      "damage_type": "治疗",
+      "extra_effect": "额外驱散1个负面状态",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 3,
+    "name": "广成子",
+    "icon": "📿",
+    "quality": "red",
+    "faction": "阐教",
+    "role": "防御",
+    "hp": 2808,
+    "atk": 259,
+    "speed": 129,
+    "skills": [
+      "多重攻击",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "番天印",
+      "description": "阐教镇教之宝番天印，乃元始天尊亲赐。祭起时翻天覆地，山河倒转，印下之物魂飞魄散，无可抵挡。",
+      "effect_type": "damage",
+      "effect_value": 220,
+      "cooldown": 3,
+      "cost": 45,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "30%概率眩晕目标1回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 4,
+    "name": "赤精子",
+    "icon": "⚔️",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1512,
+    "atk": 377,
+    "speed": 138,
+    "skills": [
+      "烈焰斩",
+      "连击"
+    ],
+    "magic": {
+      "name": "阴阳镜",
+      "description": "阴阳宝镜可照散人魂魄，取人性命于无形。镜光所照，阳魂尽散，阴魄无存，中者立毙。",
+      "effect_type": "damage",
+      "effect_value": 170,
+      "cooldown": 2,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "20%概率秒杀低于30%血量敌人",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 5,
+    "name": "玉鼎真人",
+    "icon": "🗡️",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 1680,
+    "atk": 251,
+    "speed": 125,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "玉泉剑",
+      "description": "玉泉山金霞洞镇洞仙剑，剑身如玉石般剔透，剑光如泉水般凌厉。一剑出鞘，可斩妖除魔，锋芒无匹。",
+      "effect_type": "damage",
+      "effect_value": 165,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "提升自身暴击率15%，持续2回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 6,
+    "name": "太乙真人",
+    "icon": "🔥",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1512,
+    "atk": 377,
+    "speed": 138,
+    "skills": [
+      "连击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "九龙神火罩",
+      "description": "太乙真人之无上至宝，内含九条神龙飞出腾云驾雾。罩住敌人后以三昧真火焚烧，龙吟火啸间敌化作灰烬。",
+      "effect_type": "damage",
+      "effect_value": 200,
+      "cooldown": 3,
+      "cost": 40,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "造成AoE溅射伤害",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 7,
+    "name": "灵宝大法师",
+    "icon": "💎",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "增益",
+      "治疗"
+    ],
+    "magic": {
+      "name": "混天绫",
+      "description": "七尺混天绫乃先天宝物，可长可短，可绑万物。被此宝困住，纵有通天之能也难以挣脱。",
+      "effect_type": "control",
+      "effect_value": 60,
+      "cooldown": 3,
+      "cost": 25,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "束缚敌人，使其无法行动2回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 8,
+    "name": "惧留孙",
+    "icon": "⛓️",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "控制",
+    "hp": 1512,
+    "atk": 277,
+    "speed": 125,
+    "skills": [
+      "石化",
+      "捆绑"
+    ],
+    "magic": {
+      "name": "捆仙绳",
+      "description": "惧留孙镇洞之宝，专捆仙神。上绑仙佛，下捆妖魔，中者如陷罗网，越挣越紧，无人可逃。",
+      "effect_type": "control",
+      "effect_value": 70,
+      "cooldown": 4,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "捆住敌人3回合，期间持续掉血",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 9,
+    "name": "普贤真人",
+    "icon": "🎴",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 1680,
+    "atk": 251,
+    "speed": 125,
+    "skills": [
+      "多重攻击",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 10,
+    "name": "慈航真人",
+    "icon": "🪷",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "清净琉璃瓶",
+      "description": "观世音前身慈航真人所持净瓶，内含杨枝甘露。瓶中甘露可活死人、肉白骨，是为三界第一治疗至宝。",
+      "effect_type": "heal",
+      "effect_value": 180,
+      "cooldown": 4,
+      "cost": 45,
+      "target_type": "友军",
+      "damage_type": "治疗",
+      "extra_effect": "恢复目标30%最大生命值",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 11,
+    "name": "道行天尊",
+    "icon": "📜",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "增益",
+      "护盾"
+    ],
+    "magic": {
+      "name": "降魔杵",
+      "description": "道行天尊镇魔除妖之宝杵，重达万斤。杵落山崩，妖魔触之即死，乃是正道降魔无上利器。",
+      "effect_type": "damage",
+      "effect_value": 175,
+      "cooldown": 2,
+      "cost": 32,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "对妖魔类敌人伤害提升50%",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 12,
+    "name": "清虚道德真君",
+    "icon": "✨",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "穿刺",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 13,
+    "name": "杨戬",
+    "icon": "🐕",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "八九玄功",
+      "description": "二郎真君杨戬修炼的无上玄功，运转时肉身成圣，可变化万千。兼具阐截二教神通，实战无敌。",
+      "effect_type": "damage",
+      "effect_value": 175,
+      "cooldown": 2,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "变化形态，闪避下次攻击",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 14,
+    "name": "哪吒",
+    "icon": "🔥",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "穿刺"
+    ],
+    "magic": {
+      "name": "火尖枪",
+      "description": "三坛海会大神哪吒的随身法宝，枪身燃遍三昧真火。刺出时火龙随行，烧尽万物，是为火系至强攻击。",
+      "effect_type": "damage",
+      "effect_value": 200,
+      "cooldown": 2,
+      "cost": 35,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "枪尖火焰造成持续灼烧",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 15,
+    "name": "雷震子",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "闪避",
+      "迅捷"
+    ],
+    "magic": {
+      "name": "风雷翅",
+      "description": "雷震子风雷二翅乃后天锻炼之宝，展开时可腾云驾雾，御风而行。翅动风雷起，瞬息千里，速度无双。",
+      "effect_type": "damage",
+      "effect_value": 160,
+      "cooldown": 1,
+      "cost": 22,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "先手攻击，100%命中",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 16,
+    "name": "金吒",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "遁龙桩",
+      "description": "文殊广法天尊赠予金吒之宝，桩有三截，专门降魔。桩出困敌，连环扣杀，妖魔难逃。",
+      "effect_type": "damage",
+      "effect_value": 165,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "连环三击，每击递减",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 17,
+    "name": "木吒",
+    "icon": "🎋",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "复活",
+      "净化"
+    ],
+    "magic": {
+      "name": "吴钩剑",
+      "description": "普贤真人赠予木吒的仙剑，剑走偏锋，诡异难防。剑光如虹，杀敌于不知不觉之间。",
+      "effect_type": "damage",
+      "effect_value": 155,
+      "cooldown": 2,
+      "cost": 26,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "20%概率造成双倍伤害",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 18,
+    "name": "李靖",
+    "icon": "🏰",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "玲珑宝塔",
+      "description": "托塔天王李靖的镇魔宝塔，七层玲珑，内含乾坤。塔出收妖，镇于塔中，永世不得超生。",
+      "effect_type": "control",
+      "effect_value": 50,
+      "cooldown": 3,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "收降敌人为我方战斗1回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 19,
+    "name": "姜子牙",
+    "icon": "📜",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "封神榜",
+      "description": "姜子牙执掌封神榜，可册封天神。榜出则天地秩序重立，神仙归位，是封神大业的核心法宝。",
+      "effect_type": "summon",
+      "effect_value": 100,
+      "cooldown": 5,
+      "cost": 60,
+      "target_type": "特殊",
+      "damage_type": "召唤",
+      "extra_effect": "召唤封神英灵助战3回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 20,
+    "name": "韦护",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "降魔杵",
+      "description": "韦护随身的降魔宝杵，道行天尊所赐。杵法威猛，一杵可断山岳，降妖除魔不在话下。",
+      "effect_type": "damage",
+      "effect_value": 155,
+      "cooldown": 2,
+      "cost": 26,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "重击敌人，击退行动条",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 21,
+    "name": "杨任",
+    "icon": "👁️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 22,
+    "name": "土行孙",
+    "icon": "⛏️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "疾风",
+      "突袭"
+    ],
+    "magic": {
+      "name": "土行术",
+      "description": "土行孙的地行之术乃独门秘技，钻入地底来去自如。土中穿行如鱼得水，敌人根本无法捕捉其身影。",
+      "effect_type": "buff",
+      "effect_value": 30,
+      "cooldown": 3,
+      "cost": 20,
+      "target_type": "自身",
+      "damage_type": "增益",
+      "extra_effect": "隐身3回合，闪避所有攻击",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 23,
+    "name": "邓婵玉",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "烈焰斩",
+      "暴击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 24,
+    "name": "龙吉公主",
+    "icon": "👸",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "雷霆一击"
+    ],
+    "magic": {
+      "name": "鸾飞剑",
+      "description": "瑶池金母之女龙吉公主的随身仙剑，舞动时如鸾凤飞翔，剑光如虹，优美而致命。",
+      "effect_type": "damage",
+      "effect_value": 165,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "剑光如影，追击敌人",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 25,
+    "name": "洪锦",
+    "icon": "🚩",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 26,
+    "name": "李靖二子",
+    "icon": "👦",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "净化",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 27,
+    "name": "文殊广法天尊",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "烈焰斩",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 28,
+    "name": "普贤真人",
+    "icon": "🎴",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 29,
+    "name": "黄龙真人",
+    "icon": "🐉",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "护盾",
+      "铜墙铁壁"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 30,
+    "name": "道德真君",
+    "icon": "🪷",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "净化",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 31,
+    "name": "云中子",
+    "icon": "☁️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "治疗",
+      "净化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 32,
+    "name": "燃灯佛祖",
+    "icon": "🔔",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "暴击",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 33,
+    "name": "阐教统领25",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "烈焰斩",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 34,
+    "name": "阐教校尉6",
+    "icon": "🌊",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "劈砍",
+      "雷霆一击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 35,
+    "name": "阐教统领39",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "护盾",
+      "净化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 36,
+    "name": "阐教将军36",
+    "icon": "🛡️",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 1344,
+    "atk": 327,
+    "speed": 188,
+    "skills": [
+      "先手",
+      "闪避"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 37,
+    "name": "阐教统领39",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "沉睡",
+      "魅惑"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 38,
+    "name": "阐教将军50",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "闪避",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 39,
+    "name": "阐教战士41",
+    "icon": "🗡️",
+    "quality": "orange",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 1680,
+    "atk": 251,
+    "speed": 125,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 40,
+    "name": "阐教将军47",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "护盾",
+      "净化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 41,
+    "name": "阐教修士8",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "坦克",
+    "hp": 1800,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "护盾",
+      "壁垒"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 42,
+    "name": "阐教战士50",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "石化",
+      "混乱"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 43,
+    "name": "阐教修士11",
+    "icon": "🛡️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 44,
+    "name": "阐教统领38",
+    "icon": "🌊",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "沉睡",
+      "捆绑"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 45,
+    "name": "阐教统领14",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "雷霆一击",
+      "穿刺"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 46,
+    "name": "阐教将军46",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 47,
+    "name": "阐教战士4",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "突袭",
+      "疾风"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 48,
+    "name": "阐教将军6",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "穿刺",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 49,
+    "name": "阐教战士14",
+    "icon": "⚔️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "疾风",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 50,
+    "name": "阐教修士15",
+    "icon": "❄️",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "迅捷",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 51,
+    "name": "阐教战士1",
+    "icon": "⚡",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "突袭",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 52,
+    "name": "阐教统领49",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 53,
+    "name": "阐教战士21",
+    "icon": "🗡️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "劈砍",
+      "穿刺"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 54,
+    "name": "阐教修士44",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "反击",
+      "嘲讽"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 55,
+    "name": "阐教勇士27",
+    "icon": "🔥",
+    "quality": "purple",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "复活",
+      "治疗"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 56,
+    "name": "阐教勇士23",
+    "icon": "🛡️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 57,
+    "name": "阐教小兵16",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 58,
+    "name": "阐教校尉14",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "阐教",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "复活",
+      "治疗"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "阐教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 59,
+    "name": "通天教主",
+    "icon": "🗡️",
+    "quality": "red",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1944,
+    "atk": 486,
+    "speed": 178,
+    "skills": [
+      "暴击",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "诛仙剑",
+      "description": "截教镇教四剑之首，诛仙剑主杀伐。剑出鞘则天地变色，仙佛辟易，此剑乃杀伐第一的无上凶兵。",
+      "effect_type": "damage",
+      "effect_value": 250,
+      "cooldown": 3,
+      "cost": 50,
+      "target_type": "群体",
+      "damage_type": "法术伤害",
+      "extra_effect": "杀意凛然，无视敌人30%防御",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 60,
+    "name": "多宝道人",
+    "icon": "💰",
+    "quality": "red",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1944,
+    "atk": 486,
+    "speed": 178,
+    "skills": [
+      "烈焰斩",
+      "穿刺"
+    ],
+    "magic": {
+      "name": "多宝塔",
+      "description": "多宝道人手持万宝之塔，内藏三千法宝。塔开时宝光万道，各式法宝齐出砸向敌人，壮观无比。",
+      "effect_type": "damage",
+      "effect_value": 200,
+      "cooldown": 3,
+      "cost": 40,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "多重法宝攻击，伤害随机波动",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 61,
+    "name": "金灵圣母",
+    "icon": "👸",
+    "quality": "red",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1944,
+    "atk": 486,
+    "speed": 178,
+    "skills": [
+      "劈砍",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "龙虎如意",
+      "description": "金灵圣母的龙虎如意可镇压气运，如意挥动间龙吟虎啸。内有龙虎二气，攻防一体，端是厉害。",
+      "effect_type": "damage",
+      "effect_value": 185,
+      "cooldown": 2,
+      "cost": 35,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "同时提升自身防御20%",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 62,
+    "name": "无当圣母",
+    "icon": "🪷",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "治疗",
+      "净化"
+    ],
+    "magic": {
+      "name": "无当印",
+      "description": "无当圣母道法高深，其无当印可沟通天地。无印出而万法随，攻防兼备，端是截教顶尖高手。",
+      "effect_type": "heal",
+      "effect_value": 140,
+      "cooldown": 3,
+      "cost": 35,
+      "target_type": "友军",
+      "damage_type": "治疗",
+      "extra_effect": "同时提升全体友军防御10%",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 63,
+    "name": "龟灵圣母",
+    "icon": "🐢",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "防御",
+    "hp": 2184,
+    "atk": 201,
+    "speed": 100,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "日月珠",
+      "description": "龟灵圣母的日月珠可吸取日月精华，珠出日月失色。光芒照射下，敌人功力渐失，生机流逝。",
+      "effect_type": "damage",
+      "effect_value": 170,
+      "cooldown": 2,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "吸取敌人攻击力化为己用",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 64,
+    "name": "乌云仙",
+    "icon": "🐍",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1512,
+    "atk": 377,
+    "speed": 138,
+    "skills": [
+      "劈砍",
+      "暴击"
+    ],
+    "magic": {
+      "name": "混天金斗",
+      "description": "乌云仙的混天金斗削人修为于无形，被斗光照住，千年道行付诸东流，是最阴毒的法宝。",
+      "effect_type": "debuff",
+      "effect_value": 40,
+      "cooldown": 3,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "削弱",
+      "extra_effect": "降低目标40%攻击力，持续3回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 65,
+    "name": "金箍仙",
+    "icon": "⭕",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 1512,
+    "atk": 277,
+    "speed": 125,
+    "skills": [
+      "石化",
+      "眩晕"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 66,
+    "name": "长耳定光仙",
+    "icon": "🐰",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "复活",
+      "治疗"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 67,
+    "name": "毗卢仙",
+    "icon": "🔮",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "均衡",
+    "hp": 1680,
+    "atk": 251,
+    "speed": 125,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 68,
+    "name": "灵牙仙",
+    "icon": "🐘",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "防御",
+    "hp": 2184,
+    "atk": 201,
+    "speed": 100,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 69,
+    "name": "虬首仙",
+    "icon": "🦁",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 70,
+    "name": "金光仙",
+    "icon": "🐆",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "烈焰斩",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 71,
+    "name": "羽翼仙",
+    "icon": "🦅",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "疾风",
+      "闪避"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 72,
+    "name": "赵公明",
+    "icon": "💰",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "劈砍",
+      "连击"
+    ],
+    "magic": {
+      "name": "定海珠",
+      "description": "赵公明的二十四颗定海神珠乃先天灵宝，珠出时可填海。每一颗珠子都有开山裂石之力，威力无穷。",
+      "effect_type": "damage",
+      "effect_value": 210,
+      "cooldown": 3,
+      "cost": 42,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "连发24珠，伤害叠加",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 73,
+    "name": "三霄",
+    "icon": "🌸",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "石化",
+      "魅惑"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 74,
+    "name": "琼霄",
+    "icon": "🌺",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "金蛟剪",
+      "description": "琼霄仙子的金蛟剪乃两条金蛟所化，剪云断雾，无物不剪。铰断敌人兵器法宝，端是厉害。",
+      "effect_type": "damage",
+      "effect_value": 180,
+      "cooldown": 2,
+      "cost": 32,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "破坏敌人装备，额外伤害",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 75,
+    "name": "碧霄",
+    "icon": "🌹",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "护盾",
+      "净化"
+    ],
+    "magic": {
+      "name": "花篮",
+      "description": "碧霄的花篮可收纳万物，篮中自有洞天。被收进去的敌人困于其中，生死由她操控。",
+      "effect_type": "heal",
+      "effect_value": 130,
+      "cooldown": 3,
+      "cost": 30,
+      "target_type": "友军",
+      "damage_type": "治疗",
+      "extra_effect": "同时治疗多个友军目标",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 76,
+    "name": "云霄",
+    "icon": "☁️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "混元金斗",
+      "description": "云霄的混元金斗削人顶上三花，胸中五气。被斗光罩住，仙佛也要被打落凡尘，端是厉害无比。",
+      "effect_type": "debuff",
+      "effect_value": 50,
+      "cooldown": 3,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "削弱",
+      "extra_effect": "打落敌人境界，降低战力和防御",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 77,
+    "name": "申公豹",
+    "icon": "🐆",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "开天珠",
+      "description": "申公豹的开天珠可开天辟地之力，珠子虽小，却蕴含毁天灭地的威能。中者非死即伤，端是厉害。",
+      "effect_type": "damage",
+      "effect_value": 190,
+      "cooldown": 2,
+      "cost": 35,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "开天之力，无视防御",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 78,
+    "name": "闻仲",
+    "icon": "👁️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "坦克",
+    "hp": 1800,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "护盾",
+      "铜墙铁壁"
+    ],
+    "magic": {
+      "name": "天眼雷法",
+      "description": "闻太师第三只眼可发雷法，乃雷祖亲传。眼开雷落，轰碎万物，是商朝最强的攻击手段。",
+      "effect_type": "damage",
+      "effect_value": 195,
+      "cooldown": 3,
+      "cost": 38,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "天雷降世，30%概率麻痹敌人",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 79,
+    "name": "殷郊",
+    "icon": "🎭",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "翻天印",
+      "description": "纣王之子殷郊拥有之印，乃是广成子所赠。印翻天覆地，威力无穷，比之战力，无人能挡。",
+      "effect_type": "damage",
+      "effect_value": 205,
+      "cooldown": 3,
+      "cost": 40,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "印下魂消，无视闪避",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 80,
+    "name": "殷洪",
+    "icon": "🔥",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 81,
+    "name": "余元",
+    "icon": "🧙",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "雷霆一击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 82,
+    "name": "余化",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 83,
+    "name": "魔礼青",
+    "icon": "🌿",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "青云剑",
+      "description": "魔家四将老大魔礼青的青云剑，黑风起处天昏地暗。剑光如黑雾笼罩，敌人伸手不见五指。",
+      "effect_type": "damage",
+      "effect_value": 160,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "群体",
+      "damage_type": "物理伤害",
+      "extra_effect": "黑风迷雾，降低敌人命中率",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 84,
+    "name": "魔礼红",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "劈砍",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 85,
+    "name": "魔礼海",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "捆绑",
+      "混乱"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 86,
+    "name": "魔礼寿",
+    "icon": "🐀",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "复活",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 87,
+    "name": "郑伦",
+    "icon": "🤨",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "混乱",
+      "冰冻"
+    ],
+    "magic": {
+      "name": "哼术",
+      "description": "郑伦的哼术哼将神光，自鼻孔中哼出白光，敌人哼中即倒。乃商朝名将的独特神通。",
+      "effect_type": "control",
+      "effect_value": 60,
+      "cooldown": 3,
+      "cost": 25,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "哼倒敌人，使其昏迷",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 88,
+    "name": "陈奇",
+    "icon": "😤",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "石化",
+      "冰冻"
+    ],
+    "magic": {
+      "name": "哈术",
+      "description": "陈奇的哈术与郑伦齐名，自口中哈出黄气，敌人哈中即迷。哼哈二将联手，无人可挡。",
+      "effect_type": "control",
+      "effect_value": 55,
+      "cooldown": 3,
+      "cost": 25,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "哈迷敌人，使其混乱",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 89,
+    "name": "孔宣",
+    "icon": "🦚",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "穿刺",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "五色神光",
+      "description": "孔宣的五色神光五行之内无物不收，青黄赤白黑五色齐出，任你法宝神通尽皆收走，端是圣人以下第一。",
+      "effect_type": "control",
+      "effect_value": 80,
+      "cooldown": 4,
+      "cost": 45,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "五色神光刷落敌人，持续控制",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 90,
+    "name": "袁洪",
+    "icon": "🐒",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "暴击",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "七十二变",
+      "description": "袁洪精通七十二变，乃猴王神通。变化多端，可化身万物，敌人根本无法分辨真假，虚实难辨。",
+      "effect_type": "damage",
+      "effect_value": 180,
+      "cooldown": 2,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "变化攻击，造成2次伤害",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 91,
+    "name": "截教勇士5",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "坦克",
+    "hp": 1800,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "嘲讽",
+      "壁垒"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 92,
+    "name": "截教战士6",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 93,
+    "name": "截教战士1",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "闪避",
+      "突袭"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 94,
+    "name": "截教将军43",
+    "icon": "🔥",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 95,
+    "name": "截教统领38",
+    "icon": "❄️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "增益",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 96,
+    "name": "截教将军31",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 97,
+    "name": "截教勇士18",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "混乱",
+      "魅惑"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 98,
+    "name": "截教战士20",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "坦克",
+    "hp": 1800,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "护盾",
+      "不动如山"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 99,
+    "name": "截教将军37",
+    "icon": "🌊",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "闪避",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 100,
+    "name": "截教小兵20",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "复活",
+      "增益"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 101,
+    "name": "截教修士8",
+    "icon": "⚖️",
+    "quality": "orange",
+    "faction": "截教",
+    "role": "均衡",
+    "hp": 1680,
+    "atk": 251,
+    "speed": 125,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 102,
+    "name": "截教将军12",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 103,
+    "name": "截教校尉49",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "闪避",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 104,
+    "name": "截教战士9",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 105,
+    "name": "截教校尉1",
+    "icon": "❄️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 106,
+    "name": "截教战士45",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 107,
+    "name": "截教小兵50",
+    "icon": "⚔️",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "壁垒",
+      "铜墙铁壁"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 108,
+    "name": "截教勇士6",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "暴击",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 109,
+    "name": "截教小兵20",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 110,
+    "name": "截教修士48",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "沉睡",
+      "混乱"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 111,
+    "name": "截教将军25",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "疾风",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 112,
+    "name": "截教勇士12",
+    "icon": "🏹",
+    "quality": "blue",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "混乱",
+      "眩晕"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 113,
+    "name": "截教修士39",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "坦克",
+    "hp": 1800,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "壁垒",
+      "不动如山"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 114,
+    "name": "截教战士32",
+    "icon": "⚡",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 115,
+    "name": "截教战士19",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "增益",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 116,
+    "name": "截教战士26",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "截教",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "眩晕",
+      "沉睡"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "截教修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 117,
+    "name": "纣王",
+    "icon": "👑",
+    "quality": "red",
+    "faction": "商朝",
+    "role": "坦克",
+    "hp": 3240,
+    "atk": 226,
+    "speed": 113,
+    "skills": [
+      "铜墙铁壁",
+      "护盾"
+    ],
+    "magic": {
+      "name": "天子剑",
+      "description": "纣王的天子剑代表人间帝王权威，剑出万民臣服。此剑承载商朝气运，威力随国势而变，端是厉害。",
+      "effect_type": "damage",
+      "effect_value": 200,
+      "cooldown": 3,
+      "cost": 40,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "天子威严，压制敌人战力",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 118,
+    "name": "妲己",
+    "icon": "🦊",
+    "quality": "red",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1944,
+    "atk": 356,
+    "speed": 162,
+    "skills": [
+      "眩晕",
+      "捆绑"
+    ],
+    "magic": {
+      "name": "魅惑术",
+      "description": "九尾狐精妲己的魅惑之术可迷众生，狐媚子天下无双。只需秋波流转，敌人便神魂颠倒，任由摆布。",
+      "effect_type": "control",
+      "effect_value": 70,
+      "cooldown": 3,
+      "cost": 25,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "魅惑敌人使其倒戈",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 119,
+    "name": "姜后",
+    "icon": "👸",
+    "quality": "red",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 2160,
+    "atk": 259,
+    "speed": 145,
+    "skills": [
+      "护盾",
+      "增益"
+    ],
+    "magic": {
+      "name": "凤鸣琴",
+      "description": "姜后以德服人，其凤鸣琴音可安魂定魄。琴音过处，纷争尽消，伤痛皆愈，乃仁德之音。",
+      "effect_type": "heal",
+      "effect_value": 140,
+      "cooldown": 4,
+      "cost": 35,
+      "target_type": "友军",
+      "damage_type": "治疗",
+      "extra_effect": "琴音安魂，驱散恐惧",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 120,
+    "name": "比干",
+    "icon": "📜",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "净化"
+    ],
+    "magic": {
+      "name": "七窍玲珑心",
+      "description": "比干丞相的七窍玲珑心智慧无双，可洞察万物。拥有此心，智计百出，料敌先机。",
+      "effect_type": "buff",
+      "effect_value": 25,
+      "cooldown": 3,
+      "cost": 20,
+      "target_type": "友军",
+      "damage_type": "增益",
+      "extra_effect": "提升全体智慧和策略",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 121,
+    "name": "黄飞虎",
+    "icon": "🐯",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1512,
+    "atk": 377,
+    "speed": 138,
+    "skills": [
+      "狂风砍",
+      "连击"
+    ],
+    "magic": {
+      "name": "金眼神鹰",
+      "description": "黄飞虎将军的金眼神鹰翱翔天际，鹰目如电。鹰出擒拿，敌人无处可逃，是商朝猛将。",
+      "effect_type": "damage",
+      "effect_value": 175,
+      "cooldown": 2,
+      "cost": 32,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "鹰击长空，锁定击杀",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 122,
+    "name": "闻太师",
+    "icon": "👁️",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "坦克",
+    "hp": 2520,
+    "atk": 176,
+    "speed": 88,
+    "skills": [
+      "壁垒",
+      "铜墙铁壁"
+    ],
+    "magic": {
+      "name": "天眼雷法",
+      "description": "闻太师三眼常开，可发无边雷法。雷祖亲传，掌心雷出山崩地裂，是商朝最强护国神通。",
+      "effect_type": "damage",
+      "effect_value": 195,
+      "cooldown": 3,
+      "cost": 38,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "天雷降罚，摧毁敌人",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 123,
+    "name": "商容",
+    "icon": "📜",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "复活"
+    ],
+    "magic": {
+      "name": "奏疏",
+      "description": "商容丞相的奏疏可感动天地，以臣子忠义之心上达天听。忠义之力，可化解一切攻击。",
+      "effect_type": "buff",
+      "effect_value": 20,
+      "cooldown": 4,
+      "cost": 18,
+      "target_type": "自身",
+      "damage_type": "增益",
+      "extra_effect": "忠义护体，免疫控制",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 124,
+    "name": "梅伯",
+    "icon": "⚖️",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "复活",
+      "治疗"
+    ],
+    "magic": {
+      "name": "雷劈",
+      "description": "梅伯忠臣不屈，死后化为雷神。其愤懑之雷专劈奸邪，威力无匹，正义凛然。",
+      "effect_type": "damage",
+      "effect_value": 155,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "天雷诛邪，对奸人伤害翻倍",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 125,
+    "name": "杜元铣",
+    "icon": "🔮",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "复活",
+      "增益"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 126,
+    "name": "杨任",
+    "icon": "👁️",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "治疗",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 127,
+    "name": "胶鬲",
+    "icon": "💎",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "护盾",
+      "净化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 128,
+    "name": "方弼",
+    "icon": "巨",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 129,
+    "name": "方相",
+    "icon": "魈",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 130,
+    "name": "崇侯虎",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "雷霆一击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 131,
+    "name": "崇应彪",
+    "icon": "🐯",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 132,
+    "name": "苏护",
+    "icon": "🦅",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 133,
+    "name": "苏妲己",
+    "icon": "🦊",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "魅惑",
+      "石化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 134,
+    "name": "郑伦",
+    "icon": "🤨",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "混乱",
+      "石化"
+    ],
+    "magic": {
+      "name": "哼术",
+      "description": "郑伦的哼术哼将神光，自鼻孔中哼出白光，敌人哼中即倒。乃商朝名将的独特神通。",
+      "effect_type": "control",
+      "effect_value": 60,
+      "cooldown": 3,
+      "cost": 25,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "哼倒敌人，使其昏迷",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 135,
+    "name": "陈奇",
+    "icon": "😤",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "冰冻",
+      "捆绑"
+    ],
+    "magic": {
+      "name": "哈术",
+      "description": "陈奇的哈术与郑伦齐名，自口中哈出黄气，敌人哈中即迷。哼哈二将联手，无人可挡。",
+      "effect_type": "control",
+      "effect_value": 55,
+      "cooldown": 3,
+      "cost": 25,
+      "target_type": "单体",
+      "damage_type": "控制",
+      "extra_effect": "哈迷敌人，使其混乱",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 136,
+    "name": "张奎",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "连击",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "地行之术",
+      "description": "张奎的地行术与土行孙齐名，可日行千里。地底穿行如鱼得水，来无影去无踪。",
+      "effect_type": "damage",
+      "effect_value": 160,
+      "cooldown": 2,
+      "cost": 26,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "地底突袭，必先手",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 137,
+    "name": "高兰英",
+    "icon": "🌸",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "穿刺"
+    ],
+    "magic": {
+      "name": "太阳神针",
+      "description": "高兰英的太阳神针可射落日月，针细如毛却锋利无匹。中针者如受日光灼烧，痛楚难当。",
+      "effect_type": "damage",
+      "effect_value": 165,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "专射双目，造成致盲",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 138,
+    "name": "袁洪",
+    "icon": "🐒",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "破甲攻击",
+      "暴击"
+    ],
+    "magic": {
+      "name": "七十二变",
+      "description": "袁洪精通七十二变，乃猴王神通。变化多端，可化身万物，敌人根本无法分辨真假，虚实难辨。",
+      "effect_type": "damage",
+      "effect_value": 180,
+      "cooldown": 2,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "变化攻击，造成2次伤害",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 139,
+    "name": "吴龙",
+    "icon": "🐉",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "劈砍",
+      "暴击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 140,
+    "name": "常昊",
+    "icon": "🐍",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 141,
+    "name": "朱子真",
+    "icon": "🐗",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 142,
+    "name": "杨显",
+    "icon": "🐑",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 143,
+    "name": "戴礼",
+    "icon": "🐕",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "暴击",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 144,
+    "name": "金大升",
+    "icon": "🐂",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "多重攻击",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 145,
+    "name": "邬文化",
+    "icon": "巨人",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "护盾",
+      "铜墙铁壁"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 146,
+    "name": "黄飞彪",
+    "icon": "🐅",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "破甲攻击",
+      "雷霆一击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 147,
+    "name": "黄飞豹",
+    "icon": "🐆",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "突袭",
+      "疾风"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 148,
+    "name": "陈桐",
+    "icon": "🏹",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "劈砍",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 149,
+    "name": "陈梧",
+    "icon": "🛡️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 150,
+    "name": "商朝小兵30",
+    "icon": "⚔️",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "坦克",
+    "hp": 2520,
+    "atk": 176,
+    "speed": 88,
+    "skills": [
+      "嘲讽",
+      "不动如山"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 151,
+    "name": "商朝修士14",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "闪避",
+      "疾风"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 152,
+    "name": "商朝修士12",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "混乱",
+      "眩晕"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 153,
+    "name": "商朝战士1",
+    "icon": "🔥",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "穿刺",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 154,
+    "name": "商朝勇士1",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "突袭",
+      "迅捷"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 155,
+    "name": "商朝将军5",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 156,
+    "name": "商朝修士33",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 157,
+    "name": "商朝勇士44",
+    "icon": "⚔️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "护盾",
+      "治疗"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 158,
+    "name": "商朝小兵18",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "眩晕",
+      "石化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 159,
+    "name": "商朝勇士33",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "劈砍",
+      "雷霆一击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 160,
+    "name": "商朝小兵12",
+    "icon": "❄️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "复活",
+      "治疗"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 161,
+    "name": "商朝勇士34",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "穿刺",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 162,
+    "name": "商朝勇士2",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 163,
+    "name": "商朝小兵11",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 164,
+    "name": "商朝战士18",
+    "icon": "❄️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "净化",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 165,
+    "name": "商朝勇士24",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "沉睡",
+      "石化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 166,
+    "name": "商朝勇士43",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "反击",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 167,
+    "name": "商朝战士9",
+    "icon": "🛡️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "治疗",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 168,
+    "name": "商朝战士4",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 169,
+    "name": "商朝校尉30",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "疾风",
+      "闪避"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 170,
+    "name": "商朝校尉45",
+    "icon": "⚡",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "暴击",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 171,
+    "name": "商朝勇士12",
+    "icon": "🗡️",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "增益"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 172,
+    "name": "商朝统领27",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "商朝",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "反击",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 173,
+    "name": "商朝修士8",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 1560,
+    "atk": 144,
+    "speed": 72,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 174,
+    "name": "商朝修士24",
+    "icon": "⚡",
+    "quality": "orange",
+    "faction": "商朝",
+    "role": "防御",
+    "hp": 2184,
+    "atk": 201,
+    "speed": 100,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "商朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 175,
+    "name": "姬昌",
+    "icon": "📜",
+    "quality": "red",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 2160,
+    "atk": 259,
+    "speed": 145,
+    "skills": [
+      "治疗",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "先天演卦",
+      "description": "文王姬昌精通伏羲八卦，可演先天之数。未卜先知，预判敌人所有行动，占尽先机。",
+      "effect_type": "buff",
+      "effect_value": 30,
+      "cooldown": 4,
+      "cost": 25,
+      "target_type": "友军",
+      "damage_type": "增益",
+      "extra_effect": "八卦护体，闪避提升",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 176,
+    "name": "姬发",
+    "icon": "⚔️",
+    "quality": "red",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1944,
+    "atk": 486,
+    "speed": 178,
+    "skills": [
+      "狂风砍",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "天子剑",
+      "description": "周武王姬发的天子剑代表新兴周朝的气运。剑出伐无道，拯救万民于水火，乃正义之剑。",
+      "effect_type": "damage",
+      "effect_value": 195,
+      "cooldown": 3,
+      "cost": 38,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "伐纣之剑，伤害随兵力增加",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 177,
+    "name": "姬旦",
+    "icon": "🪷",
+    "quality": "red",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 2160,
+    "atk": 259,
+    "speed": 145,
+    "skills": [
+      "鼓舞",
+      "增益"
+    ],
+    "magic": {
+      "name": "周礼",
+      "description": "周公旦制周礼以规范天下，礼之所至万民归心。礼乐之声可安抚人心，提升整体战力。",
+      "effect_type": "buff",
+      "effect_value": 25,
+      "cooldown": 4,
+      "cost": 20,
+      "target_type": "全体",
+      "damage_type": "增益",
+      "extra_effect": "礼乐教化，全军属性提升",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 178,
+    "name": "姜子牙",
+    "icon": "📜",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "复活",
+      "增益"
+    ],
+    "magic": {
+      "name": "封神榜",
+      "description": "姜子牙执掌封神榜，可册封天神。榜出则天地秩序重立，神仙归位，是封神大业的核心法宝。",
+      "effect_type": "summon",
+      "effect_value": 100,
+      "cooldown": 5,
+      "cost": 60,
+      "target_type": "特殊",
+      "damage_type": "召唤",
+      "extra_effect": "召唤封神英灵助战3回合",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 179,
+    "name": "周武王",
+    "icon": "👑",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1512,
+    "atk": 377,
+    "speed": 138,
+    "skills": [
+      "劈砍",
+      "暴击"
+    ],
+    "magic": {
+      "name": "伐纣令牌",
+      "description": "周武王伐纣令牌可号令天下诸侯。令牌出而诸侯响应，万军齐发，势不可挡。",
+      "effect_type": "damage",
+      "effect_value": 180,
+      "cooldown": 3,
+      "cost": 35,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "号令天下，召唤诸侯助战",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 180,
+    "name": "召公",
+    "icon": "⚖️",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "净化"
+    ],
+    "magic": {
+      "name": "召公奭",
+      "description": "召公奭辅政有功，其德行感天动地。召公之德可惠及众生，治疗伤病，端是仁德典范。",
+      "effect_type": "heal",
+      "effect_value": 120,
+      "cooldown": 4,
+      "cost": 30,
+      "target_type": "友军",
+      "damage_type": "治疗",
+      "extra_effect": "德行治疗，效果额外提升",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 181,
+    "name": "毕公",
+    "icon": "📜",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 182,
+    "name": "毛公",
+    "icon": "📜",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 183,
+    "name": "南公",
+    "icon": "🔮",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "复活",
+      "净化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 184,
+    "name": "散宜生",
+    "icon": "📜",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1680,
+    "atk": 201,
+    "speed": 113,
+    "skills": [
+      "护盾",
+      "复活"
+    ],
+    "magic": {
+      "name": "智囊",
+      "description": "散宜生乃周朝第一谋士，智计无双。其智囊袋中计策百出，可化解各种危局。",
+      "effect_type": "buff",
+      "effect_value": 20,
+      "cooldown": 3,
+      "cost": 15,
+      "target_type": "友军",
+      "damage_type": "增益",
+      "extra_effect": "献策献计，提升谋略",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 185,
+    "name": "闳夭",
+    "icon": "🎵",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 186,
+    "name": "太颠",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "破甲攻击"
+    ],
+    "magic": {
+      "name": "闯阵",
+      "description": "太颠乃周朝勇士，冲锋陷阵无所畏惧。闯阵之时如入无人之境，敌人挡者披靡。",
+      "effect_type": "damage",
+      "effect_value": 165,
+      "cooldown": 2,
+      "cost": 28,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "闯阵冲锋，突破敌人防御",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 187,
+    "name": "南宫括",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "劈砍",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "神箭",
+      "description": "南宫括箭法通神，可百步穿杨。箭出流星赶月，例不虚发，端是神箭手。",
+      "effect_type": "damage",
+      "effect_value": 175,
+      "cooldown": 2,
+      "cost": 30,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "箭无虚发，必中敌人",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 188,
+    "name": "武吉",
+    "icon": "⚒️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "樵夫变",
+      "description": "武吉本是樵夫，得文王指点后学会伪装变化。化身万物，隐匿行踪，刺探敌情。",
+      "effect_type": "buff",
+      "effect_value": 25,
+      "cooldown": 3,
+      "cost": 22,
+      "target_type": "自身",
+      "damage_type": "增益",
+      "extra_effect": "变换形态，提升闪避和防御",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 189,
+    "name": "辛甲",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 190,
+    "name": "辛免",
+    "icon": "🐒",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 191,
+    "name": "伯达",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "穿刺",
+      "劈砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 192,
+    "name": "伯适",
+    "icon": "🔮",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "鼓舞",
+      "净化"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 193,
+    "name": "仲突",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "烈焰斩",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 194,
+    "name": "仲忽",
+    "icon": "⚔️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "多重攻击",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 195,
+    "name": "周公旦",
+    "icon": "🪷",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "复活",
+      "增益"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 196,
+    "name": "召公奭",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "增益",
+      "护盾"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 197,
+    "name": "毕公高",
+    "icon": "📜",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "增益",
+      "治疗"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 198,
+    "name": "唐叔虞",
+    "icon": "👑",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 199,
+    "name": "晋侯燮",
+    "icon": "🐍",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "暴击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 200,
+    "name": "卫康叔",
+    "icon": "🛡️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 201,
+    "name": "蔡叔",
+    "icon": "⚖️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "净化",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 202,
+    "name": "曹叔",
+    "icon": "🏹",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "暴击",
+      "穿刺"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 203,
+    "name": "霍叔",
+    "icon": "🛡️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 204,
+    "name": "康叔",
+    "icon": "🪷",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "净化",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 205,
+    "name": "伯邑考",
+    "icon": "👦",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "复活",
+      "增益"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 206,
+    "name": "周文王",
+    "icon": "📜",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 840,
+    "atk": 100,
+    "speed": 56,
+    "skills": [
+      "鼓舞",
+      "复活"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 207,
+    "name": "周武王",
+    "icon": "⚔️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "穿刺",
+      "连击"
+    ],
+    "magic": {
+      "name": "伐纣令牌",
+      "description": "周武王伐纣令牌可号令天下诸侯。令牌出而诸侯响应，万军齐发，势不可挡。",
+      "effect_type": "damage",
+      "effect_value": 180,
+      "cooldown": 3,
+      "cost": 35,
+      "target_type": "单体",
+      "damage_type": "物理伤害",
+      "extra_effect": "号令天下，召唤诸侯助战",
+      "isExclusive": true
+    }
+  },
+  {
+    "id": 208,
+    "name": "周朝勇士50",
+    "icon": "🔥",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "坦克",
+    "hp": 2520,
+    "atk": 176,
+    "speed": 88,
+    "skills": [
+      "护盾",
+      "反击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 209,
+    "name": "周朝统领14",
+    "icon": "🏹",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "控制",
+    "hp": 756,
+    "atk": 138,
+    "speed": 62,
+    "skills": [
+      "眩晕",
+      "冰冻"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 210,
+    "name": "周朝修士36",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 211,
+    "name": "周朝勇士6",
+    "icon": "🛡️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 212,
+    "name": "周朝小兵14",
+    "icon": "⚔️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "攻防一体",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 213,
+    "name": "周朝战士22",
+    "icon": "🛡️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "速度",
+    "hp": 960,
+    "atk": 234,
+    "speed": 135,
+    "skills": [
+      "突袭",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 214,
+    "name": "周朝统领46",
+    "icon": "🛡️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "坦克",
+    "hp": 1800,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "护盾",
+      "壁垒"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 215,
+    "name": "周朝战士24",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "控制",
+    "hp": 1080,
+    "atk": 198,
+    "speed": 90,
+    "skills": [
+      "石化",
+      "捆绑"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 216,
+    "name": "周朝小兵3",
+    "icon": "🗡️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "辅助",
+    "hp": 1200,
+    "atk": 144,
+    "speed": 81,
+    "skills": [
+      "治疗",
+      "鼓舞"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 217,
+    "name": "周朝校尉17",
+    "icon": "🛡️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "灵活应对",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 218,
+    "name": "周朝统领11",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "坦克",
+    "hp": 1260,
+    "atk": 88,
+    "speed": 44,
+    "skills": [
+      "嘲讽",
+      "铜墙铁壁"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 219,
+    "name": "周朝统领40",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "防御",
+    "hp": 1092,
+    "atk": 100,
+    "speed": 50,
+    "skills": [
+      "多重攻击",
+      "攻防一体"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 220,
+    "name": "周朝修士2",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "劈砍",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 221,
+    "name": "周朝勇士4",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 1200,
+    "atk": 180,
+    "speed": 90,
+    "skills": [
+      "多重攻击",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 222,
+    "name": "周朝统领27",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "穿刺",
+      "连击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 223,
+    "name": "周朝小兵47",
+    "icon": "❄️",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "突袭",
+      "先手"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 224,
+    "name": "周朝统领2",
+    "icon": "🌊",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 840,
+    "atk": 125,
+    "speed": 62,
+    "skills": [
+      "灵活应对",
+      "多重攻击"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 225,
+    "name": "周朝将军11",
+    "icon": "🔥",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "速度",
+    "hp": 672,
+    "atk": 163,
+    "speed": 94,
+    "skills": [
+      "迅捷",
+      "突袭"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 226,
+    "name": "周朝小兵38",
+    "icon": "⚔️",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "速度",
+    "hp": 1344,
+    "atk": 327,
+    "speed": 188,
+    "skills": [
+      "疾风",
+      "闪避"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 227,
+    "name": "周朝将军6",
+    "icon": "🔮",
+    "quality": "blue",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 756,
+    "atk": 188,
+    "speed": 69,
+    "skills": [
+      "劈砍",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 228,
+    "name": "周朝校尉50",
+    "icon": "🏹",
+    "quality": "orange",
+    "faction": "周朝",
+    "role": "均衡",
+    "hp": 1680,
+    "atk": 251,
+    "speed": 125,
+    "skills": [
+      "攻防一体",
+      "灵活应对"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 229,
+    "name": "周朝小兵45",
+    "icon": "🏹",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "烈焰斩"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  },
+  {
+    "id": 230,
+    "name": "周朝将军14",
+    "icon": "⚖️",
+    "quality": "purple",
+    "faction": "周朝",
+    "role": "输出",
+    "hp": 1080,
+    "atk": 270,
+    "speed": 99,
+    "skills": [
+      "雷霆一击",
+      "狂风砍"
+    ],
+    "magic": {
+      "name": "基础仙法",
+      "description": "周朝修士常用的基础仙法。",
+      "effect_type": "damage",
+      "effect_value": 100,
+      "cooldown": 2,
+      "cost": 20,
+      "target_type": "单体",
+      "damage_type": "法术伤害",
+      "extra_effect": "无特殊效果",
+      "isExclusive": false
+    }
+  }
+]

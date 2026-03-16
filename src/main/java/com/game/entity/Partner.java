@@ -30,6 +30,9 @@ public class Partner {
     // 品质: red/orange/purple/blue
     private String quality;
     
+    // 阵营: 阐教/截教/商朝/周朝
+    private String faction;
+    
     // 兵种: 步/骑/弓/策
     private String type;
     
