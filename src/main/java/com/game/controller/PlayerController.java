@@ -44,6 +44,56 @@ public class PlayerController {
         return result;
     }
     
+    // 注册
+    @PostMapping("/register")
+    public Map<String, Object> register(@RequestBody Map<String, Object> req) {
+        String username = (String) req.get("username");
+        String password = (String) req.get("password");
+        String name = (String) req.getOrDefault("name", username);
+        
+        if (username == null || password == null) {
+            return Map.of("success", false, "message", "请输入账号密码");
+        }
+        
+        // 检查是否已存在
+        List<Player> existing = playerRepository.findAll();
+        for(Player p : existing) {
+            if (p.getName() != null && p.getName().equals(username)) {
+                return Map.of("success", false, "message", "账号已存在");
+            }
+        }
+        
+        Player p = new Player();
+        p.setName(username);
+        p.setGold(1000);
+        p.setLingqi(100);
+        p.setLevel(1);
+        p.setExp(0);
+        playerRepository.save(p);
+        
+        return Map.of("success", true, "playerId", p.getId(), "name", name);
+    }
+    
+    // 登录
+    @PostMapping("/login")
+    public Map<String, Object> login(@RequestBody Map<String, Object> req) {
+        String username = (String) req.get("username");
+        String password = (String) req.get("password");
+        
+        if (username == null || password == null) {
+            return Map.of("success", false, "message", "请输入账号密码");
+        }
+        
+        List<Player> all = playerRepository.findAll();
+        for(Player p : all) {
+            if (p.getName() != null && p.getName().equals(username)) {
+                return Map.of("success", true, "playerId", p.getId(), "name", p.getName());
+            }
+        }
+        
+        return Map.of("success", false, "message", "账号不存在");
+    }
+    
     @PostMapping("/create")
     public Map<String, Object> createPlayer(@RequestBody Map<String, Object> req) {
         Player player = new Player();

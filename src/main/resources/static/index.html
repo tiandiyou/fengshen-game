@@ -329,7 +329,7 @@ function switchPage(el) {
 }
 
 // 加载页面数据
-async function loadPageData(page) {
+function loadPageData(page) {
     if(page === 'partners') loadPartners();
     if(page === 'teams') loadTeams();
     if(page === 'battle') loadBattle();
@@ -343,7 +343,8 @@ async function loadPageData(page) {
 }
 
 // 登录
-async function showRegister() {
+function showRegister() {
+    document.getElementById('page-login').style.display = 'none';
     document.getElementById('page-login').style.display = 'none';
     document.getElementById('page-register').style.display = 'block';
 }
@@ -353,23 +354,28 @@ function showLogin() {
     document.getElementById('page-login').style.display = 'block';
 }
 
-async function register() {
+function register() {
     const u = document.getElementById('reg-user').value;
     const p = document.getElementById('reg-pwd').value;
     const n = document.getElementById('reg-name').value || u;
-    if(!u || !p) return toast('请输入账号密码');
+    if(!u || !p) return alert('请输入账号密码');
     
-    const r = await fetch(API + '/player/register', {
+    fetch(API + '/player/register', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: u, password: p, name: n})
-    }).then(r => r.json());
-    
-    if(r.success) {
-        toast('注册成功，请登录');
-        showLogin();
-    } else {
-        toast(r.message || '注册失败');
-    }
+    }).then(r => r.json()).then(function(r) {
+        if(r.success) {
+            playerId = r.playerId;
+            document.getElementById('page-register').style.display = 'none';
+            document.getElementById('page-login').style.display = 'none';
+            document.getElementById('page-home').style.display = 'block';
+            initPlayerData(playerId);
+        } else {
+            alert(r.message || '注册失败');
+        }
+    }).catch(function(e) {
+        alert('注册失败: ' + e);
+    });
 }
 
 function login() {
@@ -377,7 +383,7 @@ function login() {
     const p = document.getElementById('login-pwd').value;
     if(!u || !p) return toast('请输入账号密码');
     
-    const r = await fetch(API + '/player/login', {
+    const r = fetch(API + '/player/login', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: u, password: p})
     }).then(r => r.json());
@@ -385,7 +391,7 @@ function login() {
     if(r.success) {
         playerId = r.playerId;
         // 初始化玩家数据
-        await initPlayerData(playerId);;
+        initPlayerData(playerId);;
         localStorage.playerId = playerId;
         document.getElementById('page-login').style.display = 'none';
         document.getElementById('page-home').style.display = 'block';
@@ -397,23 +403,23 @@ function login() {
 
 // 加载所有数据
 // 初始化玩家数据
-async function initPlayerData(pid) {
+function initPlayerData(pid) {
     try {
         // 创建城池
-        await fetch(API + '/city/create', {
+        fetch(API + '/city/create', {
             method: 'POST', headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({playerId: pid, name: '主城'})
         });
         // 初始化资源
-        await fetch(API + '/resource/init', {
+        fetch(API + '/resource/init', {
             method: 'POST', headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({playerId: pid, cityId: 1})
         });
         // 初始化建筑
-        await fetch(API + '/building/init?cityId=1', {method: 'POST'});
+        fetch(API + '/building/init?cityId=1', {method: 'POST'});
         // 初始化队伍
         for(let i=0; i<5; i++) {
-            await fetch(API + '/team/create', {
+            fetch(API + '/team/create', {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({playerId: pid, cityId: 1, teamIndex: i})
             });
@@ -421,8 +427,8 @@ async function initPlayerData(pid) {
     } catch(e) {}
 }
 
-async function loadAll() {
-    const r = await fetch(API + '/player/' + playerId).then(r => r.json());
+function loadAll() {
+    const r = fetch(API + '/player/' + playerId).then(r => r.json());
     if(r.success) {
         document.getElementById('gold').textContent = r.gold || 0;
         document.getElementById('lingqi').textContent = r.lingqi || 0;
@@ -431,8 +437,8 @@ async function loadAll() {
 }
 
 // 加载伙伴
-async function loadPartners() {
-    const r = await fetch(API + '/gacha/partners/' + playerId).then(r => r.json());
+function loadPartners() {
+    const r = fetch(API + '/gacha/partners/' + playerId).then(r => r.json());
     const list = document.getElementById('partner-list');
     if(!r.partners || r.partners.length === 0) {
         list.innerHTML = '<div class="empty"><div class="empty-icon">👥</div>暂无伙伴<br>点击抽卡获取</div>';
@@ -453,8 +459,8 @@ function getColor(q) {
 }
 
 // 抽卡
-async function gacha() {
-    const r = await fetch(API + '/gacha/draw', {
+function gacha() {
+    const r = fetch(API + '/gacha/draw', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({playerId: playerId, type: 'single'})
     }).then(r => r.json());
@@ -478,8 +484,8 @@ function closeGacha(e) {
 }
 
 // 加载队伍
-async function loadTeams() {
-    const r = await fetch(API + '/team/list?playerId=' + playerId).then(r => r.json());
+function loadTeams() {
+    const r = fetch(API + '/team/list?playerId=' + playerId).then(r => r.json());
     const list = document.getElementById('team-list');
     if(!r.teams || r.teams.length === 0) {
         list.innerHTML = '<div class="empty">暂无队伍</div>';
@@ -496,9 +502,9 @@ async function loadTeams() {
 }
 
 // 战斗
-async function doBattle() {
+function doBattle() {
     document.getElementById('battle-log').innerHTML = '战斗进行中...';
-    const r = await fetch(API + '/war/simulate', {
+    const r = fetch(API + '/war/simulate', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({team1:[1,2],team2:[1,2]})
     }).then(r => r.json());
@@ -508,14 +514,14 @@ async function doBattle() {
     }
 }
 
-async function simBattle() {
-    const r = await fetch(API + '/war/simulate?team1=1,2&team2=1,2', {method:'POST'}).then(r => r.json());
+function simBattle() {
+    const r = fetch(API + '/war/simulate?team1=1,2&team2=1,2', {method:'POST'}).then(r => r.json());
     if(r.success) toast('模拟完成');
 }
 
 // 联盟
-async function loadAlliance() {
-    const r = await fetch(API + '/alliance/list').then(r => r.json());
+function loadAlliance() {
+    const r = fetch(API + '/alliance/list').then(r => r.json());
     const list = document.getElementById('alliance-list');
     list.innerHTML = (r.alliances || []).map(a => `
         <div class="alliance-item">
@@ -531,8 +537,8 @@ async function loadAlliance() {
     `).join('') || '<div class="empty">暂无联盟</div>';
 }
 
-async function joinAlliance(id) {
-    const r = await fetch(API + '/alliance/join', {
+function joinAlliance(id) {
+    const r = fetch(API + '/alliance/join', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({playerId: playerId, allianceId: id})
     }).then(r => r.json());
@@ -553,8 +559,8 @@ function createAlliance() {
 }
 
 // 赛季
-async function loadSeason() {
-    const r = await fetch(API + '/season/ranking').then(r => r.json());
+function loadSeason() {
+    const r = fetch(API + '/season/ranking').then(r => r.json());
     const list = document.getElementById('rank-list');
     list.innerHTML = (r.ranking || []).map((t,i) => `
         <div class="rank-item">
@@ -564,13 +570,13 @@ async function loadSeason() {
         </div>
     `).join('') || '<div class="empty">暂无排行';
     
-    const c = await fetch(API + '/season/credit?playerId=' + playerId).then(r => r.json());
+    const c = fetch(API + '/season/credit?playerId=' + playerId).then(r => r.json());
     document.getElementById('my-credit').innerHTML = c.success ? `战功: ${c.credit} | 击杀: ${c.kills}` : '暂无战功';
 }
 
 // 资源
-async function loadResource() {
-    const r = await fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1').then(r => r.json());
+function loadResource() {
+    const r = fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1').then(r => r.json());
     if(r.success && r.resource) {
         document.getElementById('res-food').textContent = r.resource.food || 0;
         document.getElementById('res-wood').textContent = r.resource.wood || 0;
@@ -578,7 +584,7 @@ async function loadResource() {
         document.getElementById('res-gold').textContent = r.resource.gold || 0;
     }
     
-    const b = await fetch(API + '/building/list?cityId=1').then(r => r.json());
+    const b = fetch(API + '/building/list?cityId=1').then(r => r.json());
     if(b.success) {
         document.getElementById('building-list').innerHTML = (b.buildings || []).map(b => `
             <div class="resource-row">

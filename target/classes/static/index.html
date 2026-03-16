@@ -122,7 +122,21 @@ body{font-family:"Microsoft YaHei";background:#0a0a15;color:#fff;overflow-x:hidd
     </div>
     <div style="padding:20px">
         <input type="text" id="login-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
-        <input type="password" id="login-pwd" placeholder="密码" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
+        <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showRegister()">注册账号</button>
+    </div>
+</div>
+
+<!-- 注册页 -->
+<div id="page-register" class="page" style="display:none">
+    <div style="text-align:center;padding-top:40px">
+        <div style="font-size:24px;color:#ffd700;margin:15px 0">注册账号</div>
+    </div>
+    <div style="padding:20px">
+        <input type="text" id="reg-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <input type="password" id="reg-pwd" placeholder="密码" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <input type="text" id="reg-name" placeholder="昵称" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="register()">注册</button>
+        <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showLogin()">返回登录 style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
         <button class="btn btn-primary" style="width:100%;padding:12px" onclick="login()">登录</button>
     </div>
 </div>
@@ -315,7 +329,7 @@ function switchPage(el) {
 }
 
 // 加载页面数据
-async function loadPageData(page) {
+function loadPageData(page) {
     if(page === 'partners') loadPartners();
     if(page === 'teams') loadTeams();
     if(page === 'battle') loadBattle();
@@ -329,18 +343,55 @@ async function loadPageData(page) {
 }
 
 // 登录
-async function login() {
+function showRegister() {
+    document.getElementById('page-login').style.display = 'none';
+    document.getElementById('page-login').style.display = 'none';
+    document.getElementById('page-register').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('page-register').style.display = 'none';
+    document.getElementById('page-login').style.display = 'block';
+}
+
+function register() {
+    const u = document.getElementById('reg-user').value;
+    const p = document.getElementById('reg-pwd').value;
+    const n = document.getElementById('reg-name').value || u;
+    if(!u || !p) return alert('请输入账号密码');
+    
+    fetch(API + '/player/register', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: u, password: p, name: n})
+    }).then(r => r.json()).then(function(r) {
+        if(r.success) {
+            playerId = r.playerId;
+            document.getElementById('page-register').style.display = 'none';
+            document.getElementById('page-login').style.display = 'none';
+            document.getElementById('page-home').style.display = 'block';
+            initPlayerData(playerId);
+        } else {
+            alert(r.message || '注册失败');
+        }
+    }).catch(function(e) {
+        alert('注册失败: ' + e);
+    });
+}
+
+function login() {
     const u = document.getElementById('login-user').value;
     const p = document.getElementById('login-pwd').value;
     if(!u || !p) return toast('请输入账号密码');
     
-    const r = await fetch(API + '/player/login', {
+    const r = fetch(API + '/player/login', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: u, password: p})
     }).then(r => r.json());
     
     if(r.success) {
         playerId = r.playerId;
+        // 初始化玩家数据
+        initPlayerData(playerId);;
         localStorage.playerId = playerId;
         document.getElementById('page-login').style.display = 'none';
         document.getElementById('page-home').style.display = 'block';
@@ -351,8 +402,33 @@ async function login() {
 }
 
 // 加载所有数据
-async function loadAll() {
-    const r = await fetch(API + '/player/' + playerId).then(r => r.json());
+// 初始化玩家数据
+function initPlayerData(pid) {
+    try {
+        // 创建城池
+        fetch(API + '/city/create', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: pid, name: '主城'})
+        });
+        // 初始化资源
+        fetch(API + '/resource/init', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: pid, cityId: 1})
+        });
+        // 初始化建筑
+        fetch(API + '/building/init?cityId=1', {method: 'POST'});
+        // 初始化队伍
+        for(let i=0; i<5; i++) {
+            fetch(API + '/team/create', {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({playerId: pid, cityId: 1, teamIndex: i})
+            });
+        }
+    } catch(e) {}
+}
+
+function loadAll() {
+    const r = fetch(API + '/player/' + playerId).then(r => r.json());
     if(r.success) {
         document.getElementById('gold').textContent = r.gold || 0;
         document.getElementById('lingqi').textContent = r.lingqi || 0;
@@ -361,8 +437,8 @@ async function loadAll() {
 }
 
 // 加载伙伴
-async function loadPartners() {
-    const r = await fetch(API + '/gacha/partners/' + playerId).then(r => r.json());
+function loadPartners() {
+    const r = fetch(API + '/gacha/partners/' + playerId).then(r => r.json());
     const list = document.getElementById('partner-list');
     if(!r.partners || r.partners.length === 0) {
         list.innerHTML = '<div class="empty"><div class="empty-icon">👥</div>暂无伙伴<br>点击抽卡获取</div>';
@@ -383,8 +459,8 @@ function getColor(q) {
 }
 
 // 抽卡
-async function gacha() {
-    const r = await fetch(API + '/gacha/draw', {
+function gacha() {
+    const r = fetch(API + '/gacha/draw', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({playerId: playerId, type: 'single'})
     }).then(r => r.json());
@@ -408,8 +484,8 @@ function closeGacha(e) {
 }
 
 // 加载队伍
-async function loadTeams() {
-    const r = await fetch(API + '/team/list?playerId=' + playerId).then(r => r.json());
+function loadTeams() {
+    const r = fetch(API + '/team/list?playerId=' + playerId).then(r => r.json());
     const list = document.getElementById('team-list');
     if(!r.teams || r.teams.length === 0) {
         list.innerHTML = '<div class="empty">暂无队伍</div>';
@@ -426,9 +502,9 @@ async function loadTeams() {
 }
 
 // 战斗
-async function doBattle() {
+function doBattle() {
     document.getElementById('battle-log').innerHTML = '战斗进行中...';
-    const r = await fetch(API + '/war/simulate', {
+    const r = fetch(API + '/war/simulate', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({team1:[1,2],team2:[1,2]})
     }).then(r => r.json());
@@ -438,14 +514,14 @@ async function doBattle() {
     }
 }
 
-async function simBattle() {
-    const r = await fetch(API + '/war/simulate?team1=1,2&team2=1,2', {method:'POST'}).then(r => r.json());
+function simBattle() {
+    const r = fetch(API + '/war/simulate?team1=1,2&team2=1,2', {method:'POST'}).then(r => r.json());
     if(r.success) toast('模拟完成');
 }
 
 // 联盟
-async function loadAlliance() {
-    const r = await fetch(API + '/alliance/list').then(r => r.json());
+function loadAlliance() {
+    const r = fetch(API + '/alliance/list').then(r => r.json());
     const list = document.getElementById('alliance-list');
     list.innerHTML = (r.alliances || []).map(a => `
         <div class="alliance-item">
@@ -461,8 +537,8 @@ async function loadAlliance() {
     `).join('') || '<div class="empty">暂无联盟</div>';
 }
 
-async function joinAlliance(id) {
-    const r = await fetch(API + '/alliance/join', {
+function joinAlliance(id) {
+    const r = fetch(API + '/alliance/join', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({playerId: playerId, allianceId: id})
     }).then(r => r.json());
@@ -483,8 +559,8 @@ function createAlliance() {
 }
 
 // 赛季
-async function loadSeason() {
-    const r = await fetch(API + '/season/ranking').then(r => r.json());
+function loadSeason() {
+    const r = fetch(API + '/season/ranking').then(r => r.json());
     const list = document.getElementById('rank-list');
     list.innerHTML = (r.ranking || []).map((t,i) => `
         <div class="rank-item">
@@ -494,13 +570,13 @@ async function loadSeason() {
         </div>
     `).join('') || '<div class="empty">暂无排行';
     
-    const c = await fetch(API + '/season/credit?playerId=' + playerId).then(r => r.json());
+    const c = fetch(API + '/season/credit?playerId=' + playerId).then(r => r.json());
     document.getElementById('my-credit').innerHTML = c.success ? `战功: ${c.credit} | 击杀: ${c.kills}` : '暂无战功';
 }
 
 // 资源
-async function loadResource() {
-    const r = await fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1').then(r => r.json());
+function loadResource() {
+    const r = fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1').then(r => r.json());
     if(r.success && r.resource) {
         document.getElementById('res-food').textContent = r.resource.food || 0;
         document.getElementById('res-wood').textContent = r.resource.wood || 0;
@@ -508,7 +584,7 @@ async function loadResource() {
         document.getElementById('res-gold').textContent = r.resource.gold || 0;
     }
     
-    const b = await fetch(API + '/building/list?cityId=1').then(r => r.json());
+    const b = fetch(API + '/building/list?cityId=1').then(r => r.json());
     if(b.success) {
         document.getElementById('building-list').innerHTML = (b.buildings || []).map(b => `
             <div class="resource-row">
