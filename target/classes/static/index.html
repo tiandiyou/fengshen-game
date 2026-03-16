@@ -284,7 +284,11 @@ function showScreen(id) {
 }
 
 // 显示标签
-function showTab(tab) {
+function getQualityColor(q) {
+        return q === 'red' ? 'e74c3c' : q === 'orange' ? 'e67e22' : q === 'purple' ? '9b59b6' : '3498db';
+    }
+    
+    function showTab(tab) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     event.target.classList.add('active');
     document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
@@ -386,7 +390,7 @@ async function loadPartners() {
     
     list.innerHTML = r.partners.map(p => `
         <div class="partner-card ${p.quality}" data-id="${p.partnerId}">
-            <div class="avatar">${p.icon}</div>
+            <img class="avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=${p.name}&backgroundColor=${getQualityColor(p.quality)}&textColor=ffffff" style="width:50px;height:50px;border-radius:50%" onerror="this.src='${p.icon}'">
             <div class="name">${p.name}</div>
             <div class="star">${'★'.repeat(p.star)}</div>
             <div class="stats">攻${p.atk} 血${p.hp}</div>
