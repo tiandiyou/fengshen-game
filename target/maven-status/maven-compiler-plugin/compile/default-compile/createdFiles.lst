@@ -86,7 +86,6 @@ com/game/config/FateConfig$FateType.class
 com/game/controller/SigninController.class
 com/game/config/GrowthConfig.class
 com/game/entity/Skill.class
-com/game/controller/SkillController.class
 com/game/entity/Cultivation.class
 com/game/service/GachaService$GachaResult.class
 com/game/service/UserService.class
