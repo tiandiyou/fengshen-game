@@ -1,6 +1,7 @@
 com/game/service/GrowthService.class
 com/game/mapper/PlayerRepository.class
 com/game/config/SkillEffect.class
+com/game/config/BattleBalanceConfig$EffectType.class
 com/game/entity/Team.class
 com/game/controller/GrowthController.class
 com/game/controller/TeamController.class
@@ -14,6 +15,9 @@ com/game/entity/MapZone.class
 com/game/mapper/SkillRepository.class
 com/game/controller/AchievementController.class
 com/game/controller/admin/AdminController.class
+com/game/config/SkillConfig.class
+com/game/controller/WarController.class
+com/game/config/SkillConfig$SkillType.class
 com/game/entity/User.class
 com/game/entity/Alliance.class
 com/game/controller/PlayerController.class
@@ -26,6 +30,7 @@ com/game/controller/GachaController.class
 com/game/service/FactionService.class
 com/game/controller/SweepController.class
 com/game/mapper/CityRepository.class
+com/game/config/SkillConfig$EffectType.class
 com/game/config/FateConfig.class
 com/game/controller/MountController.class
 com/game/controller/TreasureController.class
@@ -63,13 +68,17 @@ com/game/entity/Treasure.class
 com/game/mapper/TeamRepository.class
 com/game/FengshenApplication.class
 com/game/entity/Partner.class
+com/game/config/BattleBalanceConfig$SkillType.class
 com/game/controller/AuthController.class
 com/game/service/GachaService.class
 com/game/mapper/TreasureRepository.class
 com/game/controller/RankController.class
+com/game/entity/CityWar.class
 com/game/entity/AllianceMember.class
 com/game/entity/City.class
+com/game/service/WarBattleService.class
 com/game/mapper/AllianceRepository.class
+com/game/config/BattleBalanceConfig.class
 com/game/entity/GachaRecord.class
 com/game/mapper/EquipmentRepository.class
 com/game/controller/EquipmentController.class
