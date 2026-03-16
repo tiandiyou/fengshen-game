@@ -122,7 +122,21 @@ body{font-family:"Microsoft YaHei";background:#0a0a15;color:#fff;overflow-x:hidd
     </div>
     <div style="padding:20px">
         <input type="text" id="login-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
-        <input type="password" id="login-pwd" placeholder="密码" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
+        <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showRegister()">注册账号</button>
+    </div>
+</div>
+
+<!-- 注册页 -->
+<div id="page-register" class="page" style="display:none">
+    <div style="text-align:center;padding-top:40px">
+        <div style="font-size:24px;color:#ffd700;margin:15px 0">注册账号</div>
+    </div>
+    <div style="padding:20px">
+        <input type="text" id="reg-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <input type="password" id="reg-pwd" placeholder="密码" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <input type="text" id="reg-name" placeholder="昵称" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="register()">注册</button>
+        <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showLogin()">返回登录 style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
         <button class="btn btn-primary" style="width:100%;padding:12px" onclick="login()">登录</button>
     </div>
 </div>
@@ -329,7 +343,36 @@ async function loadPageData(page) {
 }
 
 // 登录
-async function login() {
+async function showRegister() {
+    document.getElementById('page-login').style.display = 'none';
+    document.getElementById('page-register').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('page-register').style.display = 'none';
+    document.getElementById('page-login').style.display = 'block';
+}
+
+async function register() {
+    const u = document.getElementById('reg-user').value;
+    const p = document.getElementById('reg-pwd').value;
+    const n = document.getElementById('reg-name').value || u;
+    if(!u || !p) return toast('请输入账号密码');
+    
+    const r = await fetch(API + '/player/register', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: u, password: p, name: n})
+    }).then(r => r.json());
+    
+    if(r.success) {
+        toast('注册成功，请登录');
+        showLogin();
+    } else {
+        toast(r.message || '注册失败');
+    }
+}
+
+function login() {
     const u = document.getElementById('login-user').value;
     const p = document.getElementById('login-pwd').value;
     if(!u || !p) return toast('请输入账号密码');
@@ -341,6 +384,8 @@ async function login() {
     
     if(r.success) {
         playerId = r.playerId;
+        // 初始化玩家数据
+        await initPlayerData(playerId);;
         localStorage.playerId = playerId;
         document.getElementById('page-login').style.display = 'none';
         document.getElementById('page-home').style.display = 'block';
@@ -351,6 +396,31 @@ async function login() {
 }
 
 // 加载所有数据
+// 初始化玩家数据
+async function initPlayerData(pid) {
+    try {
+        // 创建城池
+        await fetch(API + '/city/create', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: pid, name: '主城'})
+        });
+        // 初始化资源
+        await fetch(API + '/resource/init', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: pid, cityId: 1})
+        });
+        // 初始化建筑
+        await fetch(API + '/building/init?cityId=1', {method: 'POST'});
+        // 初始化队伍
+        for(let i=0; i<5; i++) {
+            await fetch(API + '/team/create', {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({playerId: pid, cityId: 1, teamIndex: i})
+            });
+        }
+    } catch(e) {}
+}
+
 async function loadAll() {
     const r = await fetch(API + '/player/' + playerId).then(r => r.json());
     if(r.success) {
