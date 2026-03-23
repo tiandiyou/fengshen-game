@@ -135,9 +135,9 @@ body{font-family:"Microsoft YaHei";background:#0a0a15;color:#fff;overflow-x:hidd
         <input type="text" id="reg-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
         <input type="password" id="reg-pwd" placeholder="密码" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
         <input type="text" id="reg-name" placeholder="昵称" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
-        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="register_fixed()">注册</button>
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="register()">注册</button>
         <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showLogin()">返回登录 style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
-        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="login_fixed()">登录</button>
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="login()">登录</button>
     </div>
 </div>
 
@@ -354,30 +354,6 @@ function showLogin() {
     document.getElementById('page-login').style.display = 'block';
 }
 
-function register_fixed() {
-    var u = document.getElementById('reg-user').value;
-    var p = document.getElementById('reg-pwd').value;
-    var n = document.getElementById('reg-name').value || u;
-    if(!u || !p) { alert('请输入账号密码'); return; }
-    
-    fetch('/api/player/register', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({username: u, password: p, name: n})
-    }).then(function(r) { return r.json(); })
-    .then(function(r) {
-        if(r.success) {
-            playerId = r.playerId;
-            document.getElementById('page-register').style.display = 'none';
-            document.getElementById('page-login').style.display = 'none';
-            document.getElementById('page-home').style.display = 'block';
-            initPlayerData(playerId);
-        } else {
-            alert(r.message || '注册失败');
-        }
-    });
-}
-
 function register() {
     const u = document.getElementById('reg-user').value;
     const p = document.getElementById('reg-pwd').value;
@@ -402,37 +378,12 @@ function register() {
     });
 }
 
-function login_fixed() {
-    // 修复版本
-    var u = document.getElementById('login-user').value;
-    var p = document.getElementById('login-pwd').value;
-    if(!u || !p) { alert('请输入账号密码'); return; }
-    
-    fetch('/api/player/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({username: u, password: p})
-    }).then(function(r) { return r.json(); })
-    .then(function(r) {
-        if(r.success) {
-            playerId = r.playerId;
-            initPlayerData(playerId);
-            localStorage.playerId = playerId;
-            document.getElementById('page-login').style.display = 'none';
-            document.getElementById('page-home').style.display = 'block';
-            loadAll();
-        } else {
-            alert(r.message || '登录失败');
-        }
-    });
-}
-
 function login() {
     const u = document.getElementById('login-user').value;
     const p = document.getElementById('login-pwd').value;
     if(!u || !p) return toast('请输入账号密码');
     
-    fetch(API + '/player/login', {
+    const r = fetch(API + '/player/login', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: u, password: p})
     }).then(r => r.json());
@@ -625,9 +576,7 @@ function loadSeason() {
 
 // 资源
 function loadResource() {
-    fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1')
-    .then(function(res) { return res.json(); })
-    .then(function(r) {
+    const r = fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1').then(r => r.json());
     if(r.success && r.resource) {
         document.getElementById('res-food').textContent = r.resource.food || 0;
         document.getElementById('res-wood').textContent = r.resource.wood || 0;
