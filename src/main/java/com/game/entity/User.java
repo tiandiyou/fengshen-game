@@ -25,4 +25,16 @@ public class User {
     public void prePersist() {
         this.createTime = LocalDateTime.now();
     }
+    
+    // Setters (Lombok @Data may not work in some cases)
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
+    public void setId(Long id) { this.id = id; }
+    public void setCreateTime(LocalDateTime createTime) { this.createTime = createTime; }
+    
+    // Getters
+    public Long getId() { return id; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+    public LocalDateTime getCreateTime() { return createTime; }
 }

@@ -17,20 +17,160 @@ public class MapController {
     @Autowired
     private PlayerMapRepository playerMapRepository;
     
-    // 地图区域数据
-    private static final List<Map<String, Object>> ZONE_DATA = Arrays.asList(
-        // 出生州
-        Map.of("zoneId", 1, "name", "陈塘关", "type", "birth", "levelReq", 1, "goldOutput", 100, "lingqiOutput", 50, "relicType", "山洞", "x", 0, "y", 0),
-        Map.of("zoneId", 2, "name", "西岐", "type", "birth", "levelReq", 1, "goldOutput", 100, "lingqiOutput", 50, "relicType", "古墓", "x", 1, "y", 0),
-        Map.of("zoneId", 3, "name", "朝歌城郊", "type", "birth", "levelReq", 1, "goldOutput", 100, "lingqiOutput", 50, "relicType", "山洞", "x", 2, "y", 0),
+    // 地图区域数据 - 使用 HashMap 避免 Map.of 参数限制
+    private static final List<Map<String, Object>> ZONE_DATA;
+    
+    static {
+        ZONE_DATA = new ArrayList<>();
         
-        // 资源州
-        Map.of("zoneId", 4, "name", "青龙关", "type", "resource", "levelReq", 10, "goldOutput", 300, "lingqiOutput", 150, "relicType", "仙府", "x", 0, "y", 1),
-        Map.of("zoneId", 5, "name", "佳梦关", "type", "resource", "levelReq", 10, "goldOutput", 300, "lingqiOutput", 150, "relicType", "仙府", "x", 1, "y", 1),
+        // === 出生州 ===
+        Map<String, Object> zone1 = new HashMap<>();
+        zone1.put("zoneId", 1);
+        zone1.put("name", "陈塘关");
+        zone1.put("type", "birth");
+        zone1.put("levelReq", 1);
+        zone1.put("goldOutput", 100);
+        zone1.put("lingqiOutput", 50);
+        zone1.put("relicType", "山洞");
+        zone1.put("x", 0);
+        zone1.put("y", 0);
+        zone1.put("climate", "sunny");
+        zone1.put("monster", "海妖");
+        zone1.put("monsterLevel", 1);
+        zone1.put("defense", 0);
+        ZONE_DATA.add(zone1);
         
-        // 朝歌
-        Map.of("zoneId", 6, "name", "朝歌", "type", "capital", "levelReq", 30, "goldOutput", 1000, "lingqiOutput", 500, "relicType", "无", "x", 1, "y", 2)
-    );
+        Map<String, Object> zone2 = new HashMap<>();
+        zone2.put("zoneId", 2);
+        zone2.put("name", "西岐");
+        zone2.put("type", "birth");
+        zone2.put("levelReq", 1);
+        zone2.put("goldOutput", 100);
+        zone2.put("lingqiOutput", 50);
+        zone2.put("relicType", "古墓");
+        zone2.put("x", 1);
+        zone2.put("y", 0);
+        zone2.put("climate", "sunny");
+        zone2.put("monster", "狼妖");
+        zone2.put("monsterLevel", 1);
+        zone2.put("defense", 0);
+        ZONE_DATA.add(zone2);
+        
+        Map<String, Object> zone3 = new HashMap<>();
+        zone3.put("zoneId", 3);
+        zone3.put("name", "朝歌城郊");
+        zone3.put("type", "birth");
+        zone3.put("levelReq", 1);
+        zone3.put("goldOutput", 100);
+        zone3.put("lingqiOutput", 50);
+        zone3.put("relicType", "山洞");
+        zone3.put("x", 2);
+        zone3.put("y", 0);
+        zone3.put("climate", "rainy");
+        zone3.put("monster", "鬼魂");
+        zone3.put("monsterLevel", 2);
+        zone3.put("defense", 0);
+        ZONE_DATA.add(zone3);
+        
+        // === 资源州 ===
+        Map<String, Object> zone4 = new HashMap<>();
+        zone4.put("zoneId", 4);
+        zone4.put("name", "青龙关");
+        zone4.put("type", "resource");
+        zone4.put("levelReq", 10);
+        zone4.put("goldOutput", 300);
+        zone4.put("lingqiOutput", 150);
+        zone4.put("relicType", "仙府");
+        zone4.put("x", 0);
+        zone4.put("y", 1);
+        zone4.put("climate", "sunny");
+        zone4.put("monster", "虎怪");
+        zone4.put("monsterLevel", 10);
+        zone4.put("defense", 100);
+        ZONE_DATA.add(zone4);
+        
+        Map<String, Object> zone5 = new HashMap<>();
+        zone5.put("zoneId", 5);
+        zone5.put("name", "佳梦关");
+        zone5.put("type", "resource");
+        zone5.put("levelReq", 10);
+        zone5.put("goldOutput", 300);
+        zone5.put("lingqiOutput", 150);
+        zone5.put("relicType", "仙府");
+        zone5.put("x", 1);
+        zone5.put("y", 1);
+        zone5.put("climate", "rainy");
+        zone5.put("monster", "蛇妖");
+        zone5.put("monsterLevel", 12);
+        zone5.put("defense", 100);
+        ZONE_DATA.add(zone5);
+        
+        Map<String, Object> zone7 = new HashMap<>();
+        zone7.put("zoneId", 7);
+        zone7.put("name", "汜水关");
+        zone7.put("type", "resource");
+        zone7.put("levelReq", 15);
+        zone7.put("goldOutput", 400);
+        zone7.put("lingqiOutput", 200);
+        zone7.put("relicType", "古墓");
+        zone7.put("x", 2);
+        zone7.put("y", 1);
+        zone7.put("climate", "sunny");
+        zone7.put("monster", "石魔");
+        zone7.put("monsterLevel", 15);
+        zone7.put("defense", 150);
+        ZONE_DATA.add(zone7);
+        
+        // === 特殊区域 ===
+        Map<String, Object> zone8 = new HashMap<>();
+        zone8.put("zoneId", 8);
+        zone8.put("name", "火云洞");
+        zone8.put("type", "special");
+        zone8.put("levelReq", 20);
+        zone8.put("goldOutput", 600);
+        zone8.put("lingqiOutput", 300);
+        zone8.put("relicType", "仙府");
+        zone8.put("x", 0);
+        zone8.put("y", 2);
+        zone8.put("climate", "sunny");
+        zone8.put("monster", "火精灵");
+        zone8.put("monsterLevel", 20);
+        zone8.put("defense", 300);
+        ZONE_DATA.add(zone8);
+        
+        Map<String, Object> zone9 = new HashMap<>();
+        zone9.put("zoneId", 9);
+        zone9.put("name", "骷髅山");
+        zone9.put("type", "special");
+        zone9.put("levelReq", 25);
+        zone9.put("goldOutput", 800);
+        zone9.put("lingqiOutput", 400);
+        zone9.put("relicType", "山洞");
+        zone9.put("x", 2);
+        zone9.put("y", 2);
+        zone9.put("climate", "rainy");
+        zone9.put("monster", "骷髅王");
+        zone9.put("monsterLevel", 25);
+        zone9.put("defense", 400);
+        ZONE_DATA.add(zone9);
+        
+        // === 朝歌（首都）===
+        Map<String, Object> zone6 = new HashMap<>();
+        zone6.put("zoneId", 6);
+        zone6.put("name", "朝歌");
+        zone6.put("type", "capital");
+        zone6.put("levelReq", 30);
+        zone6.put("goldOutput", 1000);
+        zone6.put("lingqiOutput", 500);
+        zone6.put("relicType", "无");
+        zone6.put("x", 1);
+        zone6.put("y", 2);
+        zone6.put("climate", "sunny");
+        zone6.put("monster", "禁卫");
+        zone6.put("monsterLevel", 30);
+        zone6.put("defense", 1000);
+        ZONE_DATA.add(zone6);
+    }
     
     // 初始化地图数据
     @PostMapping("/init")
@@ -48,7 +188,10 @@ public class MapController {
             zone.setY((Integer) data.get("y"));
             mapZoneRepository.save(zone);
         }
-        return Map.of("success", true, "message", "地图初始化完成");
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("message", "地图初始化完成");
+        return result;
     }
     
     // 获取所有区域
@@ -56,7 +199,6 @@ public class MapController {
     public Map<String, Object> getZones() {
         List<MapZone> zones = mapZoneRepository.findAll();
         if (zones.isEmpty()) {
-            // 初始化
             init();
             zones = mapZoneRepository.findAll();
         }
@@ -76,7 +218,10 @@ public class MapController {
             result.add(item);
         }
         
-        return Map.of("success", true, "zones", result);
+        Map<String, Object> res = new HashMap<>();
+        res.put("success", true);
+        res.put("zones", result);
+        return res;
     }
     
     // 获取玩家当前位置
@@ -85,7 +230,6 @@ public class MapController {
         Optional<PlayerMap> opt = playerMapRepository.findByPlayerId(playerId);
         
         if (!opt.isPresent()) {
-            // 默认在出生州
             PlayerMap pm = new PlayerMap();
             pm.setPlayerId(playerId);
             pm.setZoneId(1);
@@ -95,7 +239,13 @@ public class MapController {
             pm.setEnterTime(System.currentTimeMillis());
             pm = playerMapRepository.save(pm);
             
-            return Map.of("success", true, "zoneId", 1, "zoneType", "birth", "x", 0, "y", 0);
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            result.put("zoneId", 1);
+            result.put("zoneType", "birth");
+            result.put("x", 0);
+            result.put("y", 0);
+            return result;
         }
         
         PlayerMap pm = opt.get();
@@ -106,32 +256,68 @@ public class MapController {
         result.put("x", pm.getX());
         result.put("y", pm.getY());
         
-        // 获取区域信息
         Optional<MapZone> zoneOpt = mapZoneRepository.findByZoneId(pm.getZoneId());
         if (zoneOpt.isPresent()) {
             MapZone z = zoneOpt.get();
             result.put("zoneName", z.getName());
             result.put("relicType", z.getRelicType());
+            result.put("climate", z.getClimate());
+            result.put("monster", z.getMonster());
+            result.put("monsterLevel", z.getMonsterLevel());
         }
         
         return result;
     }
     
-    // 行军到其他区域
-    @PostMapping("/move")
+    // 获取区域详情
+    @GetMapping("/zone/{zoneId}")
+    public Map<String, Object> getZoneDetail(@PathVariable Integer zoneId) {
+        Optional<MapZone> opt = mapZoneRepository.findByZoneId(zoneId);
+        
+        if (!opt.isPresent()) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "区域不存在");
+            return result;
+        }
+        
+        MapZone z = opt.get();
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("zoneId", z.getZoneId());
+        result.put("name", z.getName());
+        result.put("type", z.getType());
+        result.put("levelReq", z.getLevelReq());
+        result.put("goldOutput", z.getGoldOutput());
+        result.put("lingqiOutput", z.getLingqiOutput());
+        result.put("relicType", z.getRelicType());
+        result.put("x", z.getX());
+        result.put("y", z.getY());
+        result.put("climate", z.getClimate());
+        result.put("monster", z.getMonster());
+        result.put("monsterLevel", z.getMonsterLevel());
+        result.put("defense", z.getDefense());
+        result.put("ownerId", z.getOwnerId());
+        
+        return result;
+    }
+    
+    // 移动到其他区域
+    @PostMapping("/travel")
     public Map<String, Object> move(@RequestBody Map<String, Object> req) {
         Long playerId = ((Number) req.get("playerId")).longValue();
         Integer targetZoneId = (Integer) req.get("zoneId");
         
-        // 获取目标区域
         Optional<MapZone> zoneOpt = mapZoneRepository.findByZoneId(targetZoneId);
         if (!zoneOpt.isPresent()) {
-            return Map.of("success", false, "message", "区域不存在");
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "区域不存在");
+            return result;
         }
         
         MapZone target = zoneOpt.get();
         
-        // 获取玩家当前位置
         Optional<PlayerMap> pmOpt = playerMapRepository.findByPlayerId(playerId);
         PlayerMap pm;
         if (pmOpt.isPresent()) {
@@ -141,7 +327,6 @@ public class MapController {
             pm.setPlayerId(playerId);
         }
         
-        // 简单处理：直接移动
         pm.setZoneId(targetZoneId);
         pm.setZoneType(target.getType());
         pm.setX(target.getX());
@@ -165,27 +350,33 @@ public class MapController {
     public Map<String, Object> exploreRelic(@RequestBody Map<String, Object> req) {
         Long playerId = ((Number) req.get("playerId")).longValue();
         
-        // 获取玩家当前位置
         Optional<PlayerMap> pmOpt = playerMapRepository.findByPlayerId(playerId);
         if (!pmOpt.isPresent()) {
-            return Map.of("success", false, "message", "请先进入地图");
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "请先进入地图");
+            return result;
         }
         
         PlayerMap pm = pmOpt.get();
         Optional<MapZone> zoneOpt = mapZoneRepository.findByZoneId(pm.getZoneId());
         
         if (!zoneOpt.isPresent()) {
-            return Map.of("success", false, "message", "区域不存在");
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "区域不存在");
+            return result;
         }
         
         MapZone zone = zoneOpt.get();
         
-        // 没有遗迹
         if ("无".equals(zone.getRelicType())) {
-            return Map.of("success", false, "message", "该区域没有遗迹");
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "该区域没有遗迹");
+            return result;
         }
         
-        // 随机触发事件
         String[] events = {"获得材料", "获得坐骑", "获得法宝", "遭遇怪物", "空"};
         String event = events[(int) (Math.random() * events.length)];
         
@@ -195,13 +386,21 @@ public class MapController {
         result.put("zoneName", zone.getName());
         result.put("relicType", zone.getRelicType());
         
-        // 根据事件发放奖励
         if ("获得材料".equals(event)) {
-            result.put("reward", Map.of("type", "iron", "count", 5));
+            Map<String, Object> reward = new HashMap<>();
+            reward.put("type", "iron");
+            reward.put("count", 5);
+            result.put("reward", reward);
         } else if ("获得坐骑".equals(event)) {
-            result.put("reward", Map.of("type", "mount", "name", "黄牛"));
+            Map<String, Object> reward = new HashMap<>();
+            reward.put("type", "mount");
+            reward.put("name", "黄牛");
+            result.put("reward", reward);
         } else if ("获得法宝".equals(event)) {
-            result.put("reward", Map.of("type", "treasure", "name", "火尖枪"));
+            Map<String, Object> reward = new HashMap<>();
+            reward.put("type", "treasure");
+            reward.put("name", "火尖枪");
+            result.put("reward", reward);
         }
         
         return result;

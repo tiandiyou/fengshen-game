@@ -65,7 +65,7 @@ public class WarController {
     }
     
     /**
-     * 队伍对战模拟
+     * 队伍对战模拟 (从数据库读取)
      */
     @PostMapping("/simulate")
     public Map<String, Object> simulate(@RequestBody Map<String, Object> req) {
@@ -87,10 +87,14 @@ public class WarController {
             return Map.of("success", false, "message", "队伍人数不足");
         }
         
+        // 获取阵型ID
+        Long formationId1 = req.get("formationId1") != null ? ((Number) req.get("formationId1")).longValue() : null;
+        Long formationId2 = req.get("formationId2") != null ? ((Number) req.get("formationId2")).longValue() : null;
+        
         int power1 = warBattleService.calcTeamPower(team1);
         int power2 = warBattleService.calcTeamPower(team2);
         
-        Map<String, Object> battle = warBattleService.battle(team1, team2);
+        Map<String, Object> battle = warBattleService.battle(team1, team2, formationId1, formationId2);
         
         Map<String, Object> result = new HashMap<>();
         result.put("success", true);
@@ -99,6 +103,68 @@ public class WarController {
         result.put("battle", battle);
         
         return result;
+    }
+    
+    /**
+     * 队伍对战模拟 (直接传伙伴数据，用于测试)
+     */
+    @PostMapping("/simulate/test")
+    public Map<String, Object> simulateTest(@RequestBody Map<String, Object> req) {
+        // 直接从请求中解析伙伴数据
+        List<Partner> team1 = parsePartnerData(req.get("team1"));
+        List<Partner> team2 = parsePartnerData(req.get("team2"));
+        
+        if (team1.isEmpty() || team2.isEmpty()) {
+            return Map.of("success", false, "message", "队伍人数不足");
+        }
+        
+        // 阵型加成测试
+        String formation1 = (String) req.getOrDefault("formation1", "锋矢阵");
+        String formation2 = (String) req.getOrDefault("formation2", "八卦阵");
+        
+        // 创建模拟的阵型加成
+        Map<String, Double> bonus1 = com.game.service.FormationService.FORMATION_BONUS.getOrDefault(formation1, Map.of());
+        Map<String, Double> bonus2 = com.game.service.FormationService.FORMATION_BONUS.getOrDefault(formation2, Map.of());
+        
+        int power1 = warBattleService.calcTeamPower(team1, bonus1);
+        int power2 = warBattleService.calcTeamPower(team2, bonus2);
+        
+        Map<String, Object> battle = warBattleService.battle(team1, team2);
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("team1Power", power1);
+        result.put("team2Power", team2);
+        result.put("team2Power", power2);
+        result.put("team1Formation", formation1);
+        result.put("team2Formation", formation2);
+        result.put("team1Bonus", bonus1);
+        result.put("team2Bonus", bonus2);
+        result.put("battle", battle);
+        
+        return result;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private List<Partner> parsePartnerData(Object obj) {
+        List<Partner> partners = new ArrayList<>();
+        if (obj instanceof List) {
+            for (Object o : (List<?>) obj) {
+                if (o instanceof Map) {
+                    Map<String, Object> m = (Map<String, Object>) o;
+                    Partner p = new Partner();
+                    p.setId(m.get("id") != null ? ((Number) m.get("id")).longValue() : 0L);
+                    p.setName((String) m.getOrDefault("name", "未知"));
+                    p.setAtk(m.get("atk") != null ? ((Number) m.get("atk")).intValue() : 1000);
+                    p.setHp(m.get("hp") != null ? ((Number) m.get("hp")).intValue() : 5000);
+                    p.setSpeed(m.get("speed") != null ? ((Number) m.get("speed")).intValue() : 100);
+                    p.setType((String) m.getOrDefault("type", "步"));
+                    p.setLevel(m.get("level") != null ? ((Number) m.get("level")).intValue() : 1);
+                    partners.add(p);
+                }
+            }
+        }
+        return partners;
     }
     
     /**

@@ -65,6 +65,16 @@ body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16
 .signin-day.received{background:#27ae60}
 .signin-day.today{border:2px solid #ffd700}
 .quest-reward{font-size:9px;color:#ffd700}
+.formation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-bottom:55px}
+.formation-card{background:rgba(255,255,255,0.08);border-radius:8px;padding:8px;text-align:center;border:1px solid #333}
+.formation-card.selected{border-color:#ffd700;background:rgba(255,215,0,0.15)}
+.formation-card .name{font-size:12px;color:#ffd700;margin-bottom:4px}
+.formation-card .bonus{font-size:9px;color:#aaa}
+.position-row{display:flex;gap:6px;margin:8px 0;padding:8px;background:rgba(0,0,0,0.3);border-radius:8px}
+.position-row .label{width:40px;font-size:10px;color:#888;text-align:center}
+.position-slots{display:flex;gap:4px;flex:1}
+.position-slot{width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;border:1px dashed #444}
+.position-slot.filled{background:rgba(255,215,0,0.2);border:1px solid #ffd700}
 </style>
 </head>
 <body>
@@ -92,6 +102,7 @@ body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16
 <div id="tab-practice" class="tab-content"><div id="practice-list"></div></div><div id="tab-quests" class="tab-content"><div id="quest-list" class="quest-list"></div></div>
 <div id="tab-build" class="tab-content"><div id="build-list"></div></div><div id="tab-achievement" class="tab-content"><div id="achievement-list" class="achievement-list"></div></div>
 <div id="tab-rank" class="tab-content"><div id="rank-list" class="rank-list"></div></div>
+<div id="tab-formation" class="tab-content"><div id="formation-list"></div></div>
 <div class="bottom-nav">
 <div class="nav-item active" onclick="showTab('partners')"><span style="font-size:14px">👥</span><span>伙伴</span></div>
 <div class="nav-item" onclick="showTab('battle')"><span style="font-size:14px">⚔</span><span>战斗</span></div>
@@ -100,6 +111,7 @@ body{font-family:"Microsoft YaHei";background:linear-gradient(135deg,#1a1a2e,#16
 <div class="nav-item" onclick="showTab('rank')"><span style="font-size:14px">🏆</span><span>排行</span></div>
 <div class="nav-item" onclick="showTab('practice')"><span style="font-size:14px">📈</span><span>修炼</span></div>
 <div class="nav-item" onclick="showTab('build')"><span style="font-size:14px">🏰</span><span>内政</span></div>
+<div class="nav-item" onclick="showTab('formation')"><span style="font-size:14px">🛡️</span><span>阵型</span></div>
 </div>
 </div>
 <div id="battle-screen" class="screen">
@@ -214,6 +226,7 @@ else if(tab==="achievement")renderAchievements();
 else if(tab==="rank")renderRank();
 else if(tab==="practice")renderPractice();
 else if(tab==="build")renderBuildings();
+else if(tab==="formation")renderFormation();
 }
 function upgrade(id){var b=BUILD_DATA.find(function(x){return x.id===id});var my=state.buildings.find(function(x){return x.id===id});if(!my)my={id:id,level:1};var cost=Math.floor(b.base*Math.pow(1.5,my.level));if(state.lingqi<cost){alert('灵气不足');return;}state.lingqi-=cost;my.level++;renderBuildings();document.getElementById('lingqi').textContent=state.lingqi;}
 function renderAll(){
@@ -434,6 +447,100 @@ function battleUltimate(){var b=state.battle;var pl=b.playerUnits.filter(functio
 function battleWin(){var c=GAME_DATA.chapters.find(function(x){return x.id===state.currentChapter});state.lingqi+=c.reward.lingqi;state.gold+=c.reward.gold;state.battleCount++;save();document.getElementById("battle-log").innerHTML="<span style=\"color:#ffd700\">🎉 战斗胜利！</span>";document.getElementById("battle-actions").innerHTML="<div style=\"grid-column:span 3;text-align:center;padding:10px\"><div style=\"color:#ffd700;margin-bottom:10px\">获得 "+c.reward.lingqi+"灵气 "+c.reward.gold+"金币</div><button class=\"btn\" onclick=\"exitBattle()\">返回</button></div>";checkQuests()}
 function battleLose(){document.getElementById("battle-log").innerHTML="<span style=\"color:#e74c3c\">💀 战斗失败！</span>";document.getElementById("battle-actions").innerHTML="<div style=\"grid-column:span 3;text-align:center;padding:10px\"><button class=\"btn\" onclick=\"startBattle(state.currentChapter)\">重新挑战</button><button class=\"btn\" onclick=\"exitBattle()\">返回</button></div>"}
 function exitBattle(){state.battle=null;showScreen("main-screen");renderAll()}
+
+// 阵型系统
+var formationTypes=[
+{name:"锋矢阵",bonus:"攻击+15% 速度+10%",icon:"🔺"},
+{name:"八卦阵",bonus:"防御+15% 闪避+10%",icon:"☯"},
+{name:"鹤翼阵",bonus:"治疗+20% 生命+10%",icon:"🪶"},
+{name:"鱼鳞阵",bonus:"防御+10% 生命+15%",icon:"🐟"},
+{name:"雁行阵",bonus:"速度+20% 暴击+10%",icon:"🪨"},
+{name:"长蛇阵",bonus:"闪避+15% 速度+10%",icon:"🐍"}
+];
+
+function renderFormation(){
+var list=document.getElementById("formation-list");
+var current=state.formation||{type:"锋矢阵",front:[],back:[]};
+var html='<div style="font-size:11px;color:#888;margin-bottom:8px">选择阵型类型</div>';
+html+='<div class="formation-grid">';
+formationTypes.forEach(function(f){
+var sel=current.type===f.name?" selected":"";
+html+='<div class="formation-card'+sel+'" onclick="selectFormation(\''+f.name+'\')">';
+html+='<div style="font-size:18px">'+f.icon+'</div>';
+html+='<div class="name">'+f.name+'</div>';
+html+='<div class="bonus">'+f.bonus+'</div></div>';
+});
+html+='</div>';
+html+='<div style="font-size:11px;color:#888;margin:12px 0 8px">阵型站位（点击伙伴图标放置）</div>';
+html+='<div class="position-row"><div class="label">前排<br><span style="font-size:8px;color:#666">(3人)</span></div>';
+html+='<div class="position-slots" id="front-slots">';
+for(var i=0;i<3;i++){
+var p=current.front[i];
+html+='<div class="position-slot'+(p?" filled":"")+'" onclick="togglePosition('+i+',\'front\')">'+(p?state.partners[p]?" "+state.partners[p].icon:"":"")+'</div>';
+}
+html+='</div></div>';
+html+='<div class="position-row"><div class="label">后排<br><span style="font-size:8px;color:#666">(3人)</span></div>';
+html+='<div class="position-slots" id="back-slots">';
+for(var j=0;j<3;j++){
+var q=current.back[j];
+html+='<div class="position-slot'+(q?" filled":"")+'" onclick="togglePosition('+j+',\'back\')">'+(q?state.partners[q]?" "+state.partners[q].icon:"":"")+'</div>';
+}
+html+='</div></div>';
+html+='<div style="text-align:center;margin-top:10px"><button class="btn" onclick="saveFormation()">保存阵型</button></div>';
+html+='<div style="font-size:10px;color:#888;margin-top:12px">💡 前排武将受击率更高，但获得防御+10%和伤害减免10%</div>';
+html+='<div style="font-size:10px;color:#888">💡 后排武将技能伤害+10%，暴击+5%</div>';
+list.innerHTML=html;
+renderFormationPartners();
+}
+
+function renderFormationPartners(){
+// 可拖拽的伙伴列表
+var list=document.getElementById("formation-list");
+var existing=list.querySelector('.partner-drag-list');
+if(existing)existing.remove();
+
+var html='<div style="font-size:11px;color:#888;margin:12px 0 6px">已拥有的伙伴（点击选择）</div>';
+html+='<div class="partner-list" style="padding-bottom:10px">';
+state.partners.forEach(function(p,i){
+html+='<div class="partner-card'+(state.formation&&(state.formation.front.includes(i)||state.formation.back.includes(i))?" selected":"")+'" onclick="addToFormation('+i+')">';
+html+='<div class="partner-avatar">'+p.icon+'</div>';
+html+='<div style="flex:1;font-size:10px"><div>'+p.name+'</div><div style="color:#888">'+p.type+'</div></div></div>';
+});
+html+='</div>';
+list.innerHTML+=html;
+}
+
+function selectFormation(type){
+if(!state.formation)state.formation={type:type,front:[],back:[]};
+state.formation.type=type;
+renderFormation();
+}
+
+function addToFormation(idx){
+if(!state.formation)state.formation={type:"锋矢阵",front:[],back:[]};
+var f=state.formation;
+// 找空位
+if(f.front.length<3)f.front.push(idx);
+else if(f.back.length<3)f.back.push(idx);
+else showToast("前排和后排已满");
+renderFormation();
+}
+
+function togglePosition(pos,row){
+if(!state.formation)return;
+var arr=row==="front"?state.formation.front:state.formation.back;
+if(arr[pos]!==undefined){
+arr.splice(pos,1);
+renderFormation();
+}
+}
+
+function saveFormation(){
+if(!state.formation)state.formation={type:"锋矢阵",front:[],back:[]};
+save();
+showToast("阵型已保存！");
+}
+
 init();
 </script>
 </body>

@@ -1,13 +1,11 @@
 package com.game.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 /**
  * 武将实体 v2.1
  * 包含等级成长、星级系统
  */
-@Data
 @Entity
 @Table(name = "t_partner")
 public class Partner {
@@ -67,7 +65,84 @@ public class Partner {
     // 是否选中上阵
     private Boolean selected = false;
     
-    // ========== 计算方法 ==========
+    // ========== Getters and Setters ==========
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public Long getPlayerId() { return playerId; }
+    public void setPlayerId(Long playerId) { this.playerId = playerId; }
+    
+    public Integer getPartnerId() { return partnerId; }
+    public void setPartnerId(Integer partnerId) { this.partnerId = partnerId; }
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    
+    public String getIcon() { return icon; }
+    public void setIcon(String icon) { this.icon = icon; }
+    
+    public String getQuality() { return quality; }
+    public void setQuality(String quality) { this.quality = quality; }
+    
+    public String getFaction() { return faction; }
+    public void setFaction(String faction) { this.faction = faction; }
+    
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
+    
+    public Integer getAtk() { return atk; }
+    public void setAtk(Integer atk) { this.atk = atk; }
+    
+    public Integer getIntelligence() { return intelligence; }
+    public void setIntelligence(Integer intelligence) { this.intelligence = intelligence; }
+    
+    public Integer getLead() { return lead; }
+    public void setLead(Integer lead) { this.lead = lead; }
+    
+    public Integer getSpeed() { return speed; }
+    public void setSpeed(Integer speed) { this.speed = speed; }
+    
+    public Integer getGrowthAtk() { return growthAtk; }
+    public void setGrowthAtk(Integer growthAtk) { this.growthAtk = growthAtk; }
+    
+    public Integer getGrowthInt() { return growthInt; }
+    public void setGrowthInt(Integer growthInt) { this.growthInt = growthInt; }
+    
+    public Integer getGrowthLead() { return growthLead; }
+    public void setGrowthLead(Integer growthLead) { this.growthLead = growthLead; }
+    
+    public Integer getGrowthSpeed() { return growthSpeed; }
+    public void setGrowthSpeed(Integer growthSpeed) { this.growthSpeed = growthSpeed; }
+    
+    public Integer getLevel() { return level; }
+    public void setLevel(Integer level) { this.level = level; }
+    
+    public Integer getExp() { return exp; }
+    public void setExp(Integer exp) { this.exp = exp; }
+    
+    public Integer getMaxLevel() { return maxLevel; }
+    public void setMaxLevel(Integer maxLevel) { this.maxLevel = maxLevel; }
+    
+    public Integer getStar() { return star; }
+    public void setStar(Integer star) { this.star = star; }
+    
+    public Integer getStarExp() { return starExp; }
+    public void setStarExp(Integer starExp) { this.starExp = starExp; }
+    
+    public Integer getMaxTroops() { return maxTroops; }
+    public void setMaxTroops(Integer maxTroops) { this.maxTroops = maxTroops; }
+    
+    public String getSkill1() { return skill1; }
+    public void setSkill1(String skill1) { this.skill1 = skill1; }
+    
+    public String getSkill2() { return skill2; }
+    public void setSkill2(String skill2) { this.skill2 = skill2; }
+    
+    public Boolean getSelected() { return selected; }
+    public void setSelected(Boolean selected) { this.selected = selected; }
+    
+    // ========== Custom Methods ==========
     
     /**
      * 获取星级属性加成百分比
@@ -195,7 +270,7 @@ public class Partner {
         return Math.max(1, (int) dmg);
     }
     
-    // ========== 兼容旧版本方法 ==========
+    // ========== Compatibility Methods ==========
     
     /**
      * 获取生命值 (兼容旧版本)

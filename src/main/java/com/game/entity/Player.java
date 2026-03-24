@@ -38,6 +38,46 @@ public class Player {
     // 新增: 抽卡计数(用于保底)
     private Integer gachaCount = 0;
     
+    // ========== Getters and Setters ==========
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    
+    public Integer getLingqi() { return lingqi; }
+    public void setLingqi(Integer lingqi) { this.lingqi = lingqi; }
+    
+    public Integer getGold() { return gold; }
+    public void setGold(Integer gold) { this.gold = gold; }
+    
+    public Integer getZhanli() { return zhanli; }
+    public void setZhanli(Integer zhanli) { this.zhanli = zhanli; }
+    
+    public Integer getChapterId() { return chapterId; }
+    public void setChapterId(Integer chapterId) { this.chapterId = chapterId; }
+    
+    public Integer getBattleCount() { return battleCount; }
+    public void setBattleCount(Integer battleCount) { this.battleCount = battleCount; }
+    
+    public Integer getSigninDays() { return signinDays; }
+    public void setSigninDays(Integer signinDays) { this.signinDays = signinDays; }
+    
+    public String getSigninLastDate() { return signinLastDate; }
+    public void setSigninLastDate(String signinLastDate) { this.signinLastDate = signinLastDate; }
+    
+    public Integer getLevel() { return level; }
+    public void setLevel(Integer level) { this.level = level; }
+    
+    public Integer getExp() { return exp; }
+    public void setExp(Integer exp) { this.exp = exp; }
+    
+    public Integer getGachaCount() { return gachaCount; }
+    public void setGachaCount(Integer gachaCount) { this.gachaCount = gachaCount; }
+    
+    // ========== Business Methods ==========
+    
     // 等级所需经验公式: level * 100
     public int getExpForNextLevel() {
         return level * 100;

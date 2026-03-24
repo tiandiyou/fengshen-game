@@ -1,12 +1,10 @@
 package com.game.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 /**
  * 坐骑实体
  */
-@Data
 @Entity
 @Table(name = "t_mount")
 public class Mount {
@@ -43,6 +41,49 @@ public class Mount {
     
     // 星级
     private Integer star;
+    
+    // ========== Getters and Setters ==========
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public Long getPlayerId() { return playerId; }
+    public void setPlayerId(Long playerId) { this.playerId = playerId; }
+    
+    public Integer getMountId() { return mountId; }
+    public void setMountId(Integer mountId) { this.mountId = mountId; }
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    
+    public String getIcon() { return icon; }
+    public void setIcon(String icon) { this.icon = icon; }
+    
+    public String getQuality() { return quality; }
+    public void setQuality(String quality) { this.quality = quality; }
+    
+    public Integer getAtk() { return atk; }
+    public void setAtk(Integer atk) { this.atk = atk; }
+    
+    public Integer getDef() { return def; }
+    public void setDef(Integer def) { this.def = def; }
+    
+    public Integer getHp() { return hp; }
+    public void setHp(Integer hp) { this.hp = hp; }
+    
+    public Integer getSpeed() { return speed; }
+    public void setSpeed(Integer speed) { this.speed = speed; }
+    
+    public String getSkill() { return skill; }
+    public void setSkill(String skill) { this.skill = skill; }
+    
+    public Boolean getEquipped() { return equipped; }
+    public void setEquipped(Boolean equipped) { this.equipped = equipped; }
+    
+    public Integer getStar() { return star; }
+    public void setStar(Integer star) { this.star = star; }
+    
+    // ========== Business Methods ==========
     
     // 获取战力
     public int getZhanli() {

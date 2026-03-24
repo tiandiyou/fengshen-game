@@ -37,6 +37,32 @@ public class GachaRecord {
     // 是否为保底产出
     private Boolean isGuarantee = false;
     
+    // ========== Getters and Setters ==========
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public Long getPlayerId() { return playerId; }
+    public void setPlayerId(Long playerId) { this.playerId = playerId; }
+    
+    public LocalDateTime getGachaTime() { return gachaTime; }
+    public void setGachaTime(LocalDateTime gachaTime) { this.gachaTime = gachaTime; }
+    
+    public Integer getPartnerId() { return partnerId; }
+    public void setPartnerId(Integer partnerId) { this.partnerId = partnerId; }
+    
+    public String getPartnerName() { return partnerName; }
+    public void setPartnerName(String partnerName) { this.partnerName = partnerName; }
+    
+    public String getQuality() { return quality; }
+    public void setQuality(String quality) { this.quality = quality; }
+    
+    public String getGachaType() { return gachaType; }
+    public void setGachaType(String gachaType) { this.gachaType = gachaType; }
+    
+    public Boolean getIsGuarantee() { return isGuarantee; }
+    public void setIsGuarantee(Boolean isGuarantee) { this.isGuarantee = isGuarantee; }
+    
     @PrePersist
     public void prePersist() {
         this.gachaTime = LocalDateTime.now();
