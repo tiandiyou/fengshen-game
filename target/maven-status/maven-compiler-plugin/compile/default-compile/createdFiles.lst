@@ -12,7 +12,9 @@ com/game/controller/AchievementController.class
 com/game/config/SkillConfig.class
 com/game/entity/Alliance.class
 com/game/controller/PlayerController.class
+com/game/service/FormationService.class
 com/game/config/FateConfig.class
+com/game/service/PVPMatchService$BattleRecord.class
 com/game/config/CorsConfig.class
 com/game/entity/Season.class
 com/game/entity/Equipment.class
@@ -40,6 +42,7 @@ com/game/entity/GachaRecord.class
 com/game/mapper/EquipmentRepository.class
 com/game/entity/AllianceDiplomacy.class
 com/game/controller/ResourceController.class
+com/game/controller/FormationController.class
 com/game/service/GrowthService.class
 com/game/mapper/PlayerRepository.class
 com/game/config/SkillRequirementConfig.class
@@ -56,6 +59,7 @@ com/game/mapper/AllianceMemberRepository.class
 com/game/controller/SkillExchangeController.class
 com/game/controller/SeasonController.class
 com/game/entity/MapZone.class
+com/game/entity/Formation.class
 com/game/controller/admin/AdminController.class
 com/game/config/SkillExchangeConfig.class
 com/game/controller/WarController.class
@@ -63,6 +67,7 @@ com/game/mapper/ResourceRepository.class
 com/game/entity/User.class
 com/game/mapper/PartnerRepository.class
 com/game/config/FateConfig$1.class
+com/game/service/PVPMatchService.class
 com/game/entity/PlayerMap.class
 com/game/controller/BattleController.class
 com/game/mapper/MountRepository.class
@@ -84,7 +89,9 @@ com/game/entity/Material.class
 com/game/service/TeamRecommendService.class
 com/game/config/FateConfig$FateType.class
 com/game/controller/SigninController.class
+com/game/service/PVPMatchService$MatchInfo.class
 com/game/config/GrowthConfig.class
+com/game/service/FormationService$1.class
 com/game/entity/Skill.class
 com/game/entity/Cultivation.class
 com/game/service/GachaService$GachaResult.class
@@ -95,6 +102,7 @@ com/game/mapper/PlayerSkillRepository.class
 com/game/entity/Building.class
 com/game/mapper/CultivationRepository.class
 com/game/mapper/TeamRepository.class
+com/game/controller/PVPController.class
 com/game/entity/Partner.class
 com/game/controller/AuthController.class
 com/game/service/GachaService.class
@@ -103,3 +111,4 @@ com/game/entity/Resource.class
 com/game/entity/AllianceMember.class
 com/game/mapper/AllianceRepository.class
 com/game/config/BattleBalanceConfig.class
+com/game/mapper/FormationRepository.class

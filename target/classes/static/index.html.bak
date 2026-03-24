@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>封神榜 - 伐商演义</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei";background:#0a0a15;color:#fff;overflow-x:hidden}
+#app{max-width:480px;margin:0 auto;min-height:100vh;position:relative}
+
+/* 顶部导航 */
+.top-nav{position:sticky;top:0;background:linear-gradient(180deg,#1a1a2e,#0a0a15);padding:10px 15px;z-index:100;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333}
+.top-nav .logo{font-size:16px;color:#ffd700;font-weight:bold}
+.top-nav .res{display:flex;gap:12px;font-size:12px}
+.top-nav .res span{display:flex;align-items:center;gap:3px}
+
+/* 顶部功能折叠菜单 */
+.func-menu{background:#151520;border-bottom:1px solid #333;padding:8px 10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.func-menu::-webkit-scrollbar{display:none}
+.func-item{padding:6px 12px;background:rgba(255,255,255,0.05);border-radius:15px;font-size:11px;white-space:nowrap;cursor:pointer;border:1px solid transparent;transition:0.2s}
+.func-item.active{background:rgba(255,215,0,0.15);border-color:#ffd700;color:#ffd700}
+
+/* 主内容区 */
+.main{padding:10px;padding-bottom:70px}
+
+/* 卡片 */
+.card{background:#151520;border-radius:10px;padding:12px;margin-bottom:10px;border:1px solid #2a2a3a}
+.card-title{font-size:14px;color:#ffd700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.card-title .more{font-size:11px;color:#888}
+
+/* 伙伴网格 */
+.partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.partner-card{background:#1a1a2a;border-radius:10px;padding:10px;text-align:center;border:2px solid transparent;cursor:pointer;transition:0.2s}
+.partner-card:active{transform:scale(0.95)}
+.partner-card.selected{border-color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,0.3)}
+.partner-card.red{border-color:#e74c3c}
+.partner-card.orange{border-color:#e67e22}
+.partner-card.purple{border-color:#9b59b6}
+.partner-card.blue{border-color:#3498db}
+.partner-avatar{width:50px;height:50px;border-radius:50%;margin:0 auto 5px;background:#252535;display:flex;align-items:center;justify-content:center;font-size:22px}
+.partner-name{font-size:12px;margin:3px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.partner-star{color:#ffd700;font-size:10px}
+.partner-stats{font-size:10px;color:#666}
+
+/* 按钮 */
+.btn{padding:8px 16px;border-radius:20px;font-size:12px;border:none;cursor:pointer}
+.btn-primary{background:linear-gradient(180deg,#ff6b00,#c41e3a);color:#fff;border:1px solid #ffd700}
+.btn-success{background:linear-gradient(180deg,#27ae60,#1e8449);color:#fff}
+.btn-secondary{background:rgba(255,255,255,0.1);color:#fff}
+
+/* 抽卡弹窗 */
+.gacha-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:1000;display:none;justify-content:center;align-items:center}
+.gacha-modal.show{display:flex}
+.gacha-content{background:linear-gradient(180deg,#1a1a2e,#0a0a15);border:2px solid #ffd700;border-radius:15px;padding:20px;text-align:center;width:280px}
+.gacha-card{border:3px solid #e74c3c;border-radius:12px;padding:15px;margin:15px 0;background:#151520}
+.gacha-avatar{font-size:50px}
+.gacha-name{font-size:18px;color:#e74c3c;margin-top:10px}
+.gacha-info{font-size:12px;color:#888}
+
+/* 底部操作栏 */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#151520;border-top:1px solid #333;padding:10px 15px;display:flex;gap:10px;max-width:480px;margin:0 auto}
+.bottom-bar .btn{flex:1;text-align:center}
+
+/* 队伍设置 */
+.team-list{display:flex;flex-direction:column;gap:8px}
+.team-item{background:#1a1a2a;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center}
+.team-item .slots{display:flex;gap:5px}
+.team-slot{width:40px;height:40px;border-radius:50%;background:#252535;display:flex;align-items:center;justify-content:center;font-size:18px}
+
+/* 战斗区域 */
+.battle-area{background:#1a1a2a;border-radius:10px;padding:15px;min-height:150px}
+.battle-teams{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.battle-team{display:flex;gap:5px}
+.battle-unit{width:35px;height:35px;border-radius:50%;background:#e74c3c;display:flex;align-items:center;justify-content:center}
+.battle-vs{color:#ffd700;font-size:20px}
+.battle-log{background:#0a0a15;border-radius:8px;padding:10px;height:80px;overflow-y:auto;font-size:11px;color:#888}
+
+/* 资源栏 */
+.resource-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #2a2a3a}
+.resource-row:last-child{border:none}
+.resource-label{color:#888}
+.resource-value{color:#ffd700}
+
+/* 联盟列表 */
+.alliance-list{display:flex;flex-direction:column;gap:8px}
+.alliance-item{background:#1a1a2a;border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center}
+.alliance-info{display:flex;align-items:center;gap:10px}
+.alliance-icon{width:35px;height:35px;border-radius:50%;background:#9b59b6;display:flex;align-items:center;justify-content:center}
+.alliance-name{font-size:14px}
+.alliance-members{font-size:11px;color:#888}
+
+/* 赛季排行 */
+.rank-list{display:flex;flex-direction:column;gap:5px}
+.rank-item{display:flex;align-items:center;gap:10px;padding:8px;background:#1a1a2a;border-radius:8px}
+.rank-num{font-size:16px;color:#ffd700;width:25px}
+.rank-name{flex:1;font-size:13px}
+.rank-score{color:#e74c3c;font-size:12px}
+
+/* 提示 */
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:#fff;padding:12px 24px;border-radius:8px;font-size:13px;z-index:2000;display:none}
+.toast.show{display:block;animation:fadeInOut 2s}
+@keyframes fadeInOut{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0}}
+
+/* 加载 */
+.loading{text-align:center;padding:30px;color:#666}
+
+/* 空状态 */
+.empty{text-align:center;padding:40px 20px;color:#666}
+.empty-icon{font-size:40px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- 登录页 -->
+<div id="page-login" class="page">
+    <div style="text-align:center;padding-top:60px">
+        <div style="font-size:60px">⚔️</div>
+        <div style="font-size:24px;color:#ffd700;margin:15px 0">封神榜</div>
+        <div style="color:#888;margin-bottom:30px">伐商演义</div>
+    </div>
+    <div style="padding:20px">
+        <input type="text" id="login-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showRegister()">注册账号</button>
+    </div>
+</div>
+
+<!-- 注册页 -->
+<div id="page-register" class="page" style="display:none">
+    <div style="text-align:center;padding-top:40px">
+        <div style="font-size:24px;color:#ffd700;margin:15px 0">注册账号</div>
+    </div>
+    <div style="padding:20px">
+        <input type="text" id="reg-user" placeholder="账号" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <input type="password" id="reg-pwd" placeholder="密码" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:10px">
+        <input type="text" id="reg-name" placeholder="昵称" style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="register_fixed()">注册</button>
+        <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="showLogin()">返回登录 style="width:100%;padding:12px;background:#151520;border:1px solid #333;border-radius:8px;color:#fff;margin-bottom:15px">
+        <button class="btn btn-primary" style="width:100%;padding:12px" onclick="login_fixed()">登录</button>
+    </div>
+</div>
+
+<!-- 首页 -->
+<div id="page-home" class="page" style="display:none">
+    <!-- 顶部资源 -->
+    <div class="top-nav">
+        <div class="logo">⚔️ 封神榜</div>
+        <div class="res">
+            <span>💰<span id="gold">0</span></span>
+            <span>💎<span id="lingqi">0</span></span>
+        </div>
+    </div>
+    
+    <!-- 功能菜单 -->
+    <div class="func-menu">
+        <div class="func-item active" data-page="partners" onclick="switchPage(this)">伙伴</div>
+        <div class="func-item" data-page="teams" onclick="switchPage(this)">队伍</div>
+        <div class="func-item" data-page="battle" onclick="switchPage(this)">战斗</div>
+        <div class="func-item" data-page="alliance" onclick="switchPage(this)">联盟</div>
+        <div class="func-item" data-page="season" onclick="switchPage(this)">赛季</div>
+        <div class="func-item" data-page="skills" onclick="switchPage(this)">技能
+        <div class="func-item" data-page="shop" onclick="switchPage(this)">商店
+        <div class="func-item" data-page="quest" onclick="switchPage(this)">任务
+        <div class="func-item" data-page="rank" onclick="switchPage(this)">排行
+        <div class="func-item" data-page="resource" onclick="switchPage(this)">资源</div>
+    </div>
+    
+    <!-- 主内容 -->
+    <div class="main">
+        <!-- 伙伴页 -->
+        <div id="page-partners" class="page-content">
+            <div class="card">
+                <div class="card-title">
+                    我的伙伴
+                    <button class="btn btn-primary" onclick="gacha()">抽卡</button>
+                </div>
+                <div class="partner-grid" id="partner-list"></div>
+            </div>
+        </div>
+        
+        <!-- 队伍页 -->
+        <div id="page-teams" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">队伍设置</div>
+                <div class="team-list" id="team-list"></div>
+            </div>
+        </div>
+        
+        <!-- 战斗页 -->
+        <div id="page-battle" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">战斗模拟</div>
+                <div class="battle-area">
+                    <div class="battle-teams">
+                        <div class="battle-team" id="battle-team1"></div>
+                        <div class="battle-vs">VS</div>
+                        <div class="battle-team" id="battle-team2"></div>
+                    </div>
+                    <div class="battle-log" id="battle-log">点击下方按钮开始战斗</div>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <button class="btn btn-primary" onclick="doBattle()">开始战斗</button>
+                <button class="btn btn-success" onclick="simBattle()">阵容模拟</button>
+            </div>
+        </div>
+        
+        <!-- 联盟页 -->
+        <div id="page-alliance" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">
+                    联盟
+                    <button class="btn btn-secondary" onclick="createAlliance()">创建</button>
+                </div>
+                <div class="alliance-list" id="alliance-list"></div>
+            </div>
+        </div>
+        
+        <!-- 赛季页 -->
+        <div id="page-season" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">封神榜</div>
+                <div class="rank-list" id="rank-list"></div>
+            </div>
+            <div class="card">
+                <div class="card-title">我的战功</div>
+                <div id="my-credit"></div>
+            </div>
+        </div>
+        
+        
+        <!-- 技能页 -->
+        <div id="page-skills" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">我的技能</div>
+                <div class="partner-grid" id="my-skill-list"></div>
+            </div>
+            <div class="card">
+                <div class="card-title">可兑换技能</div>
+                <div class="partner-grid" id="skill-list"></div>
+            </div>
+        </div>
+        
+        <!-- 商店页 -->
+        <div id="page-shop" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">道具商店</div>
+                <div id="shop-list"></div>
+            </div>
+        </div>
+        
+        <!-- 任务页 -->
+        <div id="page-quest" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">每日任务</div>
+                <div id="quest-list"></div>
+            </div>
+        </div>
+        
+        <!-- 排行页 -->
+        <div id="page-rank" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">战力排行</div>
+                <div id="power-rank"></div>
+            </div>
+        </div>
+
+<!-- 资源页 -->
+        <div id="page-resource" class="page-content" style="display:none">
+            <div class="card">
+                <div class="card-title">资源产出</div>
+                <div class="resource-row"><span class="resource-label">🍚 粮食</span><span class="resource-value" id="res-food">0</span></div>
+                <div class="resource-row"><span class="resource-label">🪵 木材</span><span class="resource-value" id="res-wood">0</span></div>
+                <div class="resource-row"><span class="resource-label">⛏️ 铁矿</span><span class="resource-value" id="res-iron">0</span></div>
+                <div class="resource-row"><span class="resource-label">💰 金币</span><span class="resource-value" id="res-gold">0</span></div>
+            </div>
+            <div class="card">
+                <div class="card-title">建筑</div>
+                <div id="building-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部操作栏 -->
+    <div class="bottom-bar">
+        <button class="btn btn-secondary" onclick="refresh()">刷新</button>
+        <button class="btn btn-primary" onclick="gacha()">抽卡</button>
+    </div>
+</div>
+
+</div>
+
+<!-- 抽卡弹窗 -->
+<div class="gacha-modal" id="gacha-modal" onclick="closeGacha(event)">
+    <div class="gacha-content">
+        <div class="gacha-card">
+            <div class="gacha-avatar" id="gacha-avatar">⚔️</div>
+            <div class="gacha-name" id="gacha-name">武将名</div>
+            <div class="gacha-info" id="gacha-info">阵营 · 品质 · 兵种</div>
+        </div>
+        <button class="btn btn-primary" onclick="closeGacha()">确定</button>
+    </div>
+</div>
+
+<!-- 提示 -->
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '/api';
+let playerId = localStorage.playerId || 0;
+
+// 显示提示
+function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// 切换功能页
+function switchPage(el) {
+    document.querySelectorAll('.func-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    const page = el.dataset.page;
+    document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
+    document.getElementById('page-' + page).style.display = 'block';
+    loadPageData(page);
+}
+
+// 加载页面数据
+function loadPageData(page) {
+    if(page === 'partners') loadPartners();
+    if(page === 'teams') loadTeams();
+    if(page === 'battle') loadBattle();
+    if(page === 'alliance') loadAlliance();
+    if(page === 'season') loadSeason();
+    if(page === 'resource') loadResource();
+    if(page === 'skills') loadSkills();
+    if(page === 'shop') loadShop();
+    if(page === 'quest') loadQuest();
+    if(page === 'rank') loadRank();
+}
+
+// 登录
+function showRegister() {
+    document.getElementById('page-login').style.display = 'none';
+    document.getElementById('page-login').style.display = 'none';
+    document.getElementById('page-register').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('page-register').style.display = 'none';
+    document.getElementById('page-login').style.display = 'block';
+}
+
+function register_fixed() {
+    var u = document.getElementById('reg-user').value;
+    var p = document.getElementById('reg-pwd').value;
+    var n = document.getElementById('reg-name').value || u;
+    if(!u || !p) { alert('请输入账号密码'); return; }
+    
+    fetch('/api/player/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: u, password: p, name: n})
+    }).then(function(r) { return r.json(); })
+    .then(function(r) {
+        if(r.success) {
+            playerId = r.playerId;
+            document.getElementById('page-register').style.display = 'none';
+            document.getElementById('page-login').style.display = 'none';
+            document.getElementById('page-home').style.display = 'block';
+            initPlayerData(playerId);
+        } else {
+            alert(r.message || '注册失败');
+        }
+    });
+}
+
+function register() {
+    const u = document.getElementById('reg-user').value;
+    const p = document.getElementById('reg-pwd').value;
+    const n = document.getElementById('reg-name').value || u;
+    if(!u || !p) return alert('请输入账号密码');
+    
+    fetch(API + '/player/register', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: u, password: p, name: n})
+    }).then(r => r.json()).then(function(r) {
+        if(r.success) {
+            playerId = r.playerId;
+            document.getElementById('page-register').style.display = 'none';
+            document.getElementById('page-login').style.display = 'none';
+            document.getElementById('page-home').style.display = 'block';
+            initPlayerData(playerId);
+        } else {
+            alert(r.message || '注册失败');
+        }
+    }).catch(function(e) {
+        alert('注册失败: ' + e);
+    });
+}
+
+function login_fixed() {
+    // 修复版本
+    var u = document.getElementById('login-user').value;
+    var p = document.getElementById('login-pwd').value;
+    if(!u || !p) { alert('请输入账号密码'); return; }
+    
+    fetch('/api/player/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: u, password: p})
+    }).then(function(r) { return r.json(); })
+    .then(function(r) {
+        if(r.success) {
+            playerId = r.playerId;
+            initPlayerData(playerId);
+            localStorage.playerId = playerId;
+            document.getElementById('page-login').style.display = 'none';
+            document.getElementById('page-home').style.display = 'block';
+            loadAll();
+        } else {
+            alert(r.message || '登录失败');
+        }
+    });
+}
+
+function login() {
+    const u = document.getElementById('login-user').value;
+    const p = document.getElementById('login-pwd').value;
+    if(!u || !p) return toast('请输入账号密码');
+    
+    fetch(API + '/player/login', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: u, password: p})
+    }).then(r => r.json());
+    
+    if(r.success) {
+        playerId = r.playerId;
+        // 初始化玩家数据
+        initPlayerData(playerId);;
+        localStorage.playerId = playerId;
+        document.getElementById('page-login').style.display = 'none';
+        document.getElementById('page-home').style.display = 'block';
+        loadAll();
+    } else {
+        toast(r.message || '登录失败');
+    }
+}
+
+// 加载所有数据
+// 初始化玩家数据
+function initPlayerData(pid) {
+    try {
+        // 创建城池
+        fetch(API + '/city/create', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: pid, name: '主城'})
+        });
+        // 初始化资源
+        fetch(API + '/resource/init', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: pid, cityId: 1})
+        });
+        // 初始化建筑
+        fetch(API + '/building/init?cityId=1', {method: 'POST'});
+        // 初始化队伍
+        for(let i=0; i<5; i++) {
+            fetch(API + '/team/create', {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({playerId: pid, cityId: 1, teamIndex: i})
+            });
+        }
+    } catch(e) {}
+}
+
+function loadAll() {
+    const r = fetch(API + '/player/' + playerId).then(r => r.json());
+    if(r.success) {
+        document.getElementById('gold').textContent = r.gold || 0;
+        document.getElementById('lingqi').textContent = r.lingqi || 0;
+    }
+    loadPartners();
+}
+
+// 加载伙伴
+function loadPartners() {
+    const r = fetch(API + '/gacha/partners/' + playerId).then(r => r.json());
+    const list = document.getElementById('partner-list');
+    if(!r.partners || r.partners.length === 0) {
+        list.innerHTML = '<div class="empty"><div class="empty-icon">👥</div>暂无伙伴<br>点击抽卡获取</div>';
+        return;
+    }
+    list.innerHTML = r.partners.map(p => `
+        <div class="partner-card ${p.quality}" onclick="showPartner(${p.partnerId})">
+            <img class="partner-avatar" src="https://api.dicebear.com/9.x/initials/svg?seed=${p.name}&backgroundColor=${getColor(p.quality)}&textColor=fff" onerror="this.src='⚔️'">
+            <div class="partner-name">${p.name}</div>
+            <div class="partner-star">${'★'.repeat(p.star)}</div>
+            <div class="partner-stats">攻${p.atk}</div>
+        </div>
+    `).join('');
+}
+
+function getColor(q) {
+    return q === 'red' ? 'e74c3c' : q === 'orange' ? 'e67e22' : q === 'purple' ? '9b59b6' : '3498db';
+}
+
+// 抽卡
+function gacha() {
+    const r = fetch(API + '/gacha/draw', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({playerId: playerId, type: 'single'})
+    }).then(r => r.json());
+    
+    if(r.success && r.partner) {
+        const p = r.partner;
+        document.getElementById('gacha-avatar').innerHTML = `<img src="https://api.dicebear.com/9.x/initials/svg?seed=${p.name}&backgroundColor=${getColor(p.quality)}&textColor=fff">`;
+        document.getElementById('gacha-name').textContent = p.name;
+        document.getElementById('gacha-info').textContent = p.faction + ' · ' + p.quality + ' · ' + p.type;
+        document.getElementById('gacha-modal').classList.add('show');
+        loadPartners();
+        loadAll();
+    } else {
+        toast(r.message || '抽卡失败');
+    }
+}
+
+function closeGacha(e) {
+    if(e && e.target !== e.currentTarget) return;
+    document.getElementById('gacha-modal').classList.remove('show');
+}
+
+// 加载队伍
+function loadTeams() {
+    const r = fetch(API + '/team/list?playerId=' + playerId).then(r => r.json());
+    const list = document.getElementById('team-list');
+    if(!r.teams || r.teams.length === 0) {
+        list.innerHTML = '<div class="empty">暂无队伍</div>';
+        return;
+    }
+    list.innerHTML = r.teams.map((t,i) => `
+        <div class="team-item">
+            <div>队伍${i+1}</div>
+            <div class="team-slots">
+                ${(t.partners || []).map(p => p ? `<div class="team-slot">${p.name ? p.name.charAt(0) : '?'}</div>` : '<div class="team-slot">+</div>').join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+// 战斗
+function doBattle() {
+    document.getElementById('battle-log').innerHTML = '战斗进行中...';
+    const r = fetch(API + '/war/simulate', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({team1:[1,2],team2:[1,2]})
+    }).then(r => r.json());
+    
+    if(r.success) {
+        document.getElementById('battle-log').innerHTML = r.battle.logs.join('<br>');
+    }
+}
+
+function simBattle() {
+    const r = fetch(API + '/war/simulate?team1=1,2&team2=1,2', {method:'POST'}).then(r => r.json());
+    if(r.success) toast('模拟完成');
+}
+
+// 联盟
+function loadAlliance() {
+    const r = fetch(API + '/alliance/list').then(r => r.json());
+    const list = document.getElementById('alliance-list');
+    list.innerHTML = (r.alliances || []).map(a => `
+        <div class="alliance-item">
+            <div class="alliance-info">
+                <div class="alliance-icon">${a.icon || '⚔️'}</div>
+                <div>
+                    <div class="alliance-name">${a.name}</div>
+                    <div class="alliance-members">${a.memberCount || 0}/20人</div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="joinAlliance(${a.id})">加入</button>
+        </div>
+    `).join('') || '<div class="empty">暂无联盟</div>';
+}
+
+function joinAlliance(id) {
+    const r = fetch(API + '/alliance/join', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({playerId: playerId, allianceId: id})
+    }).then(r => r.json());
+    toast(r.success ? '加入成功' : r.message);
+}
+
+function createAlliance() {
+    const name = prompt('请输入联盟名称:');
+    if(name) {
+        fetch(API + '/alliance/create', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({playerId: playerId, name: name})
+        }).then(r => r.json()).then(r => {
+            toast(r.success ? '创建成功' : r.message);
+            loadAlliance();
+        });
+    }
+}
+
+// 赛季
+function loadSeason() {
+    const r = fetch(API + '/season/ranking').then(r => r.json());
+    const list = document.getElementById('rank-list');
+    list.innerHTML = (r.ranking || []).map((t,i) => `
+        <div class="rank-item">
+            <div class="rank-num">${i+1}</div>
+            <div class="rank-name">玩家${t.playerId}</div>
+            <div class="rank-score">${t.credit}战功</div>
+        </div>
+    `).join('') || '<div class="empty">暂无排行';
+    
+    const c = fetch(API + '/season/credit?playerId=' + playerId).then(r => r.json());
+    document.getElementById('my-credit').innerHTML = c.success ? `战功: ${c.credit} | 击杀: ${c.kills}` : '暂无战功';
+}
+
+// 资源
+function loadResource() {
+    fetch(API + '/resource/my?playerId=' + playerId + '&cityId=1')
+    .then(function(res) { return res.json(); })
+    .then(function(r) {
+    if(r.success && r.resource) {
+        document.getElementById('res-food').textContent = r.resource.food || 0;
+        document.getElementById('res-wood').textContent = r.resource.wood || 0;
+        document.getElementById('res-iron').textContent = r.resource.iron || 0;
+        document.getElementById('res-gold').textContent = r.resource.gold || 0;
+    }
+    
+    const b = fetch(API + '/building/list?cityId=1').then(r => r.json());
+    if(b.success) {
+        document.getElementById('building-list').innerHTML = (b.buildings || []).map(b => `
+            <div class="resource-row">
+                <span class="resource-label">${b.type}</span>
+                <span class="resource-value">Lv.${b.level}</span>
+            </div>
+        `).join('');
+    }
+}
+
+// 刷新
+function refresh() {
+    loadAll();
+    toast('已刷新');
+}
+
+// 启动
+if(playerId) {
+    document.getElementById('page-login').style.display = 'none';
+    document.getElementById('page-home').style.display = 'block';
+    loadAll();
+}
+</script>
+</body>
+</html>

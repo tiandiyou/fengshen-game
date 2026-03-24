@@ -1,0 +1,304 @@
+{
+  "apis": {
+    "alliance__create": {
+      "hash": "67b5b36b3a6acf968a1656e2c1571aca"
+    },
+    "alliance__list": {
+      "hash": "691a7e8a25b983e8241d45aa116b6544"
+    },
+    "alliance__join": {
+      "hash": "9aadf9839f8ee6224fb697038a3102a6"
+    },
+    "alliance__my": {
+      "hash": "83ac354a5584baf4a6addd765b840f27"
+    },
+    "quest__list": {
+      "hash": "b47784f91f66d70349f19371a54e7de8"
+    },
+    "quest__claim": {
+      "hash": "3c866850608bf4c30e6167913909b0b3"
+    },
+    "battlelog__record": {
+      "hash": "505f06ad9faf16b9dff059abaad110b8"
+    },
+    "battlelog__log": {
+      "hash": "05e8b5bd155e035800bd292798f2365e"
+    },
+    "battlelog__stats": {
+      "hash": "a4ad32b21bb6553e789f1a82ca2d8bf7"
+    },
+    "signin__status": {
+      "hash": "4484e82d2cf5eef1cad2214c65c57127"
+    },
+    "signin__do": {
+      "hash": "d49fa1f403c0875ce40834770e1eb391"
+    },
+    "season__start": {
+      "hash": "1808c922cf06f3d7b163b813915edd2a"
+    },
+    "season__current": {
+      "hash": "51eff93f5fa959b1e7445a9c93b28107"
+    },
+    "season__credit": {
+      "hash": "4707567ba298377f2a3b27d79dbdb07c"
+    },
+    "season__addCredit": {
+      "hash": "54c215bd452590df891c342dffb00643"
+    },
+    "season__ranking": {
+      "hash": "b00efa531ce0d557c634affc8d42329e"
+    },
+    "season__exchange": {
+      "hash": "7be9cabe4e872b24062d92b09cb50c03"
+    },
+    "season__equipment": {
+      "hash": "60f64ac38e438ba6cdd1f90dcdb4e6a8"
+    },
+    "player__{id}": {
+      "hash": "b63d1d69cc5621f6b264d1ecb200a61e"
+    },
+    "player__register": {
+      "hash": "22108f20cf181735b0b435de9bdddc68"
+    },
+    "player__login": {
+      "hash": "44d7a3d7e5a50b9b3a28618c28eb63bd"
+    },
+    "player__create": {
+      "hash": "8b553878df0b9e03b8f9ee3a0992c135"
+    },
+    "player__update": {
+      "hash": "db607bc4e475383d227b95f1b9286ed0"
+    },
+    "player__chapters": {
+      "hash": "1ccb249d4f96e090cd3e718dcc5191c3"
+    },
+    "player__treasures": {
+      "hash": "d909e8ca7dd955e0e8484379ea42defa"
+    },
+    "rank__list": {
+      "hash": "38e22995c0dfdf92155a4bfbcc7303da"
+    },
+    "auth__register": {
+      "hash": "6e700e07236eb18c0b792c506d5eca6a"
+    },
+    "auth__login": {
+      "hash": "e915af11d4376e188d403a7d71bbbbf9"
+    },
+    "auth__verify": {
+      "hash": "e75f89a16530f33dfb5e593f3dc657dc"
+    },
+    "growth__level-up": {
+      "hash": "f76940740f9b3af4ca0255ef1a83c2c6"
+    },
+    "growth__star-up": {
+      "hash": "7865e9810691c31fbd217e8d7c8477bd"
+    },
+    "growth__breakthrough": {
+      "hash": "4b626805c343106ca87913f4e150ce69"
+    },
+    "growth__info": {
+      "hash": "69077bd9496fc4ee9201bbac8cd247e3"
+    },
+    "building__init": {
+      "hash": "cd4328523de05e29777d04d31a9d306e"
+    },
+    "building__list": {
+      "hash": "62b41abc29388425ec2acc5d2793d66e"
+    },
+    "building__upgrade": {
+      "hash": "652e469aa4c0410b55095875ca28a960"
+    },
+    "building__bonus": {
+      "hash": "91ef92554820ff4de1e7032f2c5ec424"
+    },
+    "sweep__check": {
+      "hash": "a8910acb1f8f29350d8667024e31de8a"
+    },
+    "sweep__run": {
+      "hash": "467fc5c4d867179c40d77a394770b814"
+    },
+    "treasure__list": {
+      "hash": "db81735f22c4b23416959ec8e3b10101"
+    },
+    "treasure__receive": {
+      "hash": "7e176d24b2e120105da5f5129821a8c8"
+    },
+    "war__siege": {
+      "hash": "db5edb818e666fe4d145d8de9fbcf4b8"
+    },
+    "war__simulate": {
+      "hash": "c68403c1738dcf42a1b4112f62c762ac"
+    },
+    "war__team-power": {
+      "hash": "85b1b91087e6eaddf5ad1eb935fd9faf"
+    },
+    "gacha__heroes": {
+      "hash": "fd9eb5c24cd55e11e684603702d2fc37"
+    },
+    "gacha__draw": {
+      "hash": "d2d4cd40d67b494dc922cc67a8eca0b1"
+    },
+    "gacha__records": {
+      "hash": "6d6852dcfa4510f83c0109505a60e49c"
+    },
+    "gacha__upgrade": {
+      "hash": "6ef31c0e646256e868cf9499304bbfb6"
+    },
+    "gacha__partner_{id}": {
+      "hash": "c52f67cf36b4c9e96a81d54bd9d79b5c"
+    },
+    "recommend__recommend": {
+      "hash": "78f9707d55f1ecddf80adaaf6f79ed52"
+    },
+    "recommend__best": {
+      "hash": "1566bc52f5e051545137734804375d85"
+    },
+    "cultivation__info": {
+      "hash": "58f6e8f5b53f47f460e23bf67c4af560"
+    },
+    "cultivation__choose": {
+      "hash": "2a9fef1a0579f0cf1b67a5424418f634"
+    },
+    "cultivation__practice": {
+      "hash": "2f9ed7db6180e1521da2ad2fdbfe46f1"
+    },
+    "cultivation__accelerate": {
+      "hash": "282198d0b342aed6b9653e4914d29b5d"
+    },
+    "skillexchange__list": {
+      "hash": "fd35596cf66392e7abbee846b30bf880"
+    },
+    "skillexchange__detail": {
+      "hash": "186af650fe69ec0817cbb92c685ef73a"
+    },
+    "skillexchange__my": {
+      "hash": "195cbbdcdaf4ed714c74f2673173e6b1"
+    },
+    "skillexchange__exchange": {
+      "hash": "e6ebc845fb5256eb5c130946ec586b48"
+    },
+    "skillexchange__upgrade": {
+      "hash": "f731608f1231ed9defcbc2b8c85df7c1"
+    },
+    "skillexchange__heroes": {
+      "hash": "f9aa3af25abfcb94599ed5897c9b5638"
+    },
+    "map__init": {
+      "hash": "ecf303fa2c8c2561d119c68c44ee6fa2"
+    },
+    "map__zones": {
+      "hash": "c025152f79d9ae0e9987b6ff74c69d7c"
+    },
+    "map__my": {
+      "hash": "2c3aa6e3e4c7773debdbaddc4b3bc13d"
+    },
+    "map__move": {
+      "hash": "3ae8cfc6c5df181fabfe3fa2f6e8b34b"
+    },
+    "map__relic": {
+      "hash": "e6fade26a67e4e67a42f3498775189c3"
+    },
+    "mount__list": {
+      "hash": "1c6b705767257cdaac05529066be89aa"
+    },
+    "mount__explore": {
+      "hash": "fa5356cddeb9d5d9477c284af165ea29"
+    },
+    "mount__equip": {
+      "hash": "2cbfee3cd44a84a9909b46fcf9bc1f77"
+    },
+    "mount__unequip": {
+      "hash": "1d7e3b29780992111ef163adb39038fe"
+    },
+    "diplomacy__set": {
+      "hash": "bdec8add71d08b8813ef3e429c177d6b"
+    },
+    "diplomacy__view": {
+      "hash": "7d85d1fd4ee63140c088fed3708f510c"
+    },
+    "diplomacy__list": {
+      "hash": "89f91411f1d5de756834a1d5c9454ce3"
+    },
+    "resource__init": {
+      "hash": "1582b79ceebf7ddb4b5a423ae3c0a3a3"
+    },
+    "resource__my": {
+      "hash": "7669ec8070d8ba37ae3b1e73bff1d954"
+    },
+    "resource__produce": {
+      "hash": "5868de7bd43940673d8ab7fa1fbdbdd3"
+    },
+    "partner__list": {
+      "hash": "c4167e292e0255feb6a090613f2ce659"
+    },
+    "partner__select": {
+      "hash": "7c129f8573ef9f0993b05712c61602d3"
+    },
+    "partner__star": {
+      "hash": "7fbc9c9770cdc06713fa2b38fcb75dc4"
+    },
+    "partner__delete": {
+      "hash": "01368a19f406dcecb14d4804640371f0"
+    },
+    "team__list": {
+      "hash": "591d4f666812466bf6b2f9a1bf79648c"
+    },
+    "team__set": {
+      "hash": "f186f6f231136568d18631b66d5184ad"
+    },
+    "team__rename": {
+      "hash": "783228da10197d4e4cc6bbd364a88baa"
+    },
+    "team__delete": {
+      "hash": "66e430e0a7e1442043e82bbb3cd2189d"
+    },
+    "team__max-teams": {
+      "hash": "02d99e0ccb1f67c2ad95ff93472aa711"
+    },
+    "team__faction-bonus": {
+      "hash": "0e5df34c1f903fb9f4e79411f5175846"
+    },
+    "team__factions": {
+      "hash": "74acb73d9c71d365c139586f03057d0d"
+    },
+    "team__fate-bonus": {
+      "hash": "2718be8f36ee8f392fc355b44abf4477"
+    },
+    "team__fates": {
+      "hash": "7a09ab51341306840c96e9402ed7b04e"
+    },
+    "team__hero-fates": {
+      "hash": "4ce775c96ad440b132f33355386d6721"
+    },
+    "achievement__list": {
+      "hash": "cc0197b243a593058d94bdbfb266ecd1"
+    },
+    "achievement__claim": {
+      "hash": "194f843f191631890bdf036a206c5125"
+    },
+    "city__my": {
+      "hash": "36a389c9960d984c1b9dfc4fcdae633d"
+    },
+    "city__upgrade": {
+      "hash": "f81a07796ba49613ed1087880d58c976"
+    },
+    "city__collect": {
+      "hash": "1809d4b283e5e44399a6dc5907c98174"
+    },
+    "city__morale": {
+      "hash": "7a1ae996b7ffc8358546cd3f9befdf60"
+    },
+    "battle__start": {
+      "hash": "9fd4130bd328604e1877b67e8c7c0cc4"
+    },
+    "battle__result": {
+      "hash": "354df19bbab3a6b45bd08503c47ffebf"
+    },
+    "shop__list": {
+      "hash": "257777194d11f6499245530c3a61e0e9"
+    },
+    "shop__buy": {
+      "hash": "cd23330727819aa5f5789a2f8de57080"
+    }
+  }
+}
