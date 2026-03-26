@@ -7,31 +7,33 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2026-03-25T03:22:08.293+08:00  INFO 3624607 --- [fengshen-game] [           main] com.game.FengshenApplication             : Starting FengshenApplication v1.0.0 using Java 17.0.18 with PID 3624607 (/root/.openclaw/workspace/fengshen-game/target/fengshen-game-1.0.0.jar started by root in /root/.openclaw/workspace/fengshen-game)
-2026-03-25T03:22:08.298+08:00  INFO 3624607 --- [fengshen-game] [           main] com.game.FengshenApplication             : No active profile set, falling back to 1 default profile: "default"
-2026-03-25T03:22:09.407+08:00  INFO 3624607 --- [fengshen-game] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-03-25T03:22:09.545+08:00  INFO 3624607 --- [fengshen-game] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 24 JPA repository interfaces.
-2026-03-25T03:22:10.193+08:00  INFO 3624607 --- [fengshen-game] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-03-25T03:22:10.201+08:00  INFO 3624607 --- [fengshen-game] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-03-25T03:22:10.201+08:00  INFO 3624607 --- [fengshen-game] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
-2026-03-25T03:22:10.238+08:00  INFO 3624607 --- [fengshen-game] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-03-25T03:22:10.239+08:00  INFO 3624607 --- [fengshen-game] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1826 ms
-2026-03-25T03:22:10.269+08:00  INFO 3624607 --- [fengshen-game] [           main] com.zaxxer.hikari.HikariDataSource       : FengshenHikariPool - Starting...
-2026-03-25T03:22:10.426+08:00  INFO 3624607 --- [fengshen-game] [           main] com.zaxxer.hikari.pool.HikariPool        : FengshenHikariPool - Added connection conn0: url=jdbc:h2:mem:fengshen user=SA
-2026-03-25T03:22:10.428+08:00  INFO 3624607 --- [fengshen-game] [           main] com.zaxxer.hikari.HikariDataSource       : FengshenHikariPool - Start completed.
-2026-03-25T03:22:10.476+08:00  INFO 3624607 --- [fengshen-game] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:fengshen'
-2026-03-25T03:22:10.622+08:00  INFO 3624607 --- [fengshen-game] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-03-25T03:22:10.681+08:00  INFO 3624607 --- [fengshen-game] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
-2026-03-25T03:22:10.726+08:00  INFO 3624607 --- [fengshen-game] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-03-25T03:22:10.981+08:00  INFO 3624607 --- [fengshen-game] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-03-25T03:22:11.022+08:00  WARN 3624607 --- [fengshen-game] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-03-25T03:22:12.244+08:00  INFO 3624607 --- [fengshen-game] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-03-25T03:22:12.315+08:00  INFO 3624607 --- [fengshen-game] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-03-25T03:22:13.583+08:00  WARN 3624607 --- [fengshen-game] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-03-25T03:22:13.619+08:00  INFO 3624607 --- [fengshen-game] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2026-03-25T03:22:14.307+08:00  INFO 3624607 --- [fengshen-game] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-03-25T03:22:14.325+08:00  INFO 3624607 --- [fengshen-game] [           main] com.game.FengshenApplication             : Started FengshenApplication in 6.832 seconds (process running for 7.37)
-2026-03-25T03:22:22.001+08:00  INFO 3624607 --- [fengshen-game] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-03-25T03:22:22.001+08:00  INFO 3624607 --- [fengshen-game] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-03-25T03:22:22.002+08:00  INFO 3624607 --- [fengshen-game] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2026-03-25T03:22:46.643+08:00  WARN 3624607 --- [fengshen-game] [nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "list"]
+2026-03-26T15:21:58.067+08:00  INFO 4135838 --- [fengshen-game] [           main] com.game.FengshenApplication             : Starting FengshenApplication v1.0.0 using Java 17.0.18 with PID 4135838 (/root/.openclaw/workspace/fengshen-game/target/fengshen-game-1.0.0.jar started by root in /root/.openclaw/workspace/fengshen-game)
+2026-03-26T15:21:58.072+08:00  INFO 4135838 --- [fengshen-game] [           main] com.game.FengshenApplication             : No active profile set, falling back to 1 default profile: "default"
+2026-03-26T15:21:59.170+08:00  INFO 4135838 --- [fengshen-game] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-26T15:21:59.285+08:00  INFO 4135838 --- [fengshen-game] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 25 JPA repository interfaces.
+2026-03-26T15:21:59.869+08:00  INFO 4135838 --- [fengshen-game] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-26T15:21:59.879+08:00  INFO 4135838 --- [fengshen-game] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-26T15:21:59.879+08:00  INFO 4135838 --- [fengshen-game] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-03-26T15:21:59.922+08:00  INFO 4135838 --- [fengshen-game] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-26T15:21:59.923+08:00  INFO 4135838 --- [fengshen-game] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1710 ms
+2026-03-26T15:21:59.963+08:00  INFO 4135838 --- [fengshen-game] [           main] com.zaxxer.hikari.HikariDataSource       : FengshenHikariPool - Starting...
+2026-03-26T15:22:00.163+08:00  INFO 4135838 --- [fengshen-game] [           main] com.zaxxer.hikari.pool.HikariPool        : FengshenHikariPool - Added connection conn0: url=jdbc:h2:mem:fengshen user=SA
+2026-03-26T15:22:00.165+08:00  INFO 4135838 --- [fengshen-game] [           main] com.zaxxer.hikari.HikariDataSource       : FengshenHikariPool - Start completed.
+2026-03-26T15:22:00.187+08:00  INFO 4135838 --- [fengshen-game] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:fengshen'
+2026-03-26T15:22:00.338+08:00  INFO 4135838 --- [fengshen-game] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-26T15:22:00.411+08:00  INFO 4135838 --- [fengshen-game] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-03-26T15:22:00.451+08:00  INFO 4135838 --- [fengshen-game] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-26T15:22:00.710+08:00  INFO 4135838 --- [fengshen-game] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-26T15:22:00.760+08:00  WARN 4135838 --- [fengshen-game] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-26T15:22:02.016+08:00  INFO 4135838 --- [fengshen-game] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-26T15:22:02.082+08:00  INFO 4135838 --- [fengshen-game] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-26T15:22:03.132+08:00  WARN 4135838 --- [fengshen-game] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-26T15:22:03.152+08:00  INFO 4135838 --- [fengshen-game] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-03-26T15:22:03.577+08:00  INFO 4135838 --- [fengshen-game] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-03-26T15:22:03.592+08:00  INFO 4135838 --- [fengshen-game] [           main] com.game.FengshenApplication             : Started FengshenApplication in 6.1 seconds (process running for 6.632)
+2026-03-26T15:22:07.022+08:00  INFO 4135838 --- [fengshen-game] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-26T15:22:07.023+08:00  INFO 4135838 --- [fengshen-game] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-26T15:22:07.024+08:00  INFO 4135838 --- [fengshen-game] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-03-26T15:50:28.044+08:00  WARN 4135838 --- [fengshen-game] [nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "me"]
+2026-03-26T16:16:00.936+08:00  WARN 4135838 --- [fengshen-game] [nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'playerId' for method parameter type Long is not present]
+2026-03-26T18:18:13.043+08:00  WARN 4135838 --- [fengshen-game] [nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'playerId' for method parameter type Long is not present]

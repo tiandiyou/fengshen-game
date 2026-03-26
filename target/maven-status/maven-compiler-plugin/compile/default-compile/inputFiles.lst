@@ -6,6 +6,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/GrowthConfig.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/WarCredit.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/MountRepository.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/ResourceFieldService.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/SkillExchangeController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/FormationRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/SkillConfig.java
@@ -56,6 +57,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/TreasureRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/SeasonController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/PlayerSkill.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/ResourceFieldController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/MapZone.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/PartnerData.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/admin/AdminController.java
@@ -63,6 +65,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/GrowthController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/QuestController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/CityWar.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/ResourceField.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/controller/TeamController.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/GachaRecordRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/HeroIconConfig.java
@@ -72,6 +75,7 @@
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Resource.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/GachaRecord.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/service/PVPMatchService.java
+/root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/ResourceFieldRepository.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/config/FactionBonus.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/entity/Skill.java
 /root/.openclaw/workspace/fengshen-game/src/main/java/com/game/mapper/SkillRepository.java
