@@ -1,2 +1,22 @@
 target/
 server.log
+# Build outputs
+target/
+bin/
+
+# Logs
+*.log
+server.log
+
+# Generated test files
+playwright_*.py
+__pycache__/
+.pytest_cache/
+
+# Compressed assets
+*.tar.gz
+*.zip
+
+# IDE
+.idea/
+*.iml
