@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封神榜-游戏素材展示</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 30px 0;
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h2 {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .card .name {
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #ffd700;
+        }
+        .card .prompt {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .hero-card {
+            background: linear-gradient(145deg, rgba(255,215,0,0.1), rgba(0,0,0,0.3));
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        .hero-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .hero-name {
+            font-size: 1.4em;
+            color: #ffd700;
+            margin: 15px 0 10px;
+        }
+        .hero-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        .type-qi { background: #e74c3c; }
+        .type-bu { background: #3498db; }
+        .type-gong { background: #2ecc71; }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .stat {
+            background: rgba(0,0,0,0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+        .stat-hp { color: #e74c3c; }
+        .stat-atk { color: #f39c12; }
+        .stat-def { color: #3498db; }
+        .stat-speed { color: #2ecc71; }
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .scene-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .item-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+        }
+        .effect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .effect-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 封神榜 - 游戏素材展示</h1>
+    <p style="text-align:center; color:#888; margin-bottom:30px;">由 AI (Pollinations.ai) 生成的像素风格游戏素材</p>
+
+    <!-- 武将 -->
+    <div class="section">
+        <h2>⚔️ 武将角色</h2>
+        <div class="hero-grid">
+            <div class="hero-card">
+                <img src="https://gen.pollinations.ai/image/Ancient%20Chinese%20warrior%20general%20pixel%20art%20game%20sprite?width=512&height=512&nologo=true" alt="武士">
+                <div class="hero-name">镇国武圣</div>
+                <span class="hero-type type-qi">骑兵</span>
+                <div class="stats">
+                    <span class="stat stat-hp">❤️ 1200</span>
+                    <span class="stat stat-atk">⚔️ 180</span>
+                    <span class="stat stat-def">🛡️ 80</span>
+                    <span class="stat stat-speed">⚡ 95</span>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="https://gen.pollinations.ai/image/Chinese%20goddess%20warrior%20pixel%20art%20retro%20game%20character?width=512&height=512&nologo=true" alt="女神">
+                <div class="hero-name">九天玄女</div>
+                <span class="hero-type type-gong">弓手</span>
+                <div class="stats">
+                    <span class="stat stat-hp">❤️ 1000</span>
+                    <span class="stat stat-atk">⚔️ 160</span>
+                    <span class="stat stat-def">🛡️ 70</span>
+                    <span class="stat stat-speed">⚡ 100</span>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="https://gen.pollinations.ai/image/Old%20wise%20sage%20pixel%20art%20game%20character?width=512&height=512&nologo=true" alt=" sage">
+                <div class="hero-name">南极仙翁</div>
+                <span class="hero-type type-bu">步兵</span>
+                <div class="stats">
+                    <span class="stat stat-hp">❤️ 900</span>
+                    <span class="stat stat-atk">⚔️ 100</span>
+                    <span class="stat stat-def">🛡️ 120</span>
+                    <span class="stat stat-speed">⚡ 50</span>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="https://gen.pollinations.ai/image/Evil%20dark%20demon%20lord%20pixel%20art%20game%20enemy?width=512&height=512&nologo=true" alt=" demon">
+                <div class="hero-name">申公豹</div>
+                <span class="hero-type type-qi">骑兵</span>
+                <div class="stats">
+                    <span class="stat stat-hp">❤️ 1500</span>
+                    <span class="stat stat-atk">⚔️ 200</span>
+                    <span class="stat stat-def">🛡️ 60</span>
+                    <span class="stat stat-speed">⚡ 110</span>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="https://gen.pollinations.ai/image/Golden%20armored%20knight%20pixel%20art%20game%20character?width=512&height=512&nologo=true" alt=" knight">
+                <div class="hero-name">金甲神将</div>
+                <span class="hero-type type-qi">骑兵</span>
+                <div class="stats">
+                    <span class="stat stat-hp">❤️ 1400</span>
+                    <span class="stat stat-atk">⚔️ 170</span>
+                    <span class="stat stat-def">🛡️ 100</span>
+                    <span class="stat stat-speed">⚡ 85</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 场景 -->
+    <div class="section">
+        <h2>🏛️ 游戏场景</h2>
+        <div class="scene-grid">
+            <div class="scene-card card">
+                <img src="https://gen.pollinations.ai/image/Ancient%20Chinese%20palace%20pixel%20art%20game%20background?width=800&height=600&nologo=true" alt="宫殿">
+                <div class="name">陈塘关王府</div>
+            </div>
+            <div class="scene-card card">
+                <img src="https://gen.pollinations.ai/image/Dark%20dungeon%20prison%20pixel%20art%20game%20background?width=800&height=600&nologo=true" alt="地牢">
+                <div class="name">地牢监狱</div>
+            </div>
+            <div class="scene-card card">
+                <img src="https://gen.pollinations.ai/image/Mountain%20temple%20pixel%20art%20landscape%20game%20background?width=800&height=600&nologo=true" alt="寺庙">
+                <div class="name">玉虚宫</div>
+            </div>
+            <div class="scene-card card">
+                <img src="https://gen.pollinations.ai/image/Cherry%20blossom%20garden%20pixel%20art%20game%20background?width=800&height=600&nologo=true" alt="花园">
+                <div class="name">后花园</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 物品 -->
+    <div class="section">
+        <h2>🎁 装备道具</h2>
+        <div class="item-grid">
+            <div class="item-card card">
+                <img src="https://gen.pollinations.ai/image/Golden%20ancient%20sword%20pixel%20art%20item%20icon?width=256&height=256&nologo=true" alt="剑">
+                <div class="name">轩辕剑</div>
+            </div>
+            <div class="item-card card">
+                <img src="https://gen.pollinations.ai/image/Blue%20magic%20potion%20bottle%20pixel%20art%20item?width=256&height=256&nologo=true" alt="蓝药">
+                <div class="name">灵泉</div>
+            </div>
+            <div class="item-card card">
+                <img src="https://gen.pollinations.ai/image/Red%20healing%20potion%20pixel%20art%20item?width=256&height=256&nologo=true" alt="红药">
+                <div class="name">金丹</div>
+            </div>
+            <div class="item-card card">
+                <img src="https://gen.pollinations.ai/image/Ancient%20Chinese%20seal%20pixel%20art?width=256&height=256&nologo=true" alt="玉玺">
+                <div class="name">封神印</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 特效 -->
+    <div class="section">
+        <h2>✨ 战斗特效</h2>
+        <div class="effect-grid">
+            <div class="effect-card card">
+                <img src="https://gen.pollinations.ai/image/Fire%20explosion%20effect%20pixel%20art%20animation?width=256&height=256&nologo=true" alt="火焰">
+                <div class="name">三昧真火</div>
+            </div>
+            <div class="effect-card card">
+                <img src="https://gen.pollinations.ai/image/Lightning%20bolt%20effect%20pixel%20art?width=256&height=256&nologo=true" alt="闪电">
+                <div class="name">天雷</div>
+            </div>
+            <div class="effect-card card">
+                <img src="https://gen.pollinations.ai/image/Healing%20magic%20green%20effect%20pixel%20art?width=256&height=256&nologo=true" alt="治疗">
+                <div class="name">春风化雨</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🎮 封神榜 SLG 游戏 | 素材由 AI 自动生成</p>
+        <p style="margin-top:10px; color:#555;">Powered by Pollinations.ai</p>
+    </div>
+</body>
+</html>

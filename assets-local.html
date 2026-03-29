@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封神榜 - 游戏素材展示</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #ffd700;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(180deg,#ff6b00,#c41e3a);
+            border:2px solid #ffd700;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .card img { width: 100%; height: 120px; object-fit: contain; border-radius: 6px; }
+        .card .name { margin-top: 8px; color: #ffd700; font-size: 0.9em; }
+        h2 { color: #ffd700; margin: 20px 0 10px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-btn">← 返回游戏</a>
+    <h1>🎮 游戏素材展示 (本地)</h1>
+    <h2>⚔️ 武将</h2>
+    <div class="grid">
+        <div class="card"><img src="assets/images/warrior_1.png"><div class="name">镇国武圣</div></div>
+        <div class="card"><img src="assets/images/goddess_1.png"><div class="name">九天玄女</div></div>
+    </div>
+    <h2>🏛️ 场景</h2>
+    <div class="grid">
+        <div class="card"><img src="assets/images/scene_palace.png"><div class="name">陈塘关王府</div></div>
+    </div>
+    <h2>🎁 装备</h2>
+    <div class="grid">
+        <div class="card"><img src="assets/images/item_sword.png"><div class="name">轩辕剑</div></div>
+        <div class="card"><img src="assets/images/item_potion_blue.png"><div class="name">灵泉</div></div>
+        <div class="card"><img src="assets/images/item_potion_red.png"><div class="name">金丹</div></div>
+    </div>
+    <h2>✨ 特效</h2>
+    <div class="grid">
+        <div class="card"><img src="assets/images/effect_fire.png"><div class="name">三昧真火</div></div>
+        <div class="card"><img src="assets/images/effect_lightning.png"><div class="name">天雷</div></div>
+        <div class="card"><img src="assets/images/effect_heal.png"><div class="name">春风化雨</div></div>
+    </div>
+    <p style="text-align:center;margin:30px 0;color:#666;">共9张素材已下载到本地</p>
+</body>
+</html>
