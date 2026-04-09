@@ -17,6 +17,12 @@ public class MapController {
     @Autowired
     private PlayerMapRepository playerMapRepository;
     
+    // 基础移动时间（分钟）
+    private static final int BASE_MOVE_TIME = 5;
+    
+    // 移动冷却系数（冷却时间 = 移动时间 * 此系数）
+    private static final double MOVE_COOLDOWN_MULTIPLIER = 1.0;
+    
     // 地图区域数据 - 使用 HashMap 避免 Map.of 参数限制
     private static final List<Map<String, Object>> ZONE_DATA;
     
@@ -302,22 +308,23 @@ public class MapController {
         return result;
     }
     
-    // 移动到其他区域
+    // 移动到其他区域（异步移动）
     @PostMapping("/travel")
     public Map<String, Object> move(@RequestBody Map<String, Object> req) {
         Long playerId = ((Number) req.get("playerId")).longValue();
         Integer targetZoneId = (Integer) req.get("zoneId");
         
-        Optional<MapZone> zoneOpt = mapZoneRepository.findByZoneId(targetZoneId);
-        if (!zoneOpt.isPresent()) {
+        // 获取目标区域
+        Optional<MapZone> targetOpt = mapZoneRepository.findByZoneId(targetZoneId);
+        if (!targetOpt.isPresent()) {
             Map<String, Object> result = new HashMap<>();
             result.put("success", false);
             result.put("message", "区域不存在");
             return result;
         }
+        MapZone target = targetOpt.get();
         
-        MapZone target = zoneOpt.get();
-        
+        // 获取玩家当前位置
         Optional<PlayerMap> pmOpt = playerMapRepository.findByPlayerId(playerId);
         PlayerMap pm;
         if (pmOpt.isPresent()) {
@@ -325,22 +332,213 @@ public class MapController {
         } else {
             pm = new PlayerMap();
             pm.setPlayerId(playerId);
+            pm.setZoneId(1); // 默认出生点
         }
         
-        pm.setZoneId(targetZoneId);
-        pm.setZoneType(target.getType());
-        pm.setX(target.getX());
-        pm.setY(target.getY());
-        pm.setEnterTime(System.currentTimeMillis());
+        // 检查是否在冷却中
+        Long now = System.currentTimeMillis();
+        if (pm.getMoveCooldownUntil() != null && pm.getMoveCooldownUntil() > now) {
+            long remaining = (pm.getMoveCooldownUntil() - now) / 1000;
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "移动冷却中，还需等待 " + remaining + " 秒");
+            result.put("cooldownUntil", pm.getMoveCooldownUntil());
+            result.put("remainingSeconds", remaining);
+            return result;
+        }
+        
+        // 检查是否已经在移动中
+        if (Boolean.TRUE.equals(pm.getIsMoving())) {
+            long moveRemaining = (pm.getMoveStartTime() + pm.getMoveDuration() - now) / 1000;
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "正在移动中，还需等待 " + moveRemaining + " 秒");
+            result.put("isMoving", true);
+            result.put("targetZoneId", pm.getTargetZoneId());
+            result.put("remainingSeconds", moveRemaining);
+            return result;
+        }
+        
+        // 计算移动距离（使用曼哈顿距离）
+        int distance = calculateDistance(pm.getX(), pm.getY(), target.getX(), target.getY());
+        
+        // 计算移动时间（分钟）= 距离 * 基础时间
+        int moveTimeMinutes = distance * BASE_MOVE_TIME;
+        long moveTimeMs = moveTimeMinutes * 60 * 1000L;
+        
+        // 如果距离为0（即当前区域），直接进入
+        if (distance == 0) {
+            pm.setZoneId(targetZoneId);
+            pm.setZoneType(target.getType());
+            pm.setX(target.getX());
+            pm.setY(target.getY());
+            pm.setEnterTime(now);
+            pm.setIsMoving(false);
+            pm.setMoveStartTime(null);
+            pm.setMoveDuration(null);
+            pm.setTargetZoneId(null);
+            playerMapRepository.save(pm);
+            
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            result.put("message", "已进入 " + target.getName());
+            result.put("zoneId", targetZoneId);
+            result.put("zoneName", target.getName());
+            result.put("instant", true);
+            return result;
+        }
+        
+        // 设置移动状态（异步移动）
+        pm.setIsMoving(true);
+        pm.setMoveStartTime(now);
+        pm.setMoveDuration(moveTimeMs);
+        pm.setTargetZoneId(targetZoneId);
+        pm.setFromZoneId(pm.getZoneId()); // 记录起点
+        playerMapRepository.save(pm);
+        
+        // 计算冷却时间
+        long cooldownMs = (long) (moveTimeMs * MOVE_COOLDOWN_MULTIPLIER);
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("message", "开始向 " + target.getName() + " 移动，预计 " + moveTimeMinutes + " 分钟");
+        result.put("isMoving", true);
+        result.put("fromZoneId", pm.getFromZoneId());
+        result.put("targetZoneId", targetZoneId);
+        result.put("targetName", target.getName());
+        result.put("distance", distance);
+        result.put("moveTimeMinutes", moveTimeMinutes);
+        result.put("moveTimeMs", moveTimeMs);
+        result.put("arrivalTime", now + moveTimeMs);
+        result.put("cooldownMinutes", (int) (cooldownMs / 60000));
+        
+        return result;
+    }
+    
+    // 计算两点之间的曼哈顿距离
+    private int calculateDistance(int x1, int y1, int x2, int y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
+    
+    // 获取玩家移动状态
+    @GetMapping("/move/status")
+    public Map<String, Object> getMoveStatus(@RequestParam Long playerId) {
+        Optional<PlayerMap> pmOpt = playerMapRepository.findByPlayerId(playerId);
+        
+        if (!pmOpt.isPresent()) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "玩家不存在");
+            return result;
+        }
+        
+        PlayerMap pm = pmOpt.get();
+        Long now = System.currentTimeMillis();
+        
+        // 检查移动是否完成
+        if (Boolean.TRUE.equals(pm.getIsMoving())) {
+            if (pm.getMoveStartTime() != null && pm.getMoveDuration() != null) {
+                long arrivalTime = pm.getMoveStartTime() + pm.getMoveDuration();
+                
+                if (now >= arrivalTime) {
+                    // 移动完成，更新位置
+                    pm.setZoneId(pm.getTargetZoneId());
+                    pm.setIsMoving(false);
+                    
+                    // 设置冷却时间
+                    pm.setMoveCooldownUntil(now + pm.getMoveDuration());
+                    pm.setMoveStartTime(null);
+                    pm.setMoveDuration(null);
+                    
+                    Optional<MapZone> targetZone = mapZoneRepository.findByZoneId(pm.getTargetZoneId());
+                    if (targetZone.isPresent()) {
+                        MapZone z = targetZone.get();
+                        pm.setZoneType(z.getType());
+                        pm.setX(z.getX());
+                        pm.setY(z.getY());
+                    }
+                    pm.setEnterTime(now);
+                    pm.setTargetZoneId(null);
+                    playerMapRepository.save(pm);
+                }
+            }
+        }
+        
+        // 重新获取玩家状态
+        pm = playerMapRepository.findByPlayerId(playerId).get();
+        
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("currentZoneId", pm.getZoneId());
+        result.put("currentX", pm.getX());
+        result.put("currentY", pm.getY());
+        
+        // 移动状态
+        result.put("isMoving", pm.getIsMoving() != null && pm.getIsMoving());
+        
+        if (Boolean.TRUE.equals(pm.getIsMoving())) {
+            long remaining = (pm.getMoveStartTime() + pm.getMoveDuration() - now) / 1000;
+            result.put("targetZoneId", pm.getTargetZoneId());
+            result.put("remainingSeconds", Math.max(0, remaining));
+        }
+        
+        // 冷却状态
+        if (pm.getMoveCooldownUntil() != null && pm.getMoveCooldownUntil() > now) {
+            long cooldownRemaining = (pm.getMoveCooldownUntil() - now) / 1000;
+            result.put("inCooldown", true);
+            result.put("cooldownRemainingSeconds", cooldownRemaining);
+        } else {
+            result.put("inCooldown", false);
+        }
+        
+        // 当前位置详情
+        Optional<MapZone> currentZone = mapZoneRepository.findByZoneId(pm.getZoneId());
+        if (currentZone.isPresent()) {
+            MapZone z = currentZone.get();
+            result.put("currentZoneName", z.getName());
+            result.put("currentZoneType", z.getType());
+        }
+        
+        return result;
+    }
+    
+    // 取消移动
+    @PostMapping("/move/cancel")
+    public Map<String, Object> cancelMove(@RequestBody Map<String, Object> req) {
+        Long playerId = ((Number) req.get("playerId")).longValue();
+        
+        Optional<PlayerMap> pmOpt = playerMapRepository.findByPlayerId(playerId);
+        if (!pmOpt.isPresent()) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "玩家不存在");
+            return result;
+        }
+        
+        PlayerMap pm = pmOpt.get();
+        
+        if (!Boolean.TRUE.equals(pm.getIsMoving())) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("message", "当前没有正在进行的移动");
+            return result;
+        }
+        
+        // 取消移动，保留冷却时间
+        pm.setIsMoving(false);
+        pm.setMoveStartTime(null);
+        pm.setMoveDuration(null);
+        
+        // 冷却时间设为移动时间的一半（取消惩罚）
+        long penaltyTime = pm.getMoveDuration() != null ? pm.getMoveDuration() / 2 : 300000;
+        pm.setMoveCooldownUntil(System.currentTimeMillis() + penaltyTime);
+        
         playerMapRepository.save(pm);
         
         Map<String, Object> result = new HashMap<>();
         result.put("success", true);
-        result.put("message", "成功进入" + target.getName());
-        result.put("zoneId", targetZoneId);
-        result.put("zoneName", target.getName());
-        result.put("zoneType", target.getType());
-        result.put("relicType", target.getRelicType());
+        result.put("message", "已取消移动");
+        result.put("penaltyMinutes", penaltyTime / 60000);
         
         return result;
     }
